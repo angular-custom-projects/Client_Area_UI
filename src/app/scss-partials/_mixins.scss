@@ -1,0 +1,126 @@
+@import "./variables";
+//disabled button
+@mixin disabled-button($background-color: rgba(0, 0, 0, .12), $color: rgba(0,0,0,.26)) {
+  background-color: $background-color;
+  color: $color;
+  cursor: not-allowed;
+}
+
+//dark hover mixin -> it has the orange background hover by default. you can change it if you like
+@mixin hover-color-dark($color: $white-color, $background-color: $orange-primary, $c-value: 0%, $bg-value: 5%) {
+  color: darken($color, $c-value);
+  background-color: darken($background-color, $bg-value);
+}
+
+//light hover mixin -> it has the orange background hover by default. you can change it if you like
+@mixin hover-color-light($color: $white-color, $background-color: $orange-primary, $c-value: 0%, $bg-value: 5%) {
+  color: lighten($color, $c-value);
+  background-color: lighten($background-color, $bg-value);
+}
+
+//border radius
+@mixin rounded($radius: 5px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+//fonts
+@mixin lato-bold {
+  font-family: 'Lato', 'Roboto';
+  font-weight: bold;
+  font-style: normal;
+}
+
+@mixin lato-regular {
+  font-family: 'Lato', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin lato-light {
+  font-family: 'Lato', 'Roboto';
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin lato-thin {
+  font-family: 'Lato', 'Roboto';
+  font-weight: 100;
+  font-style: normal;
+}
+
+//CN
+@mixin lato-bold-cn {
+  font-family: 'Noto Sans CJK TC Thin', 'Roboto';
+  font-weight: bold;
+  font-style: normal;
+}
+
+@mixin lato-regular-cn {
+  font-family: 'Noto Sans CJK TC Thin', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin lato-light-cn {
+  font-family: 'Noto Sans CJK TC Thin', 'Roboto';
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin lato-thin-cn {
+  font-family: 'Noto Sans CJK TC Thin', 'Roboto';
+  font-weight: 100;
+  font-style: normal;
+}
+
+//Thai
+@mixin lato-bold-th {
+  font-family: 'K2D', 'Roboto';
+  font-weight: bold;
+  font-style: normal;
+}
+
+@mixin lato-regular-th {
+  font-family: 'K2D', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin lato-light-th {
+  font-family: 'K2D', 'Roboto';
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin lato-thin-th {
+  font-family: 'K2D', 'Roboto';
+  font-weight: 100;
+  font-style: normal;
+}
+
+//VI
+@mixin lato-bold-vi {
+  font-family: 'Montserrat', 'Roboto';
+  font-weight: bold;
+  font-style: normal;
+}
+
+@mixin lato-regular-vi {
+  font-family: 'Montserrat', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin lato-light-vi {
+  font-family: 'Montserrat', 'Roboto';
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin lato-thin-vi {
+  font-family: 'Montserrat', 'Roboto';
+  font-weight: 100;
+  font-style: normal;
+}

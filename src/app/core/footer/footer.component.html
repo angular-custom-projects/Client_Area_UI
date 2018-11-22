@@ -1,0 +1,50 @@
+<!--show the following content only if the user is not authenticated-->
+<ng-template [ngIf]="!authService.isAuthenticated()">
+    <div class="footer-top" fxLayout="row wrap">
+        <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Ma17ca55f0111a606b92824663d78090b1538480189740">
+    </div>
+</ng-template>
+<!--add text-center class if the user is note authenticated-->
+<div class="footer-bottom" fxLayout="row wrap" fxLayoutAlign="space-between center"
+     [ngClass]="{'text-center': !authService.isAuthenticated()}">
+    <div class="container main-content" fxLayout="column" fxLayoutGap="2%">
+        <!--show the following content only if the user is note authenticated-->
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="4%">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Mf3a1a3e79306482081d4ad1b4797a8421538560039599">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M928f0ef58b3a8be132fabba13b6059381538560040262">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Me2fa684a76d80ea0474b1da6a60050d81538560041109">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Md2b6b48bdef5672422fc5e7f40e9dbd91538560041775">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Mbc77ba26835dd1e6e8de62320779e8081538560042550">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M52f4c4bd6a96c7772bddb439a30c4acb1538560043135">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Md93f87567a82714308cffc2773cfb3821538560044430">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="4%">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M8beaef78c1f440161156b6265c6853e31538560045084">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M1925f582309c83abb6136645846ca9da1538560045793">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M6ab4c8e397b7599a1258e881f3504e051538560046512">
+                <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M3042c4622a00e4df4028ce109dc84a351538560047189">
+            </div>
+        </ng-template>
+        <div>
+            <p>This website is operated by Primus Markets INTL Limited, a member Company of the FXPRIMUS Group.</p>
+            <p>FXPRIMUS is the brand name used by: <br>Primus Global Ltd (previously known as FX Primus Europe (CY)
+                Ltd), regulated by CySEC, with licence no. 261/14. <br>Primus Markets INTL Limited, regulated by VFSC,
+                with registration no. 14595. <br>Primus Africa (Pty) Ltd, regulated by FSCA, with licence no. 46675.
+            </p>
+            <p>FXPRIMUS clients are insured with a EUR2.5M policy.</p>
+            <p>Risk Warning: Please note that forex trading and trading in other leveraged products involves a
+                significant level of risk and is not suitable for all investors. Trading in financial instruments may
+                result in losses as well as profits, and your losses can be greater than your initial invested capital.
+                Before undertaking any such transactions, you should ensure that you fully understand the risks involved
+                and seek independent advice if necessary.</p>
+            <p>This information is not directed or intended for distribution to or use by residents of certain
+                countries/jurisdictions including, but not limited to, Australia, Belgium, France, Iran, Japan, North
+                Korea and USA. &nbsp;The Company does not offer its services to residents of certain
+                countries/jurisdictions including, but not limited to, Australia, Belgium, France, Iran, Japan, North
+                Korea and USA.&nbsp;The Company holds the right to alter the above lists of countries at its own
+                discretion.</p>
+            <p>©2018 FXPRIMUS. All Rights Reserved.</p>
+        </div>
+    </div>
+</div>

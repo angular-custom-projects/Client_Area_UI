@@ -1,0 +1,78 @@
+.main-content {
+  background-color: transparent; }
+
+.container .column {
+  width: 45%; }
+
+button[mat-raised-button] {
+  background-color: #f9a21c;
+  margin: 20px 0;
+  color: #fff; }
+
+button[mat-raised-button]:hover {
+  color: white;
+  background-color: #f59706; }
+
+button:disabled:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+  cursor: not-allowed; }
+
+.input-full-width {
+  width: 100%; }
+
+.input-phone-code {
+  width: 25%; }
+
+.input-phone-number {
+  width: 74%; }
+
+.title {
+  color: #0059a7;
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 0; }
+
+.margin-bottom-15 {
+  margin-bottom: 15px; }
+
+.successful-reg {
+  color: #00C853;
+  font-size: 20px; }
+
+.img-icon {
+  height: 20px; }
+
+mat-icon {
+  margin-right: 5px; }
+
+.divider {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px; }
+
+.paragraph {
+  /*padding-left: 24px;*/
+  font-size: 14px;
+  padding: 10px 40px 10px 40px; }
+
+a[mat-stroked-button] {
+  width: 100%;
+  color: #f9a21c; }
+
+.error-msg {
+  color: #f44336;
+  text-align: left; }
+
+mat-list-item {
+  height: 40px !important; }
+
+mat-list-item p {
+  padding-top: 5px; }
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+    max-width: 100%; } }
+
+/*# sourceMappingURL=register.component.css.map */

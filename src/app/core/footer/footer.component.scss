@@ -1,0 +1,17 @@
+@import "../../scss-partials/variables";
+.footer-top {
+  background-color: $top-footer-bg;
+  height: 64px;
+}
+.footer-bottom {
+  background-color: $dark-blue-primary;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.main-content {
+  background-color: transparent;
+  padding: 40px 40px;
+}

@@ -1,0 +1,85 @@
+@import "../../scss-partials/variables";
+@import "../../scss-partials/mixins";
+/*top header styles*/
+.top-header {
+  height: 105px;
+  background-color: $site-background-color;
+}
+
+.fxprimus-logo-inner {
+  height: 53px;
+}
+
+.current-user-name {
+  color: $light-blue-primary;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.current-user-name:hover {
+  @include hover-color-light($color: $light-blue-primary, $background-color: transparent, $c-value: 10%);
+}
+
+.notifications-bell {
+  cursor: pointer;
+  margin: 0 50px 0 40px;
+}
+
+.notifications-bell fa {
+  color: $dark-blue-primary;
+}
+
+.notifications-bell fa:hover {
+  @include hover-color-light($color: $dark-blue-primary, $background-color: transparent, $c-value: 10%);
+}
+
+.mat-badge-content {
+  color: $dark-blue-primary;
+  background-color: $orange-primary;
+  border-radius: 50%;
+  border : 1px solid $dark-blue-primary;
+}
+
+/*end top header styles*/
+
+/*bottom header styles*/
+.navbar-header {
+  background-color: $dark-blue-primary;
+  padding: 8px 16px;
+  color: $dark-blue-eighth;
+}
+
+.navbar-header .active {
+  color: $white-color;
+}
+
+.logo-button {
+  display: flex;
+}
+
+.fxprimus-logo {
+  height: 37px;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.open-an-account {
+  border-color: #f3f8ff;
+  color: #f3f8ff;
+}
+
+.white-color-text {
+  color: #f3f8ff;
+}
+
+/*end bottom header styles*/
+
+/*flags*/
+.flag {
+  margin: 0 12px 0 0;
+  height: 23px;
+}
+
+/*end flags*/

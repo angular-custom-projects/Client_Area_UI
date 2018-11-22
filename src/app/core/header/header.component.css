@@ -1,0 +1,69 @@
+/*top header styles*/
+.top-header {
+  height: 105px;
+  background-color: #F4F6FA; }
+
+.fxprimus-logo-inner {
+  height: 53px; }
+
+.current-user-name {
+  color: #0059a7;
+  font-size: 18px;
+  cursor: pointer; }
+
+.current-user-name:hover {
+  color: #0074da;
+  background-color: rgba(13, 13, 13, 0); }
+
+.notifications-bell {
+  cursor: pointer;
+  margin: 0 50px 0 40px; }
+
+.notifications-bell fa {
+  color: #05152d; }
+
+.notifications-bell fa:hover {
+  color: #0a2a5b;
+  background-color: rgba(13, 13, 13, 0); }
+
+.mat-badge-content {
+  color: #05152d;
+  background-color: #f9a21c;
+  border-radius: 50%;
+  border: 1px solid #05152d; }
+
+/*end top header styles*/
+/*bottom header styles*/
+.navbar-header {
+  background-color: #05152d;
+  padding: 8px 16px;
+  color: #b4b8c0; }
+
+.navbar-header .active {
+  color: #fff; }
+
+.logo-button {
+  display: flex; }
+
+.fxprimus-logo {
+  height: 37px; }
+
+.flex-spacer {
+  flex: 1 1 auto; }
+
+.open-an-account {
+  border-color: #f3f8ff;
+  color: #f3f8ff; }
+
+.white-color-text {
+  color: #f3f8ff; }
+
+/*end bottom header styles*/
+/*flags*/
+.flag {
+  margin: 0 12px 0 0;
+  height: 23px; }
+
+/*end flags*/
+
+/*# sourceMappingURL=header.component.css.map */

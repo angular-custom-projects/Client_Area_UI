@@ -1,0 +1,23 @@
+.add-account {
+  background-color: #0059a7; }
+
+.add-account:hover {
+  color: white;
+  background-color: #004b8e; }
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #0059a7; }
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #e5eef6; }
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px; }
+
+#buttons-container {
+  margin-top: 20px; }
+
+fa {
+  margin-right: 10px; }
+
+/*# sourceMappingURL=profile-completion.component.css.map */

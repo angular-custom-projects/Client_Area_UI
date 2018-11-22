@@ -1,0 +1,155 @@
+<mat-toolbar>
+    <!--show the following content only if the user is authenticated-->
+    <ng-template [ngIf]="authService.isAuthenticated()">
+        <mat-toolbar-row class="top-header">
+            <div class="container" fxLayout="row wrap" fxLayoutAlign="flex-start center">
+                <a class="logo-button mat-button"
+                   routerLink="/dashboard">
+                    <img alt="angular"
+                         class="fxprimus-logo-inner"
+                         src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M35ff50474fc29c64b4ca9d7eee4c30601538727053623">
+                </a>
+                <span class="flex-spacer"></span>
+                <span>Hello, <a class="current-user-name"
+                                [matMenuTriggerFor]="user">
+                    {{firstName | titlecase}} {{lastName | titlecase}}
+                </a>
+            </span>
+                <mat-menu #user="matMenu" [overlapTrigger]="false">
+                    <a mat-menu-item routerLink="/profile">Profile</a>
+                    <a mat-menu-item (click)="onLogout()">Logout</a>
+                </mat-menu>
+                <a class="notifications-bell"
+                   [matMenuTriggerFor]="notifications">
+                <span [matBadge]="notificationsNum" matBadgeOverlap="false">
+                    <fa name="bell"></fa>
+                </span>
+                </a>
+                <mat-menu #notifications="matMenu" [overlapTrigger]="false">
+                    <a mat-menu-item routerLink="/first-notice">The FXPRIMUS PAMM Investment Service</a>
+                    <a mat-menu-item routerLink="/second-notice">Primus Markets Intl MT4 Trading Platform</a>
+                    <a mat-menu-item routerLink="/third-notice">Add Our Support Team To Your Contacts List</a>
+                </mat-menu>
+                <a mat-button fxLayoutAlign="space-between center" [matMenuTriggerFor]="language">
+                    <img class="flag"
+                         src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                    <span>English</span>
+                </a>
+                <mat-menu #language="matMenu"
+                          [overlapTrigger]="false">
+                    <button fxLayoutAlign="space-between center" mat-menu-item>
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span>English</span>
+                    </button>
+                    <button fxLayoutAlign="space-between center" mat-menu-item>
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span>English</span>
+                    </button>
+                    <button fxLayoutAlign="space-between center" mat-menu-item>
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span>English</span>
+                    </button>
+                    <button fxLayoutAlign="space-between center" mat-menu-item>
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span>English</span>
+                    </button>
+                    <button fxLayoutAlign="space-between center" mat-menu-item>
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span>English</span>
+                    </button>
+                    <button fxLayoutAlign="space-between center" mat-menu-item>
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span>English</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-toolbar-row>
+    </ng-template>
+    <mat-toolbar-row class="navbar-header">
+        <div class="container" fxLayout="row wrap" fxLayoutAlign="flex-start center">
+            <!--show the following content only if the user is authenticated-->
+            <ng-template [ngIf]="authService.isAuthenticated()">
+                <a class="mat-button"
+                   mat-button=""
+                   routerLink="/dashboard"
+                   routerLinkActive="active">Dashboard</a>
+                <a class="mat-button"
+                   mat-button=""
+                   routerLink="/profile"
+                   routerLinkActive="active">Profile</a>
+                <a class="mat-button"
+                   mat-button=""
+                   routerLink="/trading-accounts"
+                   routerLinkActive="active">Trading Accounts</a>
+                <a class="mat-button"
+                   mat-button=""
+                   routerLink="/wallet"
+                   routerLinkActive="active">Wallet</a>
+            </ng-template>
+            <!--show the following content only if the user is not authenticated-->
+            <ng-template [ngIf]="!authService.isAuthenticated()">
+                <a class="logo-button mat-button"
+                   routerLink="/dashboard">
+                    <img alt="angular"
+                         class="fxprimus-logo"
+                         src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M0f48b13661264231082a8226beef7b641538463337572">
+                </a>
+                <span class="flex-spacer"></span>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1%">
+                    <a class="mat-button white-color-text"
+                       mat-button=""
+                       routerLink="/login"
+                       routerLinkActive="active">Login</a>
+                    <a class="mat-stroked-button open-an-account"
+                       mat-stroked-button=""
+                       routerLink="/register"
+                       routerLinkActive="active">Open an Account</a>
+                    <a mat-button [matMenuTriggerFor]="language" fxLayout="row" fxLayoutAlign="space-between center">
+                        <img class="flag"
+                             src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                        <span class="white-color-text">English</span>
+                    </a>
+                    <mat-menu #language="matMenu"
+                              [overlapTrigger]="false">
+                        <button mat-menu-item fxLayoutAlign="space-between center">
+                            <img class="flag"
+                                 src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                            <span>English</span>
+                        </button>
+                        <button fxLayoutAlign="space-between center" mat-menu-item>
+                            <img class="flag"
+                                 src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                            <span>English</span>
+                        </button>
+                        <button fxLayoutAlign="space-between center" mat-menu-item>
+                            <img class="flag"
+                                 src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                            <span>English</span>
+                        </button>
+                        <button fxLayoutAlign="space-between center" mat-menu-item>
+                            <img class="flag"
+                                 src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                            <span>English</span>
+                        </button>
+                        <button fxLayoutAlign="space-between center" mat-menu-item>
+                            <img class="flag"
+                                 src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                            <span>English</span>
+                        </button>
+                        <button fxLayoutAlign="space-between center" mat-menu-item>
+                            <img class="flag"
+                                 src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">
+                            <span>English</span>
+                        </button>
+                    </mat-menu>
+                </div>
+            </ng-template>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
