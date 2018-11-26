@@ -1,6 +1,15 @@
 @import "./variables";
+
+// primary buttons
+@mixin primary-button($margin: 20px 0, $padding: 5px 0px, $color: $white-color, $font-size: 16px) {
+  margin: $margin;
+  color: $color;
+  padding: $padding;
+  font-size: $font-size;
+}
+
 //disabled button
-@mixin disabled-button($background-color: rgba(0, 0, 0, .12), $color: rgba(0,0,0,.26)) {
+@mixin disabled-button($background-color: rgba(0, 0, 0, .12), $color: rgba(0, 0, 0, .26)) {
   background-color: $background-color;
   color: $color;
   cursor: not-allowed;
