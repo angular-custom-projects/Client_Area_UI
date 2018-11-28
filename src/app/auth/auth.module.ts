@@ -6,9 +6,11 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from '../material/material.module';
 
+import {SharedModule} from "../shared/shared.module";
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 @NgModule({
     imports: [
@@ -17,11 +19,13 @@ import {RegisterComponent} from './register/register.component';
         AngularFontAwesomeModule,
         FlexLayoutModule,
         MaterialModule,
+        SharedModule,
         AuthRoutingModule
     ],
     declarations: [
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        ChangePasswordComponent
     ]
 })
 export class AuthModule {

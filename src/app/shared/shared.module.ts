@@ -13,6 +13,7 @@ import {MaterialModule} from '../material/material.module';
 import {ProfileCompletionComponent} from '../profile-completion/profile-completion.component';
 import {NotFoundComponent} from '../core/not-found/not-found.component';
 import {StopPropagationDirective} from '../directives/stop-propagation.directive';
+import {ConfirmEqualValidatorDirective} from "./custom-validators/confirm-equal-validator.directive";
 
 @NgModule({
     imports: [
@@ -25,12 +26,14 @@ import {StopPropagationDirective} from '../directives/stop-propagation.directive
     exports: [
         ProfileCompletionComponent,
         NotFoundComponent,
-        StopPropagationDirective
+        StopPropagationDirective,
+        ConfirmEqualValidatorDirective
     ],
     declarations: [
         ProfileCompletionComponent,
         NotFoundComponent,
-        StopPropagationDirective
+        StopPropagationDirective,
+        ConfirmEqualValidatorDirective
     ]
 })
 export class SharedModule {
