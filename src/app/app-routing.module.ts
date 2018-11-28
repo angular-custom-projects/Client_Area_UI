@@ -7,8 +7,8 @@ import {LazyAuthGuardService} from './guards/lazy-auth-guard.service';
 const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full'},
     // the following is used for lazy loading
-    {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canLoad: [LazyAuthGuardService]},
-    {path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canLoad: [LazyAuthGuardService]},
+    {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+    {path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
     {
         path: 'trading-accounts',
         loadChildren: './trading-accounts/trading-accounts.module#TradingAccountsModule',
