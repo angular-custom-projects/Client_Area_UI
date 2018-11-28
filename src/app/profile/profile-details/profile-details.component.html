@@ -1,3 +1,25 @@
-<p>
-    profile-details works!
-</p>
+<div class="container">
+  <p class="profile-header"><i class="material-icons">person</i> Profile Details</p>
+  <p class="title">Account Details</p>
+  <div class="content">
+    <p>Username: <span>{{ username }}</span></p>
+  </div>
+  <p class="title">Personal Information</p>
+  <div class="content">
+    <p>First Name: <span>{{ firstName }}</span></p>
+    <p>Last Name: <span>{{ lastName }}</span></p>
+    <p>Education: <span>Secondary</span></p>
+    <p>Date of Birth: <span>March 9, 1980</span></p>
+  </div>
+  <p class="title">Contact Details</p>
+  <div class="content">
+    <p>Country: <span>CY</span></p>
+    <p>City: <span>Nicosia</span></p>
+    <p>Address: <span>14 Andrea Teloni str</span></p>
+    <p>Zip Code: <span>3120</span></p>
+    <p>Phone Number: <span>{{ phoneNumber }}</span></p>
+    <p>Email: <span>{{ email }}</span></p>
+    <p>&nbsp;</p>
+  </div>
+  <button mat-raised-button><i class="material-icons">edit</i> Complete Profile</button>
+</div>
