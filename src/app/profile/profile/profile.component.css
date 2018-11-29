@@ -1,3 +1,20 @@
+.active, .active:hover {
+  border-left: 5px solid #0059a7;
+  background-color: #e6e7ea;
+  width: -webkit-calc(100% - 5px) !important;
+  width: -moz-calc(100% - 5px) !important;
+  width: calc(100% - 5px) !important; }
 
+mat-nav-list a {
+  border-bottom: 1px solid #eee; }
+
+mat-nav-list i {
+  margin: 0 20px 0 5px; }
+
+#side-card, #left-card {
+  padding: 0; }
+
+#profile-completion {
+  padding: 15px 15px 0 15px; }
 
 /*# sourceMappingURL=profile.component.css.map */
