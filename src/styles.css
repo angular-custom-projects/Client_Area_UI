@@ -15,6 +15,16 @@ body {
   padding: 70px 40px;
   background-color: #F4F6FA; }
 
+.error-msg {
+  color: #f44336;
+  text-align: left;
+  font-size: 13px; }
+
+mat-form-field {
+  font-size: 15px;
+  margin-bottom: -15px;
+  margin-top: 10px; }
+
 .lato-bold {
   font-family: 'Lato', 'Roboto';
   font-weight: bold;
