@@ -1,20 +1,20 @@
-<div class="container">
-  <p class="profile-header"><i class="material-icons">trending_up</i> Trading Knowledge and Experience</p>
-  <p class="info"><i class="material-icons">info</i> Please note that your answers to the questions below will determine your leverage or trading conditions.</p>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="radio" *ngFor="let question of questions;">
-          <p>{{ question.question }}</p>
+<p class="profile-header"><i class="material-icons">trending_up</i> Trading Knowledge and Experience</p>
+<hr>
+<p class="info"><i class="material-icons">info</i> Please note that your answers to the questions below will determine your leverage or trading conditions.</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="radio" *ngFor="let question of questions;">
+        <p>{{ question.question }}</p>
         <div class="radio-buttons-wrapper">
-            <label *ngFor="let choice of question['choices']; let value of question['value']; let i = index;">
+            <label *ngFor="let choice of question['choices']; let i = index;">
                 <input 
                     type="radio"
                     [name]="question.name"
-                    ngModel="c2"
-                    [value]="'c' + (i + 1)">
+                    ngModel
+                    [value]="'c' + (i + 1)"
+                    required>
                     <span>{{ choice }}</span>
             </label>
         </div>
-      </div>
-      <button mat-raised-button type="submit">Next</button>
-  </form>
-</div>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="f.invalid">Next</button>
+</form>
