@@ -9,6 +9,13 @@ import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileDetailsComponent} from './profile-details/profile-details.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SharedModule} from '../shared/shared.module';
+import { VerificationComponent } from './verification/verification.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { BankInfoComponent } from './bank-info/bank-info.component';
+import { TradingKnowledgeComponent } from './trading-knowledge/trading-knowledge.component';
+import { FinancialBackgroundComponent } from './financial-background/financial-background.component';
+import { AgreementsComponent } from './agreements/agreements.component';
 
 @NgModule({
     imports: [
@@ -19,7 +26,7 @@ import {SharedModule} from '../shared/shared.module';
         MaterialModule,
         SharedModule
     ],
-    declarations: [ProfileDetailsComponent, ProfileComponent]
+    declarations: [ProfileDetailsComponent, ProfileComponent, VerificationComponent, DocumentsComponent, ChangePasswordComponent, BankInfoComponent, TradingKnowledgeComponent, FinancialBackgroundComponent, AgreementsComponent]
 })
 export class ProfileModule {
 }

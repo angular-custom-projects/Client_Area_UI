@@ -1,5 +1,5 @@
 <div class="main-content">
-  <div class="container" fxLayout="row wrap" fxLayoutAlign="space-between">
+  <div class="container" fxLayout="row wrap" fxLayout.xs="column wrap" fxLayoutAlign="space-around" fxLayoutAlign.md="space-evenly" fxLayoutAlign.xs="center center" fxFlex.xs="100%">
     <div class="column">
       <h3 class="title lato-regular margin-bottom-15">Create Your FXPRIMUS Profile</h3>
       <p *ngIf="status" class="text-center lato-bold successful-reg">Thanks for your registration.</p>
@@ -7,109 +7,102 @@
         <mat-form-field class="input-full-width">
           <input matInput placeholder="First Name"
                  type="text"
-                 class=""
                  id="firstName"
                  name="firstName"
-                 ngModel=""
-                 required=""
+                 ngModel
+                 required
                  #firstName="ngModel">
         </mat-form-field>
-        <div class="error-msg" *ngIf="firstName.invalid && firstName.touched">
+        <div class="error-msg lato-regular" *ngIf="firstName.invalid && firstName.touched">
           <span *ngIf="firstName.errors['required']">First name is required!</span>
         </div>
         <mat-form-field class="input-full-width">
           <input matInput placeholder="Last Name"
                  type="text"
-                 class=""
                  id="lastName"
                  name="lastName"
-                 ngModel=""
-                 required=""
+                 ngModel
+                 required
                  #lastName="ngModel">
         </mat-form-field>
-        <div class="error-msg" *ngIf="lastName.invalid && lastName.touched">
+        <div class="error-msg lato-regular" *ngIf="lastName.invalid && lastName.touched">
           <span *ngIf="lastName.errors['required']">Last name is required!</span>
         </div>
         <mat-form-field class="input-full-width">
           <input matInput placeholder="Email"
                  type="email"
-                 class=""
                  id="email"
                  name="email"
-                 ngModel=""
-                 required=""
-                 email=""
+                 ngModel
+                 required
+                 email
                  #email="ngModel">
         </mat-form-field>
-        <div class="error-msg" *ngIf="email.invalid && email.touched">
+        <div class="error-msg lato-regular" *ngIf="email.invalid && email.touched">
           <span *ngIf="email.errors['required']">Email is required!</span>
           <span *ngIf="email.errors['email']">Please enter a valid Email address.</span>
         </div>
         <mat-form-field class="input-full-width">
-          <mat-select placeholder="Country" [(ngModel)]="currentCountry" name="country" required="" #country="ngModel">
+          <mat-select placeholder="Country" [(ngModel)]="currentCountry" name="country" required #country="ngModel">
             <mat-option *ngFor="let country of countries" [value]="country">
               {{country}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div class="error-msg" *ngIf="country.invalid && country.touched">
+        <div class="error-msg lato-regular" *ngIf="country.invalid && country.touched">
           <span *ngIf="country.errors['required']">Country is required!</span>
         </div>
         <div id="contact-data"  fxLayout="row wrap" fxLayoutAlign="space-between" ngModelGroup="contactData">
           <mat-form-field class="input-phone-code">
             <input matInput placeholder="Phone Code"
                    type="number"
-                   class=""
                    id="countryCode"
                    name="countryCode"
-                   ngModel=""
-                   required=""
+                   ngModel
+                   required
                    #countryCode="ngModel">
           </mat-form-field>
           <mat-form-field class="input-phone-number">
             <input matInput placeholder="Phone Number"
                    type="number"
-                   class=""
                    id="phoneNumber"
                    name="phoneNumber"
-                   ngModel=""
-                   required=""
+                   ngModel
+                   required
                    #phoneNumber="ngModel">
           </mat-form-field>
         </div>
-        <div class="error-msg" *ngIf="countryCode.invalid && countryCode.touched">
+        <div class="error-msg lato-regular" *ngIf="countryCode.invalid && countryCode.touched">
           <span *ngIf="countryCode.errors['required']">Phone code is required!</span>
         </div>
-        <div class="error-msg" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+        <div class="error-msg lato-regular" *ngIf="phoneNumber.invalid && phoneNumber.touched">
           <span *ngIf="phoneNumber.errors['required']">Phone number is required!</span>
         </div>
         <mat-form-field class="input-full-width">
           <input matInput placeholder="Username"
                  type="text"
-                 class=""
                  id="username"
                  name="username"
-                 ngModel=""
-                 required=""
+                 ngModel
+                 required
                  #username="ngModel">
         </mat-form-field>
-        <div class="error-msg" *ngIf="username.invalid && username.touched">
+        <div class="error-msg lato-regular" *ngIf="username.invalid && username.touched">
           <span *ngIf="username.errors['required']">Username is required!</span>
         </div>
         <mat-form-field class="input-full-width">
           <input matInput placeholder="Password"
                  type="password"
-                 class=""
                  id="password"
                  name="password"
-                 ngModel=""
-                 required=""
+                 ngModel
+                 required
                  #password="ngModel">
         </mat-form-field>
-        <div class="error-msg" *ngIf="password.invalid && password.touched">
+        <div class="error-msg lato-regular" *ngIf="password.invalid && password.touched">
           <span *ngIf="password.errors['required']">Password is required!</span>
         </div>
-        <button mat-raised-button class="input-full-width"
+        <button mat-raised-button class="input-full-width lato-regular"
                 type="submit"
                 [disabled]="f.invalid">Sign Up
         </button>
@@ -154,11 +147,11 @@
       </mat-list>
       <hr class="divider">
       <h3 class="title text-center lato-regular">Require an Additional Account?</h3>
-      <p class="paragraph">
+      <p class="paragraph lato-regular">
         As an existing FXPRIMUS Real Account holder you can simply register an additional account through the Members Area with 1 click.
         No additional validation is required.
       </p>
-      <a mat-stroked-button routerLink="/login">OPEN ADDITIONAL ACCOUNT</a>
+      <a mat-stroked-button class="lato-regular" routerLink="/login">OPEN ADDITIONAL ACCOUNT</a>
     </div>
   </div>
 </div>
