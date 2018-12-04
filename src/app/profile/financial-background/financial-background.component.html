@@ -1,0 +1,46 @@
+<p class="profile-header"><i class="material-icons">trending_up</i> Financial Background and Trading Account</p>
+<hr>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="radio" *ngFor="let question of questionsSetA;">
+        <p>{{ question.question }}</p>
+        <div class="radio-buttons-wrapper">
+            <label *ngFor="let choice of question['choices']; let i = index;">
+                <input 
+                    type="radio"
+                    [name]="question.name"
+                    ngModel
+                    [value]="'c' + (i + 1)"
+                    required>
+                    <span>{{ choice }}</span>
+            </label>
+        </div>
+    </div>
+    <div class="select">
+        <p>Industry</p>
+        <mat-form-field class="select-wrapper">
+            <mat-select placeholder="Select your answer" ngModel name="industry" required #industry="ngModel">
+                <mat-option *ngFor="let industry of industries" [value]="industry">
+                    {{industry}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="error-msg lato-regular" *ngIf="industry.invalid && industry.touched">
+            <span *ngIf="industry.errors['required']">Industry is required!</span>
+        </div>
+    </div>
+    <div class="radio" *ngFor="let question of questionsSetB;">
+        <p>{{ question.question }}</p>
+        <div class="radio-buttons-wrapper">
+            <label *ngFor="let choice of question['choices']; let i = index;">
+                <input 
+                    type="radio"
+                    [name]="question.name"
+                    ngModel
+                    [value]="'c' + (i + 1)"
+                    required>
+                    <span>{{ choice }}</span>
+            </label>
+        </div>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="f.invalid">Submit</button>
+</form>
