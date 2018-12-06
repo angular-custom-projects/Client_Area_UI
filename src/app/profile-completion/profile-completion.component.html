@@ -1,13 +1,15 @@
-<div class="text-center">
-    <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Mc8cc845a21461f35a96526f2abf75c9c1538735600932">
-    <h3>{{firstName | titlecase}} {{lastName | titlecase}}</h3>
+<div class="container">
+    <div class="text-center">
+        <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Mc8cc845a21461f35a96526f2abf75c9c1538735600932">
+        <h3>{{firstName | titlecase}} {{lastName | titlecase}}</h3>
+    </div>
+    <p fxLayout="row" fxLayoutAlign="space-between center">
+        <span>Profile completion</span>
+        <span>{{profileCompletion}}%</span>
+    </p>
+    <mat-progress-bar mode="determinate" [value]="profileCompletion"></mat-progress-bar>
 </div>
-<p fxLayout="row" fxLayoutAlign="space-between center">
-    <span>Profile completion</span>
-    <span>{{profileCompletion}}%</span>
-</p>
-<mat-progress-bar mode="determinate" [value]="profileCompletion"></mat-progress-bar>
-<div id="buttons-container" fxLayout="column" fxLayoutGap="2%">
+<div id="buttons-container" fxLayout="column" fxLayoutGap="2%" *ngIf="this.url !== 'profile'">
     <a mat-button routerLink="/profile"
        fxLayout="row"
        fxLayoutAlign="center">
@@ -23,3 +25,9 @@
         <fa name="plus-circle"></fa>
         <span>Add an Account</span></a>
 </div>
+<mat-nav-list *ngIf="this.url == 'profile'">
+    <a mat-list-item *ngFor="let item of sidebarMenuItems" [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <i class="material-icons">{{ item.icon }}</i>
+        <p>{{ item.title }}</p>
+    </a>
+</mat-nav-list>
