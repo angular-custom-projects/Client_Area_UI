@@ -6,6 +6,15 @@
 .fxprimus-logo-inner {
   height: 53px; }
 
+.mat-button {
+  padding: 0 16px;
+  font-size: 14px; }
+
+a[mat-stroked-button] {
+  padding: 0 15px;
+  border-radius: 4px;
+  font-size: 14px; }
+
 .current-user-name {
   color: #0059a7;
   font-size: 18px;
