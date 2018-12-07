@@ -45,11 +45,6 @@ button:disabled:hover {
   margin-bottom: 15px;
 }
 
-.successful-reg {
-  color: $green-primary;
-  font-size: 20px;
-}
-
 .img-icon {
   height: 20px;
 }
@@ -73,11 +68,6 @@ mat-icon {
 a[mat-stroked-button] {
   width: 100%;
   color: $orange-primary;
-}
-
-.error-msg {
-  color: $red-primary;
-  text-align: left;
 }
 
 mat-list-item {

@@ -1,7 +1,8 @@
 // this module is for the authentication
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from '../material/material.module';
@@ -14,6 +15,8 @@ import {RegisterComponent} from './register/register.component';
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule,
         AngularFontAwesomeModule,
         FlexLayoutModule,
         MaterialModule,

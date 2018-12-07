@@ -36,10 +36,6 @@ button:disabled:hover {
 .margin-bottom-15 {
   margin-bottom: 15px; }
 
-.successful-reg {
-  color: #00C853;
-  font-size: 20px; }
-
 .img-icon {
   height: 20px; }
 
@@ -59,10 +55,6 @@ mat-icon {
 a[mat-stroked-button] {
   width: 100%;
   color: #f9a21c; }
-
-.error-msg {
-  color: #f44336;
-  text-align: left; }
 
 mat-list-item {
   height: 40px !important; }

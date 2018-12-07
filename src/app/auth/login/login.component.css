@@ -31,10 +31,6 @@ button:disabled:hover {
   color: rgba(0, 0, 0, 0.26);
   cursor: not-allowed; }
 
-.error-msg {
-  color: #f44336;
-  text-align: left; }
-
 .link {
   color: #03A3E4; }
 

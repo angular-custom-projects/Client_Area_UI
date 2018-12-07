@@ -1,5 +1,4 @@
 <div class="text-center">
-    <img src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/Mc8cc845a21461f35a96526f2abf75c9c1538735600932">
     <h3>{{firstName | titlecase}} {{lastName | titlecase}}</h3>
 </div>
 <p fxLayout="row" fxLayoutAlign="space-between center">
@@ -8,18 +7,11 @@
 </p>
 <mat-progress-bar mode="determinate" [value]="profileCompletion"></mat-progress-bar>
 <div id="buttons-container" fxLayout="column" fxLayoutGap="2%">
-    <a mat-button routerLink="/profile"
+    <a class="add-account"
+       mat-raised-button
+       routerLink="/profile"
        fxLayout="row"
        fxLayoutAlign="center">
         <fa name="user"></fa>
         <span>Complete Your Profile</span></a>
-
-    <a class="add-account"
-       mat-raised-button
-       routerLink="/register"
-       color="primary"
-       fxLayout="row"
-       fxLayoutAlign="center">
-        <fa name="plus-circle"></fa>
-        <span>Add an Account</span></a>
 </div>

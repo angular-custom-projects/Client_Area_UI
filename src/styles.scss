@@ -27,6 +27,28 @@ body {
   background-color: $site-background-color;
 }
 
+mat-form-field {
+  font-size: 15px;
+  margin-bottom: -15px;
+  margin-top: 10px;
+  @include lato-regular();
+}
+
+.error-msg {
+  color: $red-primary;
+  text-align: left;
+  font-size: 13px;
+}
+
+.mat-form-field.ng-valid .mat-form-field-flex {
+  color: $success-confirmation-text;
+  background-color: $success-confirmation-bg;
+}
+
+.mat-form-field.ng-valid .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: yellow !important;
+}
+
 //all lang fonts
 .lato-bold {
   @include lato-bold();

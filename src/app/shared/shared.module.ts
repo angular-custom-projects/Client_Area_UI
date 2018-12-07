@@ -6,6 +6,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {MaterialModule} from '../material/material.module';
@@ -18,11 +20,17 @@ import {StopPropagationDirective} from '../directives/stop-propagation.directive
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule,
         AngularFontAwesomeModule,
         FlexLayoutModule,
         MaterialModule
     ],
     exports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule,
         ProfileCompletionComponent,
         NotFoundComponent,
         StopPropagationDirective

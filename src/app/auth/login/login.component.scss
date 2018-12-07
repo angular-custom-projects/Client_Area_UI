@@ -39,11 +39,6 @@ button:disabled:hover {
   @include disabled-button();
 }
 
-.error-msg {
-  color: $red-primary;
-  text-align: left;
-}
-
 .link {
   color: $lightener-blue-primary;
 }

@@ -9,7 +9,7 @@ import {CanActivateDeactivateService} from '../guards/can-activate-deactivate.se
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [CanActivateLoginService]},
-    {path: 'register', component: RegisterComponent, canDeactivate: [CanActivateDeactivateService]}
+    {path: 'register', component: RegisterComponent, canDeactivate: [CanActivateDeactivateService], canActivate: [CanActivateLoginService]}
 ];
 
 @NgModule({
