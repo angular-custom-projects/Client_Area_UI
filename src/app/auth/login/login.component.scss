@@ -26,22 +26,17 @@
 }
 
 button[mat-raised-button] {
-  background-color: $orange-primary;
+  background-color: $light-blue-primary;
   margin: 20px 0;
   color: $white-color;
 }
 
 button[mat-raised-button]:hover {
-  @include hover-color-dark();
+  @include hover-color-dark($background-color: $light-blue-primary);
 }
 
 button:disabled:hover {
   @include disabled-button();
-}
-
-.error-msg {
-  color: $red-primary;
-  text-align: left;
 }
 
 .link {
@@ -51,4 +46,16 @@ button:disabled:hover {
 .link:hover {
   @include hover-color-dark($color: $lightener-blue-primary, $background-color: transparent, $c-value: 12%);
   text-decoration: none;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: $light-blue-primary;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: $light-blue-primary !important;
+}
+
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  background-color: $light-blue-primary !important;
 }
