@@ -1,9 +1,12 @@
 import {Injectable} from "@angular/core";
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProfileJointService {
+
+
     // profile completion percentage
     profileCompletion = 19;
     // get the list of countries
@@ -31,6 +34,46 @@ export class ProfileJointService {
     // set phone number
     phoneNumber = 35799791266;
 
-    constructor() {
+    constructor(private http: HttpClient) {
+        // this.http.get('http://localhost:4004/assets/joint_details.json').subscribe(data => console.log(data))
     }
+
+    getJSON() {
+        return this.http.get('http://localhost:4004/assets/joint_details.json')
+    }
+
+    putJson(fullname: string, dob: any, gender: string, country: string, city: string, address: string, address2: string, postalCode: string, state: string, phoneNo: string, jointOne: boolean) {
+        console.log("full_name: " + fullname,
+            "$date: " + dob,
+            "gender: " + gender,
+            "country: " + country,
+            "city: " + city,
+            "address: " + address,
+            "address2: " + address2,
+            "postal_code: " + postalCode,
+            "state: " + state,
+            "phone_number: " + phoneNo)
+        // this.http.put("http://localhost:4004/assets/joint_details_update.json",
+        //     {
+        //         "full_name": fullname,
+        //         "$date": dob,
+        //         "gender": gender,
+        //         "country": country,
+        //         "city": city,
+        //         "address": address,
+        //         "postal_code": postalCode,
+        //         "state": state,
+        //         "phone_number": phoneNo,
+        //     })
+        //     .subscribe(
+        //         data => {
+        //             console.log("PUT Request is successful ", data);
+        //         },
+        //         error => {
+        //             console.log("Rrror", error);
+        //         }
+        //     );
+    }
+
+
 }

@@ -1,17 +1,29 @@
+import {Name} from './name'
+import {DateOfBirth} from './date-of-birth'
+import {Emails} from './emails'
+import {Addresses} from './addresses'
+import {Phones} from './phones'
+import {JointInfo} from './joint-info'
+import {BankInfo} from './bank-info'
+
+
 export class ProfileJoint {
-    constructor(public username: string,
-                public first_name: string,
-                public last_name: string,
-                public date_of_birth: string,
-                public gender: string,
-                public country: string,
-                public city: string,
-                public zip: number,
-                public state: number,
-                public phone: number,
-                public email: string,
-                public account_debit_authorization: string,
-                public address: string,
-                public address2?: string) {
+    constructor(
+        public username: string,
+        public name: Name,
+        public country: string,
+        public date_of_birth: DateOfBirth,
+        public politically_exposed: boolean,
+        public us_citizen: boolean,
+        public language: string,
+        public gender: string,
+        public regulator: string,
+        public emails: Emails,
+        public addresses: Addresses,
+        public phones: Phones,
+        public joint_info: JointInfo,
+        public email: string,
+        public bank_info: BankInfo
+    ) {
     }
 }
