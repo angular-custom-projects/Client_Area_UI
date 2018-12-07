@@ -11,7 +11,6 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ResetPasswordS1Component} from './reset-password-s1/reset-password-s1.component';
-import {ResetPasswordS2Component} from './reset-password-s2/reset-password-s2.component';
 
 @NgModule({
     imports: [
@@ -26,8 +25,7 @@ import {ResetPasswordS2Component} from './reset-password-s2/reset-password-s2.co
     declarations: [
         LoginComponent,
         RegisterComponent,
-        ResetPasswordS1Component,
-        ResetPasswordS2Component
+        ResetPasswordS1Component
     ]
 })
 export class AuthModule {
