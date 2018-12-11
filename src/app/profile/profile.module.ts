@@ -9,6 +9,7 @@ import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileDetailsComponent} from './profile-details/profile-details.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SharedModule} from '../shared/shared.module';
+import { VerificationStepperComponent } from '../verification-stepper/verification-stepper.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,7 @@ import {SharedModule} from '../shared/shared.module';
         MaterialModule,
         SharedModule
     ],
-    declarations: [ProfileDetailsComponent, ProfileComponent]
+    declarations: [ProfileDetailsComponent, ProfileComponent, VerificationStepperComponent]
 })
 export class ProfileModule {
 }
