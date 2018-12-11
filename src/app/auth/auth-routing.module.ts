@@ -23,7 +23,7 @@ const routes: Routes = [
         component: ResetPasswordS1Component,
         canActivate: [CanActivateLoginService],
         canDeactivate: [CanActivateDeactivateService]
-    }
+    },
     {path: '4-digit-code', component: FourDigitCodeComponent}
 ];
 
