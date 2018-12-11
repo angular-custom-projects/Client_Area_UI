@@ -16,7 +16,6 @@ import {AuthModule} from './auth/auth.module';
 import {CoreModule} from './core/core.module';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {SharedModule} from './shared/shared.module';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -31,8 +30,7 @@ import { FormsModule } from '@angular/forms';
         MaterialModule,
         AuthModule,
         SharedModule,
-        CoreModule,
-        FormsModule
+        CoreModule
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

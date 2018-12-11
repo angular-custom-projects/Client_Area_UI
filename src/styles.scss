@@ -27,6 +27,18 @@ body {
   background-color: $site-background-color;
 }
 
+mat-form-field {
+  font-size: 15px;
+  margin-bottom: -15px;
+  margin-top: 10px;
+}
+
+.error-msg {
+  color: $red-primary;
+  text-align: left;
+  font-size: 13px;
+}
+
 //all lang fonts
 .lato-bold {
   @include lato-bold();
