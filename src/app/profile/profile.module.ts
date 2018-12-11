@@ -9,6 +9,14 @@ import {ProfileRoutingModule} from './profile-routing.module';
 import {ProfileDetailsComponent} from './profile-details/profile-details.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SharedModule} from '../shared/shared.module';
+import { VerificationComponent } from './verification/verification.component';
+import { DocumentsComponent } from './documents/documents.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { BankInfoComponent } from './bank-info/bank-info.component';
+import { TradingKnowledgeComponent } from './trading-knowledge/trading-knowledge.component';
+import { FinancialBackgroundComponent } from './financial-background/financial-background.component';
+import { AgreementsComponent } from './agreements/agreements.component';
+import { FormsModule } from '@angular/forms';
 import { VerificationStepperComponent } from '../verification-stepper/verification-stepper.component';
 
 @NgModule({
@@ -18,9 +26,10 @@ import { VerificationStepperComponent } from '../verification-stepper/verificati
         AngularFontAwesomeModule,
         FlexLayoutModule,
         MaterialModule,
-        SharedModule
+        SharedModule,
+        FormsModule
     ],
-    declarations: [ProfileDetailsComponent, ProfileComponent, VerificationStepperComponent]
+    declarations: [ProfileDetailsComponent, ProfileComponent, VerificationComponent, DocumentsComponent, ChangePasswordComponent, BankInfoComponent, TradingKnowledgeComponent, FinancialBackgroundComponent, AgreementsComponent, VerificationStepperComponent]
 })
 export class ProfileModule {
 }
