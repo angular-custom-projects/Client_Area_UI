@@ -1,0 +1,107 @@
+@import "../../scss-partials/variables";
+@import "../../scss-partials/mixins";
+
+p {
+  @include lato-regular();
+  color: $text-first;
+  font-size: 16px;
+}
+
+.profile-header {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #1a2650;
+  margin: 6px 0px 20px 0px;
+
+  .material-icons {
+    margin-right: 10px;
+  }
+}
+
+hr {
+  background-color: #eee;
+  color: #eee;
+  width: 200%;
+  margin-left: -100px;
+  border: 0.5px solid #eee;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  color: $light-blue-primary;
+  font-size: 12px;
+
+  .material-icons {
+    margin-right: 10px;
+  }
+}
+
+button {
+  @include primary-button($padding: 4px 50px, $margin: 30px auto 10px);
+  @include rounded(0px);
+  @include lato-regular();
+  display: flex;
+
+  &:hover {
+    @include hover-color-dark();
+  }
+}
+
+form {
+  .select {
+    padding: 9px 0px 18px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .error-msg {
+    color: $red-primary;
+    text-align: left;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .form-error-msg {
+    color: $red-primary;
+    margin: 30px 0px;
+    text-align: center;
+  }
+
+  .radio {
+    padding: 9px 0px 18px;
+    border-bottom: 1px solid #eee;
+
+    .radio-buttons-wrapper {
+      padding: 10px 0px;
+
+      label {
+        span {
+          @include lato-regular();
+          color: $text-first;
+          font-size: 12px;
+          display: inline-block;
+          border: 1px solid #ddd;
+          padding: 10px 20px;
+          cursor: pointer;
+
+          &:hover {
+            border: 1px solid #bbb;
+          }
+        }
+
+        input[type="radio"] {
+          display: none;
+
+          &:checked+span {
+            border: 1px solid $green-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.select-wrapper {
+  width: 400px;
+}

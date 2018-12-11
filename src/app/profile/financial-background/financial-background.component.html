@@ -1,3 +1,454 @@
-<p>
-  financial-background works!
-</p>
+<p class="profile-header"><i class="material-icons">trending_up</i> Financial Background and Trading Account</p>
+<hr>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="radio">
+
+        <!-- Financial Background question 1 -->
+        <div class="radio-buttons-wrapper">
+            <p>Intended Purpose of Trading</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_1"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialOne="ngModel">
+                    <span>Hedging</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_1"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialOne="ngModel">
+                    <span>Investment</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_1"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialOne="ngModel">
+                    <span>Speculative</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_1"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialOne="ngModel">
+                    <span>Diversification</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_1"
+                    ngModel
+                    value="choice_5"
+                    required
+                    #financialOne="ngModel">
+                    <span>Create an additional source of income</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialOne.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 2 -->
+        <div class="radio-buttons-wrapper">
+            <p>Employment Status</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_2"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialTwo="ngModel">
+                    <span>Unemployed</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_2"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialTwo="ngModel">
+                    <span>Student</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_2"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialTwo="ngModel">
+                    <span>Retired</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_2"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialTwo="ngModel">
+                    <span>Employed</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_2"
+                    ngModel
+                    value="choice_5"
+                    required
+                    #financialTwo="ngModel">
+                    <span>Self-Employed</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialTwo.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 3 -->
+        <div class="select">
+            <p>Industry</p>
+            <mat-form-field class="select-wrapper">
+                <mat-select placeholder="Select your answer" ngModel name="industry" required #industry="ngModel">
+                    <mat-option *ngFor="let industry of industries" [value]="industry">
+                        {{industry}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="error-msg lato-regular" *ngIf="industry.invalid && (f.dirty || f.touched)">
+                <span >Industry is required!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 4 -->
+        <div class="radio-buttons-wrapper">
+            <p>Estimated Net Worth (USD)</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_4"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialFour="ngModel">
+                    <span>Less than 0</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_4"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialFour="ngModel">
+                    <span>0 - 25,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_4"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialFour="ngModel">
+                    <span>25,000 - 75,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_4"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialFour="ngModel">
+                    <span>75,000 - 150,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_4"
+                    ngModel
+                    value="choice_5"
+                    required
+                    #financialFour="ngModel">
+                    <span>Over 150,000</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialFour.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 5 -->
+        <div class="radio-buttons-wrapper">
+            <p>Estimated Annual Income (USD)</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_5"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialFive="ngModel">
+                    <span>Less than 10,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_5"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialFive="ngModel">
+                    <span>10,000 - 50,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_5"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialFive="ngModel">
+                    <span>50,000 - 100,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_5"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialFive="ngModel">
+                    <span>Over 150,000</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialFive.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 6 -->
+        <div class="radio-buttons-wrapper">
+            <p>Estimated Investment Amount (USD)</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_6"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialSix="ngModel">
+                    <span>100 - 25,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_6"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialSix="ngModel">
+                    <span>25,000 - 50,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_6"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialSix="ngModel">
+                    <span>50,000 - 100,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_6"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialSix="ngModel">
+                    <span>Over 100,000</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialSix.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 7 -->
+        <div class="radio-buttons-wrapper">
+            <p>Source of Funds</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_7"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialSeven="ngModel">
+                    <span>Employment</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_7"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialSeven="ngModel">
+                    <span>Savings and Investments</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_7"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialSeven="ngModel">
+                    <span>Inheritance and gift</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_7"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialSeven="ngModel">
+                    <span>Loan</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialSeven.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 8 -->
+        <div class="radio-buttons-wrapper">
+            <p>Derivative products are a suitable part of my investment objectives and risk appetite. I am able to assess the risk involved in trading them including the possibility that I may lose all of my invested capital.</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_8"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialEight="ngModel">
+                    <span>Yes</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_8"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialEight="ngModel">
+                    <span>No</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialEight.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 9 -->
+        <div class="radio-buttons-wrapper">
+            <p>Select Account Type</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_9"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialNine="ngModel">
+                    <span>Variable Spread</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_9"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialNine="ngModel">
+                    <span>ECN Premier Spread</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialNine.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+
+        <!-- Financial Background question 10 -->
+        <div class="radio-buttons-wrapper">
+            <p>Select Deposit Currency</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_10"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #financialTen="ngModel">
+                    <span>USD</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_10"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #financialTen="ngModel">
+                    <span>EUR</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_10"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #financialTen="ngModel">
+                    <span>GBP</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_10"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #financialTen="ngModel">
+                    <span>SGD</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="financial_10"
+                    ngModel
+                    value="choice_5"
+                    required
+                    #financialTen="ngModel">
+                    <span>PLN</span>
+            </label>
+            <div class="error-msg lato-regular" *ngIf="financialTen.invalid && (f.dirty || f.touched)">
+                <span>Please choose an answer!</span>
+            </div>
+        </div>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="f.invalid">Submit</button>
+</form>
