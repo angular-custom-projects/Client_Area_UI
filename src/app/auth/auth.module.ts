@@ -9,7 +9,6 @@ import {MaterialModule} from '../material/material.module';
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import { FourDigitCodeComponent } from './four-digit-code/four-digit-code.component';
 
 @NgModule({
     imports: [
@@ -22,8 +21,7 @@ import { FourDigitCodeComponent } from './four-digit-code/four-digit-code.compon
     ],
     declarations: [
         LoginComponent,
-        RegisterComponent,
-        FourDigitCodeComponent
+        RegisterComponent
     ]
 })
 export class AuthModule {
