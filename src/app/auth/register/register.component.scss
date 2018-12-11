@@ -4,18 +4,22 @@
 .main-content {
   background-color: transparent;
 }
+
 .container .column {
-  width: 45%;
+  width: 35%;
+
+  &:first-child {
+    margin-top: 20px;
+  }
 }
 
 button[mat-raised-button] {
-  background-color: $orange-primary;
-  margin: 20px 0;
-  color: $white-color;
+  @include primary-button($background-color: $light-blue-primary);
+  @include rounded(0px);
 }
 
 button[mat-raised-button]:hover {
-  @include hover-color-dark();
+  @include hover-color-dark($background-color: $light-blue-primary);
 }
 
 button:disabled:hover {
@@ -27,11 +31,11 @@ button:disabled:hover {
 }
 
 .input-phone-code {
-  width: 25%;
+  width: 30%;
 }
 
 .input-phone-number {
-  width: 74%;
+  width: 69%;
 }
 
 .title {
@@ -58,39 +62,96 @@ mat-icon {
   margin-right: 5px;
 }
 
-.divider{
+.divider {
   width: 70%;
   margin: 0 auto;
   margin-top: 20px;
 }
 
 .paragraph {
-  /*padding-left: 24px;*/
-  font-size:14px;
+  font-size: 16px;
   padding: 10px 40px 10px 40px;
+  line-height: 20px;
+  text-align: justify;
 }
 
 a[mat-stroked-button] {
+  @include primary-button($margin: 2px 0px, $color: $light-blue-primary, $background-color: transparent);
+  @include rounded(0px);
   width: 100%;
-  color: $orange-primary;
-}
+  border: 2px solid $light-blue-primary;
 
-.error-msg {
-  color: $red-primary;
-  text-align: left;
+  &:hover {
+    background-color: $light-blue-primary;
+    color: $white-color;
+  }
 }
 
 mat-list-item {
   height: 40px !important;
-}
+  margin: 8px 0px;
 
-mat-list-item p {
-  padding-top: 5px;
+  p {
+    padding-top: 5px;
+  }
 }
 
 @media (min-width: 1200px) {
   .container {
     width: 1140px;
     max-width: 100%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1039px) {
+  mat-list-item {
+    margin: 20px 0px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 991px) {
+  .input-phone-code {
+    width: 41%;
+  }
+
+  .input-phone-number {
+    width: 58%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    justify-content: space-around;
+
+    .column {
+      width: 45%;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .container .column {
+    width: 60%;
+
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .container .column {
+    width: 100%;
+    margin: 0px 10px;
+  }
+}
+
+@media (max-width: 499px) {
+  .input-phone-code {
+    width: 41%;
+  }
+
+  .input-phone-number {
+    width: 58%;
   }
 }

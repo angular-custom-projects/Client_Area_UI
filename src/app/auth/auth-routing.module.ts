@@ -7,6 +7,7 @@ import {ResetPasswordS1Component} from "./reset-password-s1/reset-password-s1.co
 
 import {CanActivateLoginService} from '../guards/can-activate-login.service';
 import {CanActivateDeactivateService} from '../guards/can-activate-deactivate.service';
+import { FourDigitCodeComponent } from './four-digit-code/four-digit-code.component';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [CanActivateLoginService]},
@@ -23,6 +24,7 @@ const routes: Routes = [
         canActivate: [CanActivateLoginService],
         canDeactivate: [CanActivateDeactivateService]
     }
+    {path: '4-digit-code', component: FourDigitCodeComponent}
 ];
 
 @NgModule({

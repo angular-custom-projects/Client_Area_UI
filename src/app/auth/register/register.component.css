@@ -60,10 +60,6 @@ a[mat-stroked-button] {
   width: 100%;
   color: #f9a21c; }
 
-.error-msg {
-  color: #f44336;
-  text-align: left; }
-
 mat-list-item {
   height: 40px !important; }
 
