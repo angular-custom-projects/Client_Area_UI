@@ -51,6 +51,16 @@ export class AuthService {
         this.router.navigate(['/login']);
     }
 
+    // run the following function if the user wants to reset his password (it will send an email to the user)
+    forgotPassword(username: string) {
+        return this.http.post(`http://18.195.135.30:8080/clients/forgot-password`, username);
+    }
+
+    // run the following function if the user has a token and submit has password and confirm password
+    resetPassword(data: {}) {
+        return this.http.post(`http://18.195.135.30:8080/clients/reset-password`, data);
+    }
+
     // get the token
     getToken() {
         return localStorage.getItem('mAToken');
