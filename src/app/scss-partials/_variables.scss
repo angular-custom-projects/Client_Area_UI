@@ -1,12 +1,24 @@
 //===main colors===
 $white-color: #fff;
 $black-color: #000;
-$site-background-color: #F4F6FA;
+$site-background-color: #f3f8ff;
+$red-primary: #f44336;
+$error-confirmation-bg: #fed8d5;
+$error-confirmation-text: #B71C1C;
+$success-confirmation-bg: #dbf8e4;
+$success-confirmation-text: #123c15;
+$light-blue-tenth: #e5eef6;
+$dark-blue-sixth: #828a96;
+$dark-blue-eighth: #b4b8c0;
 
 // company colors
-$background-tables: #1a2650;
+$orange-primary: #f9a21c;
+$company-primary: #1a2650;
+$dark-blue-primary: #05152d;
+$light-blue-primary: #0059a7;
 $titles: #1f7aff;
 $tables-background-icons: #008ff9;
+$lightener-blue-primary: #03A3E4;
 $tables-background-icons2: #63d4f7;
 $text-first: #5d6871;
 $text-second: #606060;
@@ -14,74 +26,5 @@ $text-third: #728189;
 $text-forth: #b0b0b0;
 $top-footer-bg: #171921;
 
-//dark blue pallet
-$dark-blue-primary: #05152d;
-$dark-blue-secondary: #1d2c42;
-$dark-blue-third: #364356;
-$dark-blue-forth: #505b6c;
-$dark-blue-fifth: #697281;
-$dark-blue-sixth: #828a96;
-$dark-blue-seventh: #9ba1ab;
-$dark-blue-eighth: #b4b8c0;
-$dark-blue-ninth: #cdd0d5;
-$dark-blue-tenth: #e6e7ea;
-
-//light blue pallet
-$light-blue-primary: #0059a7;
-$light-blue-secondary: #1969af;
-$light-blue-third: #327ab8;
-$light-blue-forth: #4c8ac1;
-$light-blue-fifth: #669bca;
-$light-blue-sixth: #7facd3;
-$light-blue-seventh: #99bcdb;
-$light-blue-eighth: #b2cde4;
-$light-blue-ninth: #ccdded;
-$light-blue-tenth: #e5eef6;
-
-//lightener blue pallet
-$lightener-blue-primary: #03A3E4;
-$lightener-blue-secondary: #1cace6;
-$lightener-blue-third: #35b5e9;
-$lightener-blue-forth: #4ebeec;
-$lightener-blue-fifth: #67c7ee;
-$lightener-blue-sixth: #81d1f1;
-$lightener-blue-seventh: #9adaf4;
-$lightener-blue-eighth: #b3e3f6;
-$lightener-blue-ninth: #ccecf9;
-$lightener-blue-tenth: #e5f5fc;
-
-//orange color pallet
-$orange-primary: #f9a21c;
-$orange-secondary: #f9ab32;
-$orange-third: #fab449;
-$orange-forth: #fabd60;
-$orange-fifth: #fbc776;
-$orange-sixth: #fcd08d;
-$orange-seventh: #fcd9a4;
-$orange-eighth: #fde3ba;
-$orange-ninth: #fdecd1;
-$orange-tenth: #fef5e8;
-
-//red color pallet
-$red-primary: #f44336;
-$red-secondary: #f5554a;
-$red-third: #f6685e;
-$red-forth: #f77b72;
-$red-fifth: #f88e86;
-$red-sixth: #f9a19a;
-$red-seventh: #fab3ae;
-$red-eighth: #fbc6c2;
-$red-ninth: #fcd9d6;
-$red-tenth: #fdecea;
-
-// green color pallet
+//old colors
 $green-primary: #00C853;
-$green-secondary: #19cd64;
-$green-third: #32d375;
-$green-forth: #4cd886;
-$green-fifth: #66de97;
-$green-sixth: #7fe3a9;
-$green-seventh: #99e9ba;
-$green-eighth: #b2eecb;
-$green-ninth: #ccf4dc;
-$green-tenth: #e5f9ed;

@@ -10,6 +10,17 @@
   height: 53px;
 }
 
+.mat-button {
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+a[mat-stroked-button] {
+  padding: 0 15px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
 .current-user-name {
   color: $light-blue-primary;
   font-size: 18px;
