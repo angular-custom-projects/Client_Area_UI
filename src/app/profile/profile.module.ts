@@ -1,6 +1,8 @@
 // this module is used for the profile feature
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MaterialModule} from '../material/material.module';
@@ -16,11 +18,12 @@ import { BankInfoComponent } from './bank-info/bank-info.component';
 import { TradingKnowledgeComponent } from './trading-knowledge/trading-knowledge.component';
 import { FinancialBackgroundComponent } from './financial-background/financial-background.component';
 import { AgreementsComponent } from './agreements/agreements.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule,
         ProfileRoutingModule,
         AngularFontAwesomeModule,
         FlexLayoutModule,

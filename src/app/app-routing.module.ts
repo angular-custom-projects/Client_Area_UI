@@ -14,7 +14,7 @@ const routes: Routes = [
         loadChildren: './trading-accounts/trading-accounts.module#TradingAccountsModule',
         canLoad: [LazyAuthGuardService]
     },
-    {path: 'wallet', loadChildren: './wallet/wallet.module#WalletModule', canLoad: [LazyAuthGuardService]},
+    {path: 'funding', loadChildren: './funding/funding.module#FundingModule', canLoad: [LazyAuthGuardService]},
     // the following path to catch unknown routes
     {path: '**', component: NotFoundComponent}
 ];
