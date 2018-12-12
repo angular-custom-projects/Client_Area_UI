@@ -6,6 +6,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {MaterialModule} from '../material/material.module';
@@ -13,24 +15,33 @@ import {MaterialModule} from '../material/material.module';
 import {ProfileCompletionComponent} from '../profile-completion/profile-completion.component';
 import {NotFoundComponent} from '../core/not-found/not-found.component';
 import {StopPropagationDirective} from '../directives/stop-propagation.directive';
+import {ConfirmEqualValidatorDirective} from "./custom-validators/confirm-equal-validator.directive";
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule,
         AngularFontAwesomeModule,
         FlexLayoutModule,
         MaterialModule
     ],
     exports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgxMatSelectSearchModule,
         ProfileCompletionComponent,
         NotFoundComponent,
-        StopPropagationDirective
+        StopPropagationDirective,
+        ConfirmEqualValidatorDirective
     ],
     declarations: [
         ProfileCompletionComponent,
         NotFoundComponent,
-        StopPropagationDirective
+        StopPropagationDirective,
+        ConfirmEqualValidatorDirective
     ]
 })
 export class SharedModule {

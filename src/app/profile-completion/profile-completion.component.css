@@ -1,9 +1,12 @@
-.add-account {
-  background-color: #0059a7; }
+.container {
+  padding-top: 20px; }
 
-.add-account:hover {
-  color: white;
-  background-color: #004b8e; }
+.add-account {
+  background-color: #0059a7;
+  color: #fff; }
+  .add-account:hover {
+    color: white;
+    background-color: #004b8e; }
 
 ::ng-deep .mat-progress-bar-fill::after {
   background-color: #0059a7; }
@@ -19,5 +22,26 @@
 
 fa {
   margin-right: 10px; }
+
+.mat-list-item {
+  min-width: 120%;
+  margin-left: -16px; }
+
+mat-nav-list {
+  margin-top: 40px; }
+  mat-nav-list a {
+    border: 1px solid #eee;
+    height: 60px; }
+  mat-nav-list i {
+    margin: 0 20px; }
+
+.active {
+  border-left: 5px solid #0059A7 !important; }
+
+.material-icons {
+  display: flex;
+  align-self: center;
+  margin-right: 20px;
+  font-size: 18px; }
 
 /*# sourceMappingURL=profile-completion.component.css.map */

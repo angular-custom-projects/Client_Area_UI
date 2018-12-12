@@ -1,0 +1,80 @@
+p {
+  font-family: 'Lato', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+  color: #5d6871;
+  font-size: 16px; }
+
+.profile-header {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #1a2650;
+  margin: 6px 0px 20px 0px; }
+  .profile-header .material-icons {
+    margin-right: 10px; }
+
+hr {
+  background-color: #eee;
+  color: #eee;
+  width: 200%;
+  margin-left: -100px;
+  border: 0.5px solid #eee; }
+
+.info {
+  display: flex;
+  align-items: center;
+  color: #0059a7;
+  font-size: 12px; }
+  .info .material-icons {
+    margin-right: 10px; }
+
+button {
+  margin: 30px auto 10px;
+  color: #fff;
+  padding: 4px 50px;
+  font-size: 16px;
+  background-color: #f9a21c;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  font-family: 'Lato', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+  display: flex; }
+  button:hover {
+    color: white;
+    background-color: #f59706; }
+
+form .error-msg {
+  color: #f44336;
+  text-align: left;
+  font-size: 12px;
+  margin-top: 10px; }
+form .form-error-msg {
+  color: #f44336;
+  margin: 30px 0px;
+  text-align: center; }
+form .radio {
+  padding: 9px 0px 18px;
+  border-bottom: 1px solid #eee; }
+  form .radio .radio-buttons-wrapper {
+    padding: 10px 0px; }
+    form .radio .radio-buttons-wrapper label span {
+      font-family: 'Lato', 'Roboto';
+      font-weight: normal;
+      font-style: normal;
+      color: #5d6871;
+      font-size: 12px;
+      display: inline-block;
+      border: 1px solid #ddd;
+      padding: 10px 20px;
+      cursor: pointer; }
+      form .radio .radio-buttons-wrapper label span:hover {
+        border: 1px solid #bbb; }
+    form .radio .radio-buttons-wrapper label input[type="radio"] {
+      display: none; }
+      form .radio .radio-buttons-wrapper label input[type="radio"]:checked + span {
+        border: 1px solid #00C853; }
+
+/*# sourceMappingURL=trading-knowledge.component.css.map */
