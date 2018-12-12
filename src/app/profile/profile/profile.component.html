@@ -1,5 +1,10 @@
 <!--this is the container of all profile feature components-->
 <div class="main-content">
+    <div class="container stepper" fxLayout="row wrap">
+        <mat-card fxLayout="column" fxFlex="100%">
+            <app-verification-stepper></app-verification-stepper>
+        </mat-card>
+    </div>
     <div class="container" fxLayout="row wrap" fxLayoutAlign="space-between">
         <mat-card fxLayout="column" fxFlex="29%">
             <app-profile-completion></app-profile-completion>
