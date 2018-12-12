@@ -18,12 +18,10 @@ import { BankInfoComponent } from './bank-info/bank-info.component';
 import { TradingKnowledgeComponent } from './trading-knowledge/trading-knowledge.component';
 import { FinancialBackgroundComponent } from './financial-background/financial-background.component';
 import { AgreementsComponent } from './agreements/agreements.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule,
         ReactiveFormsModule,
         NgxMatSelectSearchModule,
         ProfileRoutingModule,

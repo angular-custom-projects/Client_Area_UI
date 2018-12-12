@@ -29,7 +29,7 @@ import { FourDigitCodeComponent } from './four-digit-code/four-digit-code.compon
     declarations: [
         LoginComponent,
         RegisterComponent,
-        ResetPasswordS1Component
+        ResetPasswordS1Component,
         FourDigitCodeComponent
     ]
 })
