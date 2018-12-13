@@ -1,3 +1,84 @@
+p {
+  font-family: 'Lato', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+  color: #5d6871;
+  font-size: 16px;
+  padding: 0px 0px 18px;
+  border-bottom: 1px solid #eee; }
 
+.profile-header {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #1a2650;
+  border: none;
+  margin: 0; }
+  .profile-header .material-icons {
+    margin-right: 10px; }
+
+hr {
+  background-color: #eee;
+  color: #eee;
+  width: 200%;
+  margin: 0px 0px 0px -100px;
+  border: 0.5px solid #eee; }
+
+.title {
+  font-size: 18px;
+  color: #0059a7; }
+
+.activeContainer .content p {
+  padding: 6px 0px 16px 150px; }
+.activeContainer .content span {
+  margin-left: 20px; }
+
+.pendingContainer .content p {
+  padding: 0px 0px 0px 150px;
+  margin-top: -15px; }
+.pendingContainer .content .username,
+.pendingContainer .content .email,
+.pendingContainer .content .last {
+  padding: 10px 0px 16px 150px; }
+.pendingContainer .content span {
+  padding-left: 20px; }
+.pendingContainer .content .error-msg {
+  font-family: 'Lato', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+  color: #f44336;
+  text-align: left;
+  display: block;
+  padding: 0px; }
+  .pendingContainer .content .error-msg span {
+    display: block;
+    padding: 0px;
+    border: none;
+    font-size: 12px;
+    text-align: left;
+    color: red;
+    margin-top: 0px; }
+
+button {
+  margin: 30px auto 10px;
+  color: #fff;
+  padding: 4px 50px;
+  font-size: 16px;
+  background-color: #f9a21c;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  font-family: 'Lato', 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+  display: flex; }
+  button .material-icons {
+    font-size: 18px;
+    padding-bottom: 5px; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
 
 /*# sourceMappingURL=profile-details.component.css.map */

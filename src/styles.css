@@ -11,6 +11,9 @@ body {
 .text-center {
   text-align: center; }
 
+.text-right {
+  text-align: right; }
+
 .main-content {
   padding: 70px 40px;
   background-color: #f3f8ff; }

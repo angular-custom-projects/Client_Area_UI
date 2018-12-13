@@ -19,6 +19,7 @@ import { TradingKnowledgeComponent } from './trading-knowledge/trading-knowledge
 import { FinancialBackgroundComponent } from './financial-background/financial-background.component';
 import { AgreementsComponent } from './agreements/agreements.component';
 import { VerificationStepperComponent } from '../verification-stepper/verification-stepper.component';
+import {BankDetailsComponent} from './bank-details/bank-details.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,7 @@ import { VerificationStepperComponent } from '../verification-stepper/verificati
         SharedModule,
         FormsModule
     ],
-    declarations: [ProfileDetailsComponent, ProfileComponent, VerificationComponent, DocumentsComponent, ChangePasswordComponent, BankInfoComponent, TradingKnowledgeComponent, FinancialBackgroundComponent, AgreementsComponent, VerificationStepperComponent]
+    declarations: [ProfileDetailsComponent, ProfileComponent, BankDetailsComponent, VerificationComponent, DocumentsComponent, ChangePasswordComponent, BankInfoComponent, TradingKnowledgeComponent, FinancialBackgroundComponent, AgreementsComponent, VerificationStepperComponent]
 })
 export class ProfileModule {
 }

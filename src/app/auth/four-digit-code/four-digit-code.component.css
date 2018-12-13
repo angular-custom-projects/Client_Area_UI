@@ -1,0 +1,60 @@
+.code-container {
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 60px 0; }
+
+.code-title {
+  color: #0059a7;
+  font-size: 22px;
+  margin-top: 0; }
+
+.code-form {
+  width: 100%; }
+
+input {
+  font-size: 30px;
+  text-align: center; }
+
+.input-full-width {
+  width: 100%; }
+
+button[mat-raised-button] {
+  margin: 20px 0;
+  color: #fff;
+  padding: 5px 0px;
+  font-size: 16px;
+  background-color: #0059a7;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px; }
+
+button[mat-raised-button]:hover {
+  color: white;
+  background-color: #004b8e; }
+
+button:disabled:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+  cursor: not-allowed; }
+
+.error-msg {
+  color: #f44336;
+  text-align: left; }
+
+.link {
+  color: #000;
+  text-decoration: none;
+  float: right; }
+
+.link:hover {
+  color: #0278a8;
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: none; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/*# sourceMappingURL=four-digit-code.component.css.map */
