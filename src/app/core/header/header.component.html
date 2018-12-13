@@ -89,8 +89,8 @@
                    routerLinkActive="active">Trading Accounts</a>
                 <a class="mat-button"
                    mat-button=""
-                   routerLink="/wallet"
-                   routerLinkActive="active">Wallet</a>
+                   routerLink="/funding"
+                   routerLinkActive="active">Funding</a>
             </ng-template>
             <!--show the following content only if the user is not authenticated-->
             <ng-template [ngIf]="!authService.isAuthenticated()">
@@ -105,11 +105,13 @@
                     <a class="mat-button white-color-text"
                        mat-button=""
                        routerLink="/login"
-                       routerLinkActive="active">Login</a>
+                       routerLinkActive="active"
+                       *ngIf="showLogin">Login</a>
                     <a class="mat-stroked-button open-an-account"
                        mat-stroked-button=""
                        routerLink="/register"
-                       routerLinkActive="active">Open an Account</a>
+                       routerLinkActive="active"
+                       *ngIf="showOpenAccount">Open an Account</a>
                     <a mat-button [matMenuTriggerFor]="language" fxLayout="row" fxLayoutAlign="space-between center">
                         <img class="flag"
                              src="https://s3.amazonaws.com/assets.mockflow.com/app/wireframepro/company/Cb547ee6ef0e3138273a7d38acc95b3de/projects/Me642693544dc52a5791804a0b612e2fa1538463248102/images/M40de175ba50d9abb98cd1215461e957d1538463850715">

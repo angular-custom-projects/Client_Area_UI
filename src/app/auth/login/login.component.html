@@ -1,39 +1,39 @@
 <div class="main-content">
-  <div class="login-container">
-    <h3 class="text-center lato-bold login-title">Login</h3>
-    <form class="login-form text-center" (ngSubmit)="onSignin(f)" #f="ngForm">
-      <mat-form-field class="input-full-width">
-        <input matInput placeholder="Username"
-               type="text"
-               id="username"
-               name="username"
-               ngModel=""
-               required=""
-               #username="ngModel">
-      </mat-form-field>
-      <div class="error-msg" *ngIf="username.invalid && username.touched">
-        <span *ngIf="username.errors['required']">Username is required!</span>
-      </div>
-      <mat-form-field class="input-full-width">
-        <input matInput placeholder="Password"
-               type="password"
-               class=""
-               id="password"
-               name="password"
-               ngModel=""
-               required=""
-               #password="ngModel">
-      </mat-form-field>
-      <div class="error-msg" *ngIf="password.invalid && password.touched">
-        <span *ngIf="password.errors['required']">Password is required!</span>
-      </div>
-      <mat-checkbox class="gray-paragraph">Remember me</mat-checkbox>
-      <button mat-raised-button class="input-full-width"
-              type="submit"
-              [disabled]="f.invalid">Log In
-      </button>
-    </form>
-    <a class="link" routerLink="/forgot-password">Forgot password</a>
-    <p class="gray-paragraph">Don't have an account? <a class="link" routerLink="/register">Sign up Now!</a></p>
-  </div>
+    <div class="login-container">
+        <h3 class="text-center lato-bold login-title">Login</h3>
+        <form class="login-form text-center" (ngSubmit)="onSignin(f)" #f="ngForm">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Username"
+                       type="text"
+                       id="username"
+                       name="username"
+                       ngModel=""
+                       required=""
+                       #username="ngModel">
+            </mat-form-field>
+            <div class="error-msg" *ngIf="username.invalid && username.touched">
+                <span *ngIf="username.errors['required']">Username is required!</span>
+            </div>
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Password"
+                       type="password"
+                       class=""
+                       id="password"
+                       name="password"
+                       ngModel=""
+                       required=""
+                       #password="ngModel">
+            </mat-form-field>
+            <div class="error-msg" *ngIf="password.invalid && password.touched">
+                <span *ngIf="password.errors['required']">Password is required!</span>
+            </div>
+            <mat-checkbox class="gray-paragraph">Remember me</mat-checkbox>
+            <button mat-raised-button class="input-full-width"
+                    type="submit"
+                    [disabled]="f.invalid">Log In
+            </button>
+        </form>
+        <a class="link" routerLink="/forgot-password">Forgot password</a>
+        <p class="gray-paragraph">Don't have an account? <a class="link" routerLink="/register">Sign up Now!</a></p>
+    </div>
 </div>

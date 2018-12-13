@@ -1,12 +1,17 @@
 @import "../scss-partials/variables";
 @import "../scss-partials/mixins";
 
-.add-account {
-  background-color: $light-blue-primary;
+.container {
+    padding-top: 20px;
 }
 
-.add-account:hover {
-  @include hover-color-dark($background-color: $light-blue-primary);
+.add-account {
+  background-color: $light-blue-primary;
+  color: $white-color;
+
+  &:hover {
+    @include hover-color-dark($background-color: $light-blue-primary);
+  }
 }
 
 //styles of the progress bar
@@ -29,4 +34,34 @@
 
 fa {
   margin-right: 10px;
+}
+
+// Side Menu Links
+.mat-list-item {
+    min-width: 120%;
+    margin-left: -16px;
+}
+
+mat-nav-list {
+    margin-top: 40px;
+
+    a {
+    border: 1px solid #eee;
+    height: 60px;
+    }
+
+    i {
+        margin: 0 20px;
+    }
+}
+
+.active {
+    border-left: 5px solid #0059A7 !important;
+}
+
+.material-icons {
+    display: flex;
+    align-self: center;
+    margin-right: 20px;
+    font-size: 18px;
 }

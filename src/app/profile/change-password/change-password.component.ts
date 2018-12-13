@@ -1,12 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs/index";
-import {NgForm} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {NgForm} from '@angular/forms';
 
 @Component({
-    selector: 'app-change-password',
-    templateUrl: './change-password.component.html',
-    styleUrls: ['./change-password.component.scss']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
 // get the registration form using view child

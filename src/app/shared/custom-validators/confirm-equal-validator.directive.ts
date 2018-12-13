@@ -1,5 +1,5 @@
 import {Directive, Input} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS} from "@angular/forms";
+import {AbstractControl, NG_VALIDATORS, Validator} from "@angular/forms";
 
 @Directive({
     selector: '[appConfirmEqualValidator]',
@@ -9,7 +9,8 @@ import {AbstractControl, NG_VALIDATORS} from "@angular/forms";
         multi: true
     }]
 })
-export class ConfirmEqualValidatorDirective {
+
+export class ConfirmEqualValidatorDirective implements Validator {
     @Input() appConfirmEqualValidator: string;
 
     constructor() {

@@ -1,0 +1,13 @@
+.mat-horizontal-stepper-header {
+  pointer-events: none; }
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon {
+  background-color: #f9a21c; }
+
+.mat-step-icon-state-done.mat-step-icon {
+  background-color: #00C853; }
+
+.mat-horizontal-content-container {
+  display: none; }
+
+/*# sourceMappingURL=verification-stepper.component.css.map */

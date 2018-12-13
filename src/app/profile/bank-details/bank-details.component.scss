@@ -1,0 +1,79 @@
+@import "../../scss-partials/variables";
+@import "../../scss-partials/mixins";
+
+.content-card {
+  padding-bottom: 20px;
+}
+
+.input-container {
+  min-width: 150px;
+  max-width: 500px;
+}
+
+.label {
+  text-align: right;
+  color: $text-first;
+  font-size: 13px;
+}
+
+.line-between, .empty-space {
+  margin: 0 15px;
+  border-bottom: 0.4px solid $divider-color;
+}
+
+.line-between {
+  padding: 10px 0;
+}
+
+.empty-space {
+  height: 50px;
+}
+
+.section-title {
+  color: $dark-blue-primary;
+}
+
+.section-title {
+  font-size: 20px;
+  padding: 15px;
+}
+
+.section-title span {
+  padding-top: 2px;
+  margin-left: 10px;
+}
+
+.details {
+  color: $text-first;
+  font-size: 13px;
+}
+
+button[mat-raised-button] {
+  background-color: $orange-primary;
+  color: $white-color;
+  width: 250px;
+  margin: 20px auto 0;
+}
+
+button[mat-raised-button]:hover {
+  @include hover-color-dark();
+}
+
+button:disabled:hover {
+  @include disabled-button();
+}
+
+.align-right {
+  text-align: right;
+}
+
+p {
+  border-bottom: 1px solid $bottom-gray-border;
+  margin: 0;
+  padding: 15px 0;
+}
+
+.mat-form-field {
+  margin-top: -7px;
+  font-size: 13px;
+}
