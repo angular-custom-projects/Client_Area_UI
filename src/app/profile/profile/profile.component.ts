@@ -6,6 +6,7 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+    sidebarMenuItems = [];
     // sidebarMenuItems = [
     //     {link: '/profile', title: 'Profile Details', icon: 'person'},
     //     {link: '/profile/verification', title: 'Verification', icon: 'verified_user'},
