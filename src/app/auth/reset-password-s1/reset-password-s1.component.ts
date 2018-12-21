@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CanComponentDeactivate} from "../../guards/can-activate-deactivate.service";
-import {Observable} from "rxjs/index";
-import {NgForm} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AuthService} from "../auth.service";
+import {CanComponentDeactivate} from '../../guards/can-activate-deactivate.service';
+import {Observable} from 'rxjs/index';
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {AuthService} from '../auth.service';
 
 @Component({
     selector: 'app-reset-password-s1',
@@ -48,9 +48,16 @@ export class ResetPasswordS1Component implements OnInit, CanComponentDeactivate 
 
     // run the following function when the user submit his email
     submitEmail() {
-        this.authService.forgotPassword(this.form.value.username).subscribe(
-            data => this.successEmail = true,
-            error => this.errorEmail = true);
+        const username = this.form.value.username;
+        this.authService.forgotPassword({username}).subscribe(
+            data => {
+                console.log(data);
+                this.successEmail = true;
+            },
+            error => {
+                console.log(error),
+                    this.errorEmail = true;
+            });
         console.log('username: ', this.form.value.username);
         this.form.onReset();
     }

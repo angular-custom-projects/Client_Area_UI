@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpBackend, HttpClient} from '@angular/common/http';
+import {HttpBackend, HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 
@@ -20,25 +20,47 @@ export class AuthService {
 
     // register new client
     registerUser(userData: {}) {
-        return this.http.post('http://localhost:3000/clients/register', userData);
+        return this.http.post(`http://18.195.135.30:8088/clients`, userData);
     }
 
     // login a client
     loginUser(userData: {}) {
-        this.http.post<any>(`http://localhost:3000/auth/login`, userData).subscribe(
+        this.http.post<any>(`http://18.195.135.30:8088/clients/login`, userData).subscribe(
             response => {
                 // add elements to the local storage
-                localStorage.setItem('clientFirstName', response.client.first_name);
-                localStorage.setItem('clientLastName', response.client.last_name);
-                localStorage.setItem('mAToken', response.token);
+                // localStorage.setItem('clientFirstName', response.client.first_name);
+                // localStorage.setItem('clientLastName', response.client.last_name);
+                // localStorage.setItem('mAToken', response.token);
+                this.getClientInfo(response.data);
+                // update the subject with the correct data
+                // this.firstName.next(localStorage.getItem('clientFirstName'));
+                // this.lastName.next(localStorage.getItem('clientLastName'));
+                // redirect the user to the dashboard
+                // this.router.navigate(['/dashboard']);
+            },
+            error => console.log(error)
+        );
+    }
+
+    getClientInfo(token: string) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Authorization': 'Bearer ' + token
+            })
+        };
+        this.http.get(`http://18.195.135.30:8088/clients`, httpOptions).subscribe(
+            data => {
+                // add elements to the local storage
+                localStorage.setItem('clientFirstName', data['data'].name.first_name);
+                localStorage.setItem('clientLastName', data['data'].name.last_name);
+                localStorage.setItem('mAToken', token);
                 // update the subject with the correct data
                 this.firstName.next(localStorage.getItem('clientFirstName'));
                 this.lastName.next(localStorage.getItem('clientLastName'));
                 // redirect the user to the dashboard
                 this.router.navigate(['/dashboard']);
             },
-            error => console.log(error)
-        );
+            error => console.log(error));
     }
 
     // logout a client
@@ -52,13 +74,13 @@ export class AuthService {
     }
 
     // run the following function if the user wants to reset his password (it will send an email to the user)
-    forgotPassword(username: string) {
-        return this.http.post(`http://18.195.135.30:8080/clients/forgot-password`, username);
+    forgotPassword(userData: {}) {
+        return this.http.post(`http://18.195.135.30:8088/clients/forgot-password`, userData);
     }
 
     // run the following function if the user has a token and submit has password and confirm password
     resetPassword(data: {}) {
-        return this.http.post(`http://18.195.135.30:8080/clients/reset-password`, data);
+        return this.http.post(`http://18.195.135.30:8088/clients/reset-password`, data);
     }
 
     // get the token
@@ -69,5 +91,9 @@ export class AuthService {
     // check if the user is authenticated by checking the token
     isAuthenticated() {
         return localStorage.getItem('mAToken') != null;
+    }
+
+    getCountries() {
+        return this.http.get('http://localhost:4200/assets/countries.json');
     }
 }

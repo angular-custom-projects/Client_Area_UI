@@ -6,8 +6,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {MaterialModule} from '../material/material.module';
@@ -15,7 +15,9 @@ import {MaterialModule} from '../material/material.module';
 import {ProfileCompletionComponent} from '../profile-completion/profile-completion.component';
 import {NotFoundComponent} from '../core/not-found/not-found.component';
 import {StopPropagationDirective} from '../directives/stop-propagation.directive';
-import {ConfirmEqualValidatorDirective} from "./custom-validators/confirm-equal-validator.directive";
+import {ConfirmEqualValidatorDirective} from './custom-validators/confirm-equal-validator.directive';
+import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material';
+import {APP_DATE_FORMATS, AppDateAdapter} from './app-date-adapter';
 
 @NgModule({
     imports: [
@@ -42,6 +44,14 @@ import {ConfirmEqualValidatorDirective} from "./custom-validators/confirm-equal-
         NotFoundComponent,
         StopPropagationDirective,
         ConfirmEqualValidatorDirective
+    ],
+    providers: [
+        {
+            provide: DateAdapter, useClass: AppDateAdapter
+        },
+        {
+            provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS
+        }
     ]
 })
 export class SharedModule {

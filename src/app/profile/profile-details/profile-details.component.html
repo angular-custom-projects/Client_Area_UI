@@ -1,225 +1,292 @@
-<div class="activeContainer" *ngIf="accountActive">
-    <p class="profile-header"><i class="material-icons">person</i> Profile Details</p>
-    <hr>
-    <p class="title">Account Details</p>
-    <div class="content">
-        <p>Username: <span>{{ username }}</span></p>
+<div fxLayout="column">
+    <!--====== the following will be used to the correct confirmation message based on the status of the request (don't remove)-->
+
+    <!--<div *ngIf="error">-->
+    <!--<app-confirmation messageType="error"-->
+    <!--messageText="Error: Something went wrong. User Registration failed."-->
+    <!--(closeM)="closeErrorMessage($event)"></app-confirmation>-->
+    <!--</div>-->
+    <!--<div *ngIf="success">-->
+    <!--<app-confirmation messageType="success"-->
+    <!--messageText="Thanks for your registration."-->
+    <!--(closeM)="closeSuccessMessage($event)"></app-confirmation>-->
+    <!--</div>-->
+    <div class="title-card">
+        <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
+            <mat-icon>person</mat-icon>
+            <span>Profile Details</span>
+        </p>
     </div>
-    <p class="title">Personal Information</p>
-    <div class="content">
-        <p>First Name: <span>{{ firstName }}</span></p>
-        <p>Last Name: <span>{{ lastName }}</span></p>
-        <p>Education: <span>{{ education }}</span></p>
-        <p>Date of Birth: <span>{{ dob }}</span></p>
+    <div class="content-card">
+        <form (ngSubmit)="onSubmit()" [formGroup]="perDetailsForm" fxLayout="column">
+            <div class="empty-space">
+                <p class="sub-title lato-regular">Account Details</p>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="username" fxFlex="49%">Username: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   appOnlyTextValidator
+                                   id="username"
+                                   formControlName="username" value="{{cUsername}}">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('username').invalid && perDetailsForm.get('username').touched">
+                            <span *ngIf="perDetailsForm.get('username').errors['required']">Username is required!</span>
+                            <span *ngIf="perDetailsForm.get('username').errors['notText'] && perDetailsForm.get('username').errors['required'] !== true">
+                                Please use Basic Latin characters only.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-space">
+                <p class="sub-title lato-regular">Personal Information</p>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="firstName" fxFlex="49%">First Name: <span
+                            class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   appOnlyTextValidator
+                                   id="firstName"
+                                   formControlName="firstName" value="{{cFirstName}}">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('firstName').invalid && perDetailsForm.get('firstName').touched">
+                            <span *ngIf="perDetailsForm.get('firstName').errors['required']">First name is required!</span>
+                            <span *ngIf="perDetailsForm.get('firstName').errors['notText'] && perDetailsForm.get('firstName').errors['required'] !== true">
+                                Please use Basic Latin characters only.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="lastName" fxFlex="49%">Last Name: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   appOnlyTextValidator
+                                   id="lastName"
+                                   formControlName="lastName" value="{{cLastName}}">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('lastName').invalid && perDetailsForm.get('lastName').touched">
+                            <span *ngIf="perDetailsForm.get('lastName').errors['required']">Last name is required!</span>
+                            <span *ngIf="perDetailsForm.get('lastName').errors['notText'] && perDetailsForm.get('lastName').errors['required'] !== true">
+                                Please use Basic Latin characters only.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="dateOfBirth" fxFlex="49%">Date of Birth: <span
+                            class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   [matDatepicker]="picker"
+                                   [max]="maxDate"
+                                   type="text"
+                                   id="dateOfBirth"
+                                   formControlName="dateOfBirth">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('dateOfBirth').invalid && perDetailsForm.get('dateOfBirth').touched">
+                            <span *ngIf="perDetailsForm.get('dateOfBirth').errors['required']">Date of Birth is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="gender" fxFlex="49%">Gender: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   appOnlyTextValidator
+                                   id="gender"
+                                   formControlName="gender">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('gender').invalid && perDetailsForm.get('gender').touched">
+                            <span *ngIf="perDetailsForm.get('gender').errors['required']">Gender is required!</span>
+                            <span *ngIf="perDetailsForm.get('gender').errors['notText'] && perDetailsForm.get('gender').errors['required'] !== true">
+                                Please use Basic Latin characters only.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="empty-space">
+                <p class="sub-title lato-regular">Contact Details</p>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="country" fxFlex="49%">Country: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <mat-select id="country" formControlName="countryList">
+                                <mat-option>--</mat-option>
+                                <mat-option *ngFor="let country of countries" [value]="country">
+                                    {{country['country_name']}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('countryList').invalid && perDetailsForm.get('countryList').touched">
+                            <span *ngIf="perDetailsForm.get('countryList').errors['required']">Country is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="city" fxFlex="49%">City: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   appOnlyTextValidator
+                                   id="city"
+                                   formControlName="city">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('city').invalid && perDetailsForm.get('city').touched">
+                            <span *ngIf="perDetailsForm.get('city').errors['required']">City is required!</span>
+                            <span *ngIf="perDetailsForm.get('city').errors['notText'] && perDetailsForm.get('city').errors['required'] !== true">
+                                Please use Basic Latin characters only.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="address" fxFlex="49%">Address: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   id="address"
+                                   formControlName="address" value="{{cAddress}}">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('address').invalid && perDetailsForm.get('address').touched">
+                            <span *ngIf="perDetailsForm.get('address').errors['required']">Address is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="zip" fxFlex="49%">Zip / Postal Code: <span
+                            class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="number"
+                                   id="zip"
+                                   formControlName="zip">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('zip').invalid && perDetailsForm.get('zip').touched">
+                            <span *ngIf="perDetailsForm.get('zip').errors['required']">Zip / Postal Code is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="state" fxFlex="49%">State: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="number"
+                                   id="state"
+                                   formControlName="state">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('state').invalid && perDetailsForm.get('state').touched">
+                            <span *ngIf="perDetailsForm.get('state').errors['required']">State is required!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="phoneNumber" fxFlex="49%">Phone Number: <span
+                            class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="text"
+                                   appPhoneCodeValidator
+                                   id="phoneNumber"
+                                   formControlName="phoneNumber" value="{{cPhone}}">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('phoneNumber').invalid && perDetailsForm.get('phoneNumber').touched">
+                            <span *ngIf="perDetailsForm.get('phoneNumber').errors['required']">Phone Number is required!</span>
+                            <span *ngIf="perDetailsForm.get('phoneNumber').errors['wrongCode'] && perDetailsForm.get('phoneNumber').errors['required'] !== true">
+                            Phone Number needs to start with symbol plus(+) and followed by numbers.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="line-between">
+                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                    <label class="label" for="email" fxFlex="49%">Email: <span class="required">*</span></label>
+                    <div fxLayout="column" fxFlex="49%">
+                        <mat-form-field floatLabel=never>
+                            <input matInput
+                                   type="email"
+                                   id="email"
+                                   formControlName="email" value="{{cEmail}}">
+                        </mat-form-field>
+                        <div class="error-msg"
+                             *ngIf="perDetailsForm.get('email').invalid && perDetailsForm.get('email').touched">
+                            <span *ngIf="perDetailsForm.get('email').errors['required']">Email is required!</span>
+                            <span *ngIf="perDetailsForm.get('email').errors['email']">Please enter a valid Email address.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" *ngIf="!active">
+                <button mat-raised-button
+                        type="submit"
+                        [disabled]="perDetailsForm.invalid">
+                    <mat-icon>edit</mat-icon>
+                    <span>Submit</span>
+                </button>
+            </div>
+            <div class="text-center" *ngIf="active">
+                <button mat-raised-button
+                        type="button"
+                        id="tool-tip-btn"
+                        matTooltipPosition="above"
+                        matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
+                        aria-label="If you want to change these details, please email support@FXPRIMUS.com.">
+                    <mat-icon>edit</mat-icon>
+                    <span>Submit</span>
+                </button>
+            </div>
+        </form>
     </div>
-    <p class="title">Contact Details</p>
-    <div class="content">
-        <p>Country: <span>{{ country }}</span></p>
-        <p>City: <span>{{ city }}</span></p>
-        <p>Address: <span>{{ address }}</span></p>
-        <p>Zip Code: <span>{{ zipcode }}</span></p>
-        <p>Phone Number: <span>{{ phoneNumber }}</span></p>
-        <p>Email: <span>{{ email }}</span></p>
-        <p>&nbsp;</p>
-    </div>
-    <div class="button-wrapper" matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
-         matTooltipPosition="above">
-        <button mat-raised-button [disabled]="accountActive"><i class="material-icons">edit</i> Complete Profile
-        </button>
-    </div>
-</div>
-<div class="pendingContainer" *ngIf="!accountActive">
-    <p class="profile-header"><i class="material-icons">person</i> Profile Details</p>
-    <hr>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <p class="title">Account Details</p>
-        <div class="content">
-            <p class="username">Username: <span>{{ username }}</span></p>
-        </div>
-        <p class="title">Personal Information</p>
-        <div class="content">
-            <p>First Name:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="text"
-                               id="firstName"
-                               name="firstName"
-                               ngModel
-                               required
-                               #firstName="ngModel"
-                               minlength="2"
-                               maxlength="100"
-                               pattern="^[a-zA-Z ]+$">
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="firstName.invalid && firstName.touched">
-                        <span *ngIf="firstName.errors['required']">First name is a required field!</span>
-                        <span *ngIf="firstName.errors['minlength']">First name is too short (minimum is 2 characters).</span>
-                        <span *ngIf="firstName.errors['pattern']">Please use Basic Latin characters only.</span>
-                    </span>
-                </span>
-            </p>
-            <p>Last Name:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="text"
-                               id="lastName"
-                               name="lastName"
-                               ngModel
-                               required
-                               #lastName="ngModel"
-                               minlength="2"
-                               maxlength="100"
-                               pattern="^[a-zA-Z ]+$">
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="lastName.invalid && lastName.touched">
-                        <span *ngIf="lastName.errors['required']">Last name is a required field!</span>
-                        <span *ngIf="lastName.errors['minlength']">Last name is too short (minimum is 2 characters).</span>
-                        <span *ngIf="lastName.errors['maxlength']">Please use Basic Latin characters only.</span>
-                    </span>
-                </span>
-            </p>
-            <p>Education:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <mat-select
-                                id="education"
-                                name="education"
-                                ngModel
-                                #education="ngModel"
-                                required>
-                            <mat-option *ngFor="let education of educations" [value]="education">
-                                {{ education }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="education.invalid && education.touched">
-                        <span *ngIf="education.errors['required']">Education is a required field!</span>
-                    </span>
-                </span>
-            </p>
-            <p>Date of Birth:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="date"
-                               id="dob"
-                               name="dob"
-                               ngModel
-                               #dob="ngModel"
-                               required>
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="dob.invalid && dob.touched">
-                        <span *ngIf="dob.errors['required']">Please fill Date of Birth.</span>
-                    </span>
-                </span>
-            </p>
-        </div>
-        <p class="title">Contact Details</p>
-        <div class="content">
-            <p>Country:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <mat-select
-                                type="text"
-                                id="country"
-                                name="country"
-                                ngModel
-                                #country="ngModel"
-                                required>
-                            <mat-option *ngFor="let country of countries" [value]="country">
-                                {{ country }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="country.invalid && country.touched">
-                        <span *ngIf="country.errors['required']">Country is a required field!</span>
-                        <span *ngIf="country.errors['minlength']">Country is too short (minimum is 3 characters).</span>
-                    </span>
-                </span>
-            </p>
-            <p>City:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="text"
-                               id="city"
-                               name="city"
-                               ngModel
-                               #city="ngModel"
-                               required
-                               minlength="3"
-                               maxlength="100">
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="city.invalid && city.touched">
-                        <span *ngIf="city.errors['required']">City is a required field!</span>
-                        <span *ngIf="city.errors['minlength']">City is too short (minimum is 3 characters).</span>
-                    </span>
-                </span>
-            </p>
-            <p>Address:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="text"
-                               id="address"
-                               name="address"
-                               ngModel
-                               required
-                               #address="ngModel"
-                               minlength="3"
-                               maxlength="100">
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="address.invalid && address.touched">
-                        <span *ngIf="address.errors['required']">Address is a required field!</span>
-                        <span *ngIf="address.errors['minlength']">Address is too short (minimum is 3 characters).</span>
-                    </span>
-                </span>
-            </p>
-            <p>Zip Code:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="text"
-                               id="zipcode"
-                               name="zipcode"
-                               ngModel
-                               #zip="ngModel"
-                               required
-                               minlength="3"
-                               maxlength="10">
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="zip.invalid && zip.touched">
-                        <span *ngIf="zip.errors['required']">Zip is a required field!</span>
-                        <span *ngIf="zip.errors['minlength']">Zip is too short (minimum is 3 characters).</span>
-                    </span>
-                </span>
-            </p>
-            <p>Phone Number:
-                <span>
-                    <mat-form-field class="input-full-width">
-                        <input matInput
-                               type="number"
-                               id="phoneNumber"
-                               name="phoneNumber"
-                               ngModel
-                               #phoneNumber="ngModel"
-                               required
-                               min="3"
-                               max="20">
-                    </mat-form-field>
-                    <span class="error-msg lato-regular" *ngIf="phoneNumber.invalid && phoneNumber.touched">
-                        <span *ngIf="phoneNumber.errors['required']">Phone Number is a required field!</span>
-                        <span *ngIf="phoneNumber.errors['minlength']">Phone Number must between 1 to 20 characters only.</span>
-                    </span>
-                </span>
-            </p>
-            <p class="email">Email: <span>{{ email }}</span></p>
-            <p class="last">&nbsp;</p>
-        </div>
-        <button mat-raised-button type="submit" [disabled]="f.invalid"><i class="material-icons">edit</i> Complete
-            Profile
-        </button>
-    </form>
 </div>
