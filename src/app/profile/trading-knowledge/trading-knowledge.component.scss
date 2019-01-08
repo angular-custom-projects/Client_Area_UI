@@ -1,0 +1,85 @@
+@import "../../scss-partials/variables";
+@import "../../scss-partials/mixins";
+
+.container {
+  padding: 0 20px;
+  width: 95%;
+}
+
+p {
+  @include lato-regular();
+  color: $text-first;
+  font-size: 16px;
+}
+
+.profile-header {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: #1a2650;
+  padding: 0px 0px 18px;
+  border-bottom: 1px solid #eee;
+
+  .material-icons {
+    margin-right: 20px;
+  }
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  color: $light-blue-primary;
+  font-size: 12px;
+
+  .material-icons {
+    margin-right: 10px;
+  }
+}
+
+button {
+  @include primary-button($padding: 4px 50px, $margin: 30px auto 10px);
+  @include rounded(0px);
+  @include lato-regular();
+  display: flex;
+
+    &:hover {
+        @include hover-color-dark();
+    }
+}
+
+form {
+  .radio {
+    padding: 9px 0px 18px;
+    border-bottom: 1px solid #eee;
+
+    .radio-buttons-wrapper {
+      padding: 20px 0px;
+
+      label {
+        span {
+          display: inline-block;
+          border: 1px solid #ddd;
+          padding: 10px 20px;
+          cursor: pointer;
+
+          &:hover {
+            border: 1px solid #bbb;
+          }
+        }
+
+        input[type="radio"] {
+          display: none;
+
+          &:checked+span {
+            border: 1px solid $light-blue-primary;
+          }
+        }
+
+        span {
+          @include lato-regular();
+          color: $text-first;
+        }
+      }
+    }
+  }
+}
