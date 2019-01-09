@@ -18,6 +18,15 @@ import {StopPropagationDirective} from '../directives/stop-propagation.directive
 import {ConfirmEqualValidatorDirective} from './custom-validators/confirm-equal-validator.directive';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material';
 import {APP_DATE_FORMATS, AppDateAdapter} from './app-date-adapter';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import {OnlyTextValidatorDirective} from './custom-validators/only-text-validator.directive';
+import {PhoneCodeValidatorDirective} from './custom-validators/phone-code-validator.directive';
+import {AtLeastOneDigitDirective} from './custom-validators/at-least-one-digit.directive';
+import {AtLeastOneLowerDirective} from './custom-validators/at-least-one-lower.directive';
+import {AtLeastOneUpperDirective} from './custom-validators/at-least-one-upper.directive';
+import {AtLeastEightDirective} from './custom-validators/at-least-eight.directive';
+import {AtLeastOneSpecialCharacterDirective} from './custom-validators/at-least-one-special-character.directive';
+import {WebsiteUrlDirective} from './custom-validators/website-url.directive';
 
 @NgModule({
     imports: [
@@ -36,14 +45,32 @@ import {APP_DATE_FORMATS, AppDateAdapter} from './app-date-adapter';
         NgxMatSelectSearchModule,
         ProfileCompletionComponent,
         NotFoundComponent,
+        ConfirmationComponent,
         StopPropagationDirective,
-        ConfirmEqualValidatorDirective
+        ConfirmEqualValidatorDirective,
+        OnlyTextValidatorDirective,
+        PhoneCodeValidatorDirective,
+        AtLeastEightDirective,
+        AtLeastOneLowerDirective,
+        AtLeastOneUpperDirective,
+        AtLeastOneDigitDirective,
+        AtLeastOneSpecialCharacterDirective,
+        WebsiteUrlDirective
     ],
     declarations: [
         ProfileCompletionComponent,
         NotFoundComponent,
+        ConfirmationComponent,
         StopPropagationDirective,
-        ConfirmEqualValidatorDirective
+        ConfirmEqualValidatorDirective,
+        OnlyTextValidatorDirective,
+        PhoneCodeValidatorDirective,
+        AtLeastEightDirective,
+        AtLeastOneLowerDirective,
+        AtLeastOneUpperDirective,
+        AtLeastOneDigitDirective,
+        AtLeastOneSpecialCharacterDirective,
+        WebsiteUrlDirective
     ],
     providers: [
         {

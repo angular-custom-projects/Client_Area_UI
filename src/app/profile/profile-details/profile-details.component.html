@@ -1,16 +1,16 @@
 <div fxLayout="column">
     <!--====== the following will be used to the correct confirmation message based on the status of the request (don't remove)-->
 
-    <!--<div *ngIf="error">-->
-    <!--<app-confirmation messageType="error"-->
-    <!--messageText="Error: Something went wrong. User Registration failed."-->
-    <!--(closeM)="closeErrorMessage($event)"></app-confirmation>-->
-    <!--</div>-->
-    <!--<div *ngIf="success">-->
-    <!--<app-confirmation messageType="success"-->
-    <!--messageText="Thanks for your registration."-->
-    <!--(closeM)="closeSuccessMessage($event)"></app-confirmation>-->
-    <!--</div>-->
+    <div *ngIf="error">
+        <app-confirmation messageType="error"
+                          messageText="Error: Something went wrong. User Registration failed."
+                          (closeM)="closeErrorMessage($event)"></app-confirmation>
+    </div>
+    <div *ngIf="success">
+        <app-confirmation messageType="success"
+                          messageText="Thanks for your registration."
+                          (closeM)="closeSuccessMessage($event)"></app-confirmation>
+    </div>
     <div class="title-card">
         <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
             <mat-icon>person</mat-icon>
@@ -31,7 +31,7 @@
                                    type="text"
                                    appOnlyTextValidator
                                    id="username"
-                                   formControlName="username" value="{{cUsername}}">
+                                   formControlName="username">
                         </mat-form-field>
                         <div class="error-msg"
                              *ngIf="perDetailsForm.get('username').invalid && perDetailsForm.get('username').touched">
@@ -56,7 +56,7 @@
                                    type="text"
                                    appOnlyTextValidator
                                    id="firstName"
-                                   formControlName="firstName" value="{{cFirstName}}">
+                                   formControlName="firstName">
                         </mat-form-field>
                         <div class="error-msg"
                              *ngIf="perDetailsForm.get('firstName').invalid && perDetailsForm.get('firstName').touched">
@@ -77,7 +77,7 @@
                                    type="text"
                                    appOnlyTextValidator
                                    id="lastName"
-                                   formControlName="lastName" value="{{cLastName}}">
+                                   formControlName="lastName">
                         </mat-form-field>
                         <div class="error-msg"
                              *ngIf="perDetailsForm.get('lastName').invalid && perDetailsForm.get('lastName').touched">
@@ -113,22 +113,16 @@
             </div>
             <div class="line-between">
                 <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" for="gender" fxFlex="49%">Gender: <span class="required">*</span></label>
+                    <label class="label" for="gender" fxFlex="49%">Gender:</label>
                     <div fxLayout="column" fxFlex="49%">
                         <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   appOnlyTextValidator
-                                   id="gender"
-                                   formControlName="gender">
+                            <mat-select id="gender"
+                                        formControlName="gender">
+                                <mat-option *ngFor="let g of genders" [value]="g">
+                                    {{g | titlecase}}
+                                </mat-option>
+                            </mat-select>
                         </mat-form-field>
-                        <div class="error-msg"
-                             *ngIf="perDetailsForm.get('gender').invalid && perDetailsForm.get('gender').touched">
-                            <span *ngIf="perDetailsForm.get('gender').errors['required']">Gender is required!</span>
-                            <span *ngIf="perDetailsForm.get('gender').errors['notText'] && perDetailsForm.get('gender').errors['required'] !== true">
-                                Please use Basic Latin characters only.
-                            </span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -142,7 +136,7 @@
                         <mat-form-field floatLabel=never>
                             <mat-select id="country" formControlName="countryList">
                                 <mat-option>--</mat-option>
-                                <mat-option *ngFor="let country of countries" [value]="country">
+                                <mat-option *ngFor="let country of countries" [value]="country.country_code">
                                     {{country['country_name']}}
                                 </mat-option>
                             </mat-select>
@@ -183,7 +177,7 @@
                             <input matInput
                                    type="text"
                                    id="address"
-                                   formControlName="address" value="{{cAddress}}">
+                                   formControlName="address">
                         </mat-form-field>
                         <div class="error-msg"
                              *ngIf="perDetailsForm.get('address').invalid && perDetailsForm.get('address').touched">
@@ -216,7 +210,7 @@
                     <div fxLayout="column" fxFlex="49%">
                         <mat-form-field floatLabel=never>
                             <input matInput
-                                   type="number"
+                                   type="text"
                                    id="state"
                                    formControlName="state">
                         </mat-form-field>
@@ -232,19 +226,28 @@
                     <label class="label" for="phoneNumber" fxFlex="49%">Phone Number: <span
                             class="required">*</span></label>
                     <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   appPhoneCodeValidator
-                                   id="phoneNumber"
-                                   formControlName="phoneNumber" value="{{cPhone}}">
-                        </mat-form-field>
+                        <div fxLayout="row" fxFlex="90%" fxLayoutGap="2%">
+                            <div fxFlex="13%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           appPhoneCodeValidator
+                                           id="phoneCode"
+                                           formControlName="phoneCode">
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="87%">
+                                <mat-form-field floatLabel=never class="full-width">
+                                    <input matInput
+                                           type="number"
+                                           id="phoneNumber"
+                                           formControlName="phoneNumber">
+                                </mat-form-field>
+                            </div>
+                        </div>
                         <div class="error-msg"
                              *ngIf="perDetailsForm.get('phoneNumber').invalid && perDetailsForm.get('phoneNumber').touched">
                             <span *ngIf="perDetailsForm.get('phoneNumber').errors['required']">Phone Number is required!</span>
-                            <span *ngIf="perDetailsForm.get('phoneNumber').errors['wrongCode'] && perDetailsForm.get('phoneNumber').errors['required'] !== true">
-                            Phone Number needs to start with symbol plus(+) and followed by numbers.
-                            </span>
                         </div>
                     </div>
                 </div>
@@ -257,7 +260,7 @@
                             <input matInput
                                    type="email"
                                    id="email"
-                                   formControlName="email" value="{{cEmail}}">
+                                   formControlName="email">
                         </mat-form-field>
                         <div class="error-msg"
                              *ngIf="perDetailsForm.get('email').invalid && perDetailsForm.get('email').touched">

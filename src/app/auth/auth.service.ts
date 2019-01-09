@@ -1,66 +1,64 @@
+import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {HttpBackend, HttpClient, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
+import {ProfileService} from '../profile/profile.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
+    // countries URL
+    countriesListURL = environment.countriesURL;
+    // API URL
+    envURL = environment.apiURL;
     // create a subject (which is observable a& observer at the same time) for first name and last name
     firstName = new Subject();
     lastName = new Subject();
+    // will be used to show the error message to the user if any when he tries to login
+    loginError = new Subject();
+    // will be used to store the error message if found when he tries to login
+    loginErrorMessage = new Subject();
     // we will need this variable to make sure that the interceptor will not be applied on this service
     private http: HttpClient;
 
-    constructor(private handler: HttpBackend, private router: Router) {
+    constructor(private handler: HttpBackend,
+                private router: Router,
+                private profileService: ProfileService) {
         // the following line is used to ignore the interceptor for this service
         this.http = new HttpClient(handler);
     }
 
     // register new client
     registerUser(userData: {}) {
-        return this.http.post(`http://18.195.135.30:8088/clients`, userData);
+        return this.http.post(this.envURL + `clients`, userData);
     }
 
     // login a client
     loginUser(userData: {}) {
-        this.http.post<any>(`http://18.195.135.30:8088/clients/login`, userData).subscribe(
+        this.http.post<any>(this.envURL + `clients/login`, userData).subscribe(
             response => {
-                // add elements to the local storage
-                // localStorage.setItem('clientFirstName', response.client.first_name);
-                // localStorage.setItem('clientLastName', response.client.last_name);
-                // localStorage.setItem('mAToken', response.token);
-                this.getClientInfo(response.data);
-                // update the subject with the correct data
-                // this.firstName.next(localStorage.getItem('clientFirstName'));
-                // this.lastName.next(localStorage.getItem('clientLastName'));
-                // redirect the user to the dashboard
-                // this.router.navigate(['/dashboard']);
+                // save the token in the local storage
+                localStorage.setItem('mAToken', response['data']);
+                this.profileService.getClientInfo().subscribe(
+                    data => {
+                        localStorage.setItem('clientFirstName', data['data'].name.first_name);
+                        localStorage.setItem('clientLastName', data['data'].name.last_name);
+                        // update the subject with the correct data
+                        this.firstName.next(localStorage.getItem('clientFirstName'));
+                        this.lastName.next(localStorage.getItem('clientLastName'));
+                        // redirect the user to the dashboard
+                        this.router.navigate(['/dashboard']);
+                    }
+                );
             },
-            error => console.log(error)
+            error => {
+                this.loginError.next(true);
+                this.loginErrorMessage.next(error['error'].errors[0]);
+                console.log(error);
+            }
         );
-    }
-
-    getClientInfo(token: string) {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Authorization': 'Bearer ' + token
-            })
-        };
-        this.http.get(`http://18.195.135.30:8088/clients`, httpOptions).subscribe(
-            data => {
-                // add elements to the local storage
-                localStorage.setItem('clientFirstName', data['data'].name.first_name);
-                localStorage.setItem('clientLastName', data['data'].name.last_name);
-                localStorage.setItem('mAToken', token);
-                // update the subject with the correct data
-                this.firstName.next(localStorage.getItem('clientFirstName'));
-                this.lastName.next(localStorage.getItem('clientLastName'));
-                // redirect the user to the dashboard
-                this.router.navigate(['/dashboard']);
-            },
-            error => console.log(error));
     }
 
     // logout a client
@@ -75,12 +73,12 @@ export class AuthService {
 
     // run the following function if the user wants to reset his password (it will send an email to the user)
     forgotPassword(userData: {}) {
-        return this.http.post(`http://18.195.135.30:8088/clients/forgot-password`, userData);
+        return this.http.post(this.envURL + `clients/forgot-password`, userData);
     }
 
     // run the following function if the user has a token and submit has password and confirm password
-    resetPassword(data: {}) {
-        return this.http.post(`http://18.195.135.30:8088/clients/reset-password`, data);
+    resetPassword(token, data: {}) {
+        return this.http.post(this.envURL + `clients/reset-password/` + token , data);
     }
 
     // get the token
@@ -94,6 +92,6 @@ export class AuthService {
     }
 
     getCountries() {
-        return this.http.get('http://localhost:4200/assets/countries.json');
+        return this.http.get(this.countriesListURL);
     }
 }

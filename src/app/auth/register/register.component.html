@@ -1,9 +1,18 @@
+<div *ngIf="error">
+    <app-confirmation messageType="error"
+                      messageText="Error: {{errorMessage}}"
+                      (closeM)="closeErrorMessage($event)"></app-confirmation>
+</div>
+<div *ngIf="success">
+    <app-confirmation messageType="success"
+                      messageText="Thanks for your registration."
+                      (closeM)="closeSuccessMessage($event)"></app-confirmation>
+</div>
 <div class="main-content">
     <div class="container" fxLayout="row wrap" fxLayout.xs="column wrap" fxLayoutAlign="space-around"
          fxLayoutAlign.md="space-evenly" fxLayoutAlign.xs="center center" fxFlex.xs="100%">
         <div class="column">
             <h3 class="title lato-regular margin-bottom-15">Create Your FXPRIMUS Profile</h3>
-            <p *ngIf="status" class="text-center lato-bold successful-reg">Thanks for your registration.</p>
             <form (ngSubmit)="onSignup()" #f="ngForm">
                 <mat-form-field class="input-full-width">
                     <input matInput placeholder="First Name"
@@ -12,10 +21,12 @@
                            name="firstName"
                            ngModel
                            required
+                           appOnlyTextValidator
                            #firstName="ngModel">
                 </mat-form-field>
-                <div class="error-msg lato-regular" *ngIf="firstName.invalid && firstName.touched">
-                    <span *ngIf="firstName.errors['required']">First name is required!</span>
+                <div class="error-msg" *ngIf="firstName.invalid && firstName.touched">
+                    <p *ngIf="firstName.errors['required']">First name is required!</p>
+                    <p *ngIf="firstName.errors['notText'] && (firstName.errors['required'] !== true)">Please use Basic Latin characters only.</p>
                 </div>
                 <mat-form-field class="input-full-width">
                     <input matInput placeholder="Last Name"
@@ -24,29 +35,32 @@
                            name="lastName"
                            ngModel
                            required
+                           appOnlyTextValidator
                            #lastName="ngModel">
                 </mat-form-field>
-                <div class="error-msg lato-regular" *ngIf="lastName.invalid && lastName.touched">
-                    <span *ngIf="lastName.errors['required']">Last name is required!</span>
+                <div class="error-msg" *ngIf="lastName.invalid && lastName.touched">
+                    <p *ngIf="lastName.errors['required']">Last name is required!</p>
+                    <p *ngIf="lastName.errors['notText'] && (lastName.errors['required'] !== true)">Please use Basic Latin characters only.</p>
                 </div>
                 <mat-form-field class="input-full-width">
                     <input matInput placeholder="Email"
                            type="email"
                            id="email"
                            name="email"
-                           ngModel
+                           [(ngModel)]="emailUsername"
                            required
                            email
                            #email="ngModel">
                 </mat-form-field>
                 <div class="error-msg lato-regular" *ngIf="email.invalid && email.touched">
-                    <span *ngIf="email.errors['required']">Email is required!</span>
-                    <span *ngIf="email.errors['email']">Please enter a valid Email address.</span>
+                    <p *ngIf="duplicatedEmail">Choose another Email address!</p>
+                    <p *ngIf="email.errors['required'] && duplicatedEmail === false">Email is required!</p>
+                    <p *ngIf="email.errors['email']">Please enter a valid Email address.</p>
                 </div>
                 <mat-form-field class="input-full-width">
                     <mat-select placeholder="Country" [(ngModel)]="currentCountry" name="country" required
                                 #country="ngModel" (selectionChange)="onCountryChange($event.value)">
-                        <mat-option *ngFor="let country of countries" [value]="country">
+                        <mat-option *ngFor="let country of countries" [value]="country.country_code">
                             {{country['country_name']}}
                         </mat-option>
                     </mat-select>
@@ -62,11 +76,11 @@
                                name="countryCode"
                                ngModel
                                required
-                               #countryCode="ngModel" value="{{selectedCountry}}" disabled>
+                               #countryCode="ngModel" value="{{dealingCode}}" disabled>
                     </mat-form-field>
                     <mat-form-field class="input-phone-number">
                         <input matInput placeholder="Phone Number"
-                               type="text"
+                               type="number"
                                id="phoneNumber"
                                name="phoneNumber"
                                ngModel
@@ -85,12 +99,14 @@
                            type="text"
                            id="username"
                            name="username"
-                           ngModel
+                           [(ngModel)]="emailUsername"
                            required
+                           disabled
                            #username="ngModel">
                 </mat-form-field>
                 <div class="error-msg lato-regular" *ngIf="username.invalid && username.touched">
-                    <span *ngIf="username.errors['required']">Username is required!</span>
+                    <span *ngIf="duplicatedUsername">Choose another username!</span>
+                    <span *ngIf="username.errors['required'] && duplicatedUsername === false">Username is required!</span>
                 </div>
                 <mat-form-field class="input-full-width">
                     <input matInput placeholder="Password"
@@ -99,10 +115,25 @@
                            name="password"
                            ngModel
                            required
+                           appAtLeastEight
+                           appAtLeastOneLower
+                           appAtLeastOneUpper
+                           appAtLeastOneDigit
+                           appAtLeastOneSpecialCharacter
                            #password="ngModel">
                 </mat-form-field>
-                <div class="error-msg lato-regular" *ngIf="password.invalid && password.touched">
-                    <span *ngIf="password.errors['required']">Password is required!</span>
+                <div class="error-msg" *ngIf="password.invalid && password.touched">
+                    <p *ngIf="password.errors['required']">Password is required!</p>
+                    <p *ngIf="password.errors['notEight'] && (password.errors['required'] !== true)">Password should
+                        be at least 8 characters long!</p>
+                    <p *ngIf="password.errors['notLower'] && (password.errors['required'] !== true)">Password should
+                        have at least one lower case!</p>
+                    <p *ngIf="password.errors['notUpper'] && (password.errors['required'] !== true)">Password should
+                        have at least one upper case!</p>
+                    <p *ngIf="password.errors['notDigit'] && (password.errors['required'] !== true)">Password should
+                        have at least one digit!</p>
+                    <p *ngIf="password.errors['notSpecialCh'] && (password.errors['required'] !== true)">Password
+                        should have at least a special character!</p>
                 </div>
                 <button mat-raised-button class="input-full-width lato-regular"
                         type="submit"

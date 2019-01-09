@@ -3,6 +3,9 @@
   max-width: 500px;
   margin: 0 auto; }
 
+.error-msg p {
+  margin: 0; }
+
 .gray-paragraph {
   color: #828a96; }
 

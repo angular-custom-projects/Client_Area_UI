@@ -27,9 +27,15 @@ export class ResetPasswordS1Component implements OnInit, CanComponentDeactivate 
     successEmail = false;
     errorEmail = false;
 
+    // show the correct confirmation message after submitting the email
+    emailConfirmationMessage = '';
+
     // the following will be used to display the correct confirmation message if the password has been reset correctly
     successPass = false;
     errorPass = false;
+
+    // show the correct confirmation message after submitting the new password
+    passConfirmationMessage = '';
 
     constructor(private router: Router,
                 private activatedRoute: ActivatedRoute,
@@ -51,14 +57,13 @@ export class ResetPasswordS1Component implements OnInit, CanComponentDeactivate 
         const username = this.form.value.username;
         this.authService.forgotPassword({username}).subscribe(
             data => {
-                console.log(data);
                 this.successEmail = true;
+                this.emailConfirmationMessage = data['data'];
             },
             error => {
-                console.log(error),
-                    this.errorEmail = true;
+                console.log(error);
+                this.errorEmail = true;
             });
-        console.log('username: ', this.form.value.username);
         this.form.onReset();
     }
 
@@ -68,15 +73,19 @@ export class ResetPasswordS1Component implements OnInit, CanComponentDeactivate 
         const password = this.resPassForm.value.password;
         const confirm_password = this.resPassForm.value.confirmPass;
         const resetPasswordData = {
-            tokenVal: token,
-            passVal: password,
-            conf_pass_val: confirm_password
+            newPassword: password,
+            confirmPassword: confirm_password
         };
-        this.authService.resetPassword(resetPasswordData).subscribe(
-            data => this.successPass = true,
-            error => this.errorPass = true
+        this.authService.resetPassword(token, resetPasswordData).subscribe(
+            response => {
+                this.successPass = true;
+                this.passConfirmationMessage = response['data'];
+            },
+            error => {
+                this.errorPass = true;
+                this.passConfirmationMessage = error['error'].errors;
+            }
         );
-        console.log(resetPasswordData);
         this.resPassForm.onReset();
     }
 

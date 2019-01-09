@@ -7,12 +7,12 @@ export class ClientDetails {
     name: Name;
     emails: Email [];
     country: string;
-    phone: Phones [];
+    phones: Phones [];
     username: string;
     password: string;
     client_type: string;
     addresses: Addresses [];
-    phones: Phones;
+    phone: Phones;
     date_of_birth: string;
     gender: string;
 }
