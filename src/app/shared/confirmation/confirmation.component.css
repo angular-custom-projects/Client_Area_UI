@@ -1,0 +1,18 @@
+.confirmation-message {
+  padding-left: 20px; }
+
+.error-container {
+  background-color: #fed8d5; }
+
+.error-container .confirmation-message,
+.error-container .error-icon {
+  color: #B71C1C; }
+
+.success-container {
+  background-color: #dbf8e4; }
+
+.success-container .confirmation-message,
+.success-container .success-icon {
+  color: #123c15; }
+
+/*# sourceMappingURL=confirmation.component.css.map */

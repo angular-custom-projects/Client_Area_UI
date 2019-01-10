@@ -1,10 +1,24 @@
 <!--this is the container of all profile feature components-->
 <div class="main-content">
-    <div class="container" fxLayout="row wrap" fxLayoutAlign="space-between">
-        <mat-card fxLayout="column" fxFlex="29%">
-            <app-profile-completion></app-profile-completion>
+    <div class="container stepper" fxLayout="row wrap">
+        <mat-card fxLayout="column" fxFlex="100%">
+            <app-verification-stepper></app-verification-stepper>
         </mat-card>
-        <mat-card fxLayout="column" fxFlex="69%">
+    </div>
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="space-between">
+        <mat-card id="side-card" fxLayout="column" fxFlex="29%">
+            <app-profile-completion id="profile-completion"></app-profile-completion>
+            <mat-nav-list>
+                <a mat-list-item *ngFor="let item of sidebarMenuItems"
+                   [routerLink]="item.link"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   routerLinkActive="active">
+                    <i class="material-icons">{{ item.icon }}</i>
+                    <p>{{ item.title }}</p>
+                </a>
+            </mat-nav-list>
+        </mat-card>
+        <mat-card id="left-card" fxLayout="column" fxFlex="69%">
             <router-outlet></router-outlet>
         </mat-card>
     </div>

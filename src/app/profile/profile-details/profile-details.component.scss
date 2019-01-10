@@ -1,53 +1,99 @@
 @import "../../scss-partials/variables";
 @import "../../scss-partials/mixins";
 
-.container {
-  padding: 0 20px;
-  width: 95%;
+.content-card {
+  padding-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.input-container {
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.label {
+  text-align: left;
+  color: $text-first;
+  font-size: 13px;
+}
+
+.text {
+  color: $text-first;
+  font-size: 13px;
+}
+
+.line-between, .empty-space {
+  margin: 0 15px;
+  border-bottom: 0.4px solid $divider-color;
+}
+
+.line-between {
+  padding: 10px 0;
+}
+
+.empty-space {
+  height: 50px;
+}
+
+.section-title {
+  color: $dark-blue-primary;
+}
+
+.section-title {
+  font-size: 20px;
+  padding: 15px;
+}
+
+.section-title span {
+  padding-top: 2px;
+  margin-left: 10px;
+}
+
+.details {
+  color: $text-first;
+  font-size: 13px;
+}
+
+button[mat-raised-button] {
+  background-color: $orange-primary;
+  color: $white-color;
+  width: 250px;
+  margin: 20px auto 0;
+}
+
+button[mat-raised-button]:hover {
+  @include hover-color-dark();
+}
+
+button:disabled:hover {
+  @include disabled-button();
+}
+
+button#tool-tip-btn,
+button#tool-tip-btn:hover {
+  background-color: rgba(0, 0, 0, .12);
+  color: rgba(0,0,0,.26);
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: right;
 }
 
 p {
-  @include lato-regular();
-  color: $text-first;
-  font-size: 16px;
-  padding: 0px 0px 18px;
-  border-bottom: 1px solid #eee;
+  margin: 0;
+  padding: 15px 0;
 }
 
-.profile-header {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  color: #1a2650;
-
-  .material-icons {
-    margin-right: 20px;
-  }
+.mat-form-field {
+  margin-top: -7px;
+  font-size: 13px;
 }
 
-.title {
-  font-size: 18px;
-  color: $light-blue-primary;
-}
-
-.content {
-  p {
-    padding: 6px 0px 16px 150px;
-  }
-
-  span {
-    margin-left: 20px;
-  }
-}
-
-button {
-  @include primary-button($padding: 4px 50px, $margin: 30px auto 10px);
-  @include rounded(0px);
-  @include lato-regular();
-  display: flex;
-
-  .material-icons {
-    font-size: 18px;
-    padding-bottom: 5px;
-  }
+.required {
+  color: $red-primary;
 }

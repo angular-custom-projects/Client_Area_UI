@@ -1,20 +1,458 @@
-<div class="container">
-  <p class="profile-header"><i class="material-icons">trending_up</i> Trading Knowledge and Experience</p>
-  <p class="info"><i class="material-icons">info</i> Please note that your answers to the questions below will determine your leverage or trading conditions.</p>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="radio" *ngFor="let question of questions;">
-          <p>{{ question.question }}</p>
+<p class="profile-header"><i class="material-icons">trending_up</i> Trading Knowledge and Experience</p>
+<hr>
+<p class="info"><i class="material-icons">info</i> Please note that your answers to the questions below will determine your leverage or trading conditions.</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="radio">
+
+        <!-- Trading Knowledge question 1 -->
         <div class="radio-buttons-wrapper">
-            <label *ngFor="let choice of question['choices']; let value of question['value']; let i = index;">
+            <p>If the Google share that is traded through Nasdaq drops significantly, the price of the Google CFD (Contract for Difference) you bought will:</p>
+            <label>
                 <input 
                     type="radio"
-                    [name]="question.name"
-                    ngModel="c2"
-                    [value]="'c' + (i + 1)">
-                    <span>{{ choice }}</span>
+                    name="trading_1"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingOne="ngModel">
+                    <span>Move in the same direction</span>
             </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_1"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingOne="ngModel">
+                    <span>Move in the opposite direction</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_1"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingOne="ngModel">
+                    <span>Not be affected</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingOne.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
         </div>
-      </div>
-      <button mat-raised-button type="submit">Next</button>
-  </form>
-</div>
+
+        <!-- Trading Knowledge question 2 -->
+        <div class="radio-buttons-wrapper">
+            <p>If you buy EXXON MOBIL stock through FXPRIMUS’ trading platform, where can you sell it in the future:</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_2"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingTwo="ngModel">
+                    <span>Only through FXPRIMUS' trading account</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_2"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingTwo="ngModel">
+                    <span>In the New York Stock Exchange</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_2"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingTwo="ngModel">
+                    <span>You cannot sell it</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingTwo.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 3 -->
+        <div class="radio-buttons-wrapper">
+            <p>Which of the following statements is correct regarding CFD trading:</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_3"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingThree="ngModel">
+                    <span>You never own the actual asset</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_3"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingThree="ngModel">
+                    <span>CFDs are complex financial products</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_3"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingThree="ngModel">
+                    <span>Both of the above</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_3"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #tradingThree="ngModel">
+                    <span>None</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingThree.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 4 -->
+        <div class="radio-buttons-wrapper">
+            <p>When trading with leverage, which one of the following applies:</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_4"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingFour="ngModel">
+                    <span>It may increase profits or losses</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_4"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingFour="ngModel">
+                    <span>It is risk free</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_4"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingFour="ngModel">
+                    <span>None of the above</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingFour.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 5 -->
+        <div class="radio-buttons-wrapper">
+            <p>If you have in your account USD100 and you trade with 1:50 leverage in your account, which one is the maximum value of trade you can open?</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_5"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingFive="ngModel">
+                    <span>USD 5,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_5"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingFive="ngModel">
+                    <span>USD 50,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_5"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingFive="ngModel">
+                    <span>USD 500</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingFive.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 6 -->
+        <div class="radio-buttons-wrapper">
+            <p>What is your level of education?</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_6"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingSix="ngModel">
+                    <span>Professional Qualification</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_6"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingSix="ngModel">
+                    <span>University / College</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_6"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingSix="ngModel">
+                    <span>Secondary Education</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_6"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #tradingSix="ngModel">
+                    <span>Primary Education</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_6"
+                    ngModel
+                    value="choice_5"
+                    required
+                    #tradingSix="ngModel">
+                    <span>No Education</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingSix.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 7 -->
+        <div class="radio-buttons-wrapper">
+            <p>What is your trading experience?</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_7"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingSeven="ngModel">
+                    <span>I have traded forex with leverage</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_7"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingSeven="ngModel">
+                    <span>I have traded shares, bonds, indices and commodities with leverage</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_7"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingSeven="ngModel">
+                    <span>I have traded both of the above</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_7"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #tradingSeven="ngModel">
+                    <span>None of the above</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingSeven.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 8 -->
+        <div class="radio-buttons-wrapper">
+            <p>How often have you traded the past 2 years?</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_8"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingEight="ngModel">
+                    <span>Daily or Weekly</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_8"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingEight="ngModel">
+                    <span>Monthly or Quarterly</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_8"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingEight="ngModel">
+                    <span>Annually</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_8"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #tradingEight="ngModel">
+                    <span>None of the above</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingEight.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 9 -->
+        <div class="radio-buttons-wrapper">
+            <p>What is the volume of your transactions you have traded the past 2 years?</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_9"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingNine="ngModel">
+                    <span>Over USD 50,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_9"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingNine="ngModel">
+                    <span>USD 1,000 - USD 50,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_9"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingNine="ngModel">
+                    <span>Less than USD 1,000</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_9"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #tradingNine="ngModel">
+                    <span>None</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingNine.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+
+        <!-- Trading Knowledge question 10 -->
+        <div class="radio-buttons-wrapper">
+            <p>During the past 2 years I have:</p>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_10"
+                    ngModel
+                    value="choice_1"
+                    required
+                    #tradingTen="ngModel">
+                    <span>Worked in a related role in the financial industry</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_10"
+                    ngModel
+                    value="choice_2"
+                    required
+                    #tradingTen="ngModel">
+                    <span>Attended relevant seminars and tutorials related to trading</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_10"
+                    ngModel
+                    value="choice_3"
+                    required
+                    #tradingTen="ngModel">
+                    <span>Performed both of the above</span>
+            </label>
+            <label>
+                <input 
+                    type="radio"
+                    name="trading_10"
+                    ngModel
+                    value="choice_4"
+                    required
+                    #tradingTen="ngModel">
+                    <span>None of the above</span>
+            </label>
+            <!-- <div class="error-msg lato-regular" *ngIf="tradingTen.invalid && f.dirty">
+                <span>Please choose an answer!</span>
+            </div> -->
+        </div>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="f.invalid">Next</button>
+</form>

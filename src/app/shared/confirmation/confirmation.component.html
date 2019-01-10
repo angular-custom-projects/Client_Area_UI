@@ -1,0 +1,17 @@
+<div [ngClass]="{'success-container': messageType === 'success', 'error-container': messageType === 'error'}">
+  <div class="container" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="flex-start center">
+      <mat-icon [ngClass]="{'success-icon': messageType === 'success', 'error-icon': messageType === 'error'}">
+        {{messageType === 'success' ? 'check_circle_outline' : 'highlight_off'}}
+      </mat-icon>
+      <p class="confirmation-message">
+        {{messageText}}
+      </p>
+    </div>
+    <button mat-icon-button (click)="closeMessage(messageType)">
+      <mat-icon [ngClass]="{'success-icon': messageType === 'success', 'error-icon': messageType === 'error'}"
+                aria-label="close">clear
+      </mat-icon>
+    </button>
+  </div>
+</div>
