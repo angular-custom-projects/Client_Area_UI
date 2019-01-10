@@ -1,3 +1,7 @@
+.mat-card {
+  overflow: hidden; }
 
+.stepper {
+  margin-bottom: 30px; }
 
 /*# sourceMappingURL=profile.component.css.map */
