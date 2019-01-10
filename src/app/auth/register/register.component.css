@@ -6,6 +6,9 @@
   .container .column:first-child {
     margin-top: 20px; }
 
+.error-msg p {
+  margin: 0; }
+
 button[mat-raised-button] {
   margin: 20px 0;
   color: #fff;

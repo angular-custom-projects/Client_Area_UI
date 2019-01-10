@@ -1,3 +1,6 @@
+main {
+  min-height: calc(30vh - 70px); }
+
 footer {
   width: 100%;
   left: 0;

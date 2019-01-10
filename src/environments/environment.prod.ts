@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+    apiURL: 'http://18.195.135.30:8088/',
+    countriesURL: 'assets/countries.json'
 };

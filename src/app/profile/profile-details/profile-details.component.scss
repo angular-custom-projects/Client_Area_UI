@@ -1,99 +1,99 @@
 @import "../../scss-partials/variables";
 @import "../../scss-partials/mixins";
 
-p {
-  @include lato-regular();
+.content-card {
+  padding-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.input-container {
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.label {
+  text-align: left;
   color: $text-first;
-  font-size: 16px;
-  padding: 0px 0px 18px;
-  border-bottom: 1px solid #eee;
+  font-size: 13px;
 }
 
-.profile-header {
+.text {
+  color: $text-first;
+  font-size: 13px;
+}
+
+.line-between, .empty-space {
+  margin: 0 15px;
+  border-bottom: 0.4px solid $divider-color;
+}
+
+.line-between {
+  padding: 10px 0;
+}
+
+.empty-space {
+  height: 50px;
+}
+
+.section-title {
+  color: $dark-blue-primary;
+}
+
+.section-title {
   font-size: 20px;
-  display: flex;
-  align-items: center;
-  color: #1a2650;
-  border: none;
+  padding: 15px;
+}
+
+.section-title span {
+  padding-top: 2px;
+  margin-left: 10px;
+}
+
+.details {
+  color: $text-first;
+  font-size: 13px;
+}
+
+button[mat-raised-button] {
+  background-color: $orange-primary;
+  color: $white-color;
+  width: 250px;
+  margin: 20px auto 0;
+}
+
+button[mat-raised-button]:hover {
+  @include hover-color-dark();
+}
+
+button:disabled:hover {
+  @include disabled-button();
+}
+
+button#tool-tip-btn,
+button#tool-tip-btn:hover {
+  background-color: rgba(0, 0, 0, .12);
+  color: rgba(0,0,0,.26);
+  cursor: pointer;
+}
+
+.align-right {
+  text-align: right;
+}
+
+p {
   margin: 0;
-
-  .material-icons {
-    margin-right: 10px;
-  }
+  padding: 15px 0;
 }
 
-hr {
-  background-color: #eee;
-  color: #eee;
-  width: 200%;
-  margin: 0px 0px 0px -100px;
-  border: 0.5px solid #eee;
+.mat-form-field {
+  margin-top: -7px;
+  font-size: 13px;
 }
 
-.title {
-  font-size: 18px;
-  color: $light-blue-primary;
-}
-
-.activeContainer .content {
-  p {
-    padding: 6px 0px 16px 150px;
-  }
-
-  span {
-    margin-left: 20px;
-  }
-}
-
-.pendingContainer .content {
-  p {
-    padding: 0px 0px 0px 150px;
-    margin-top: -15px;
-  }
-
-  .username,
-  .email,
-  .last {
-    padding: 10px 0px 16px 150px;
-  }
-
-  span {
-    padding-left: 20px;
-  }
-
-  .error-msg {
-    @include lato-regular();
-    color: $red-primary;
-    text-align: left;
-    display: block;
-    padding: 0px;
-
-    span {
-      display: block;
-      padding: 0px;
-      border: none;
-      font-size: 12px;
-      text-align: left;
-      color: red;
-      margin-top: 0px;
-    }
-  }
-}
-
-button {
-  @include primary-button($padding: 4px 50px, $margin: 30px auto 10px);
-  @include rounded(0px);
-  @include lato-regular();
-  display: flex;
-
-  .material-icons {
-    font-size: 18px;
-    padding-bottom: 5px;
-  }
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.required {
+  color: $red-primary;
 }
