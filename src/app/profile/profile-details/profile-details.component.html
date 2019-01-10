@@ -1,25 +1,225 @@
-<div class="container">
-  <p class="profile-header"><i class="material-icons">person</i> Profile Details</p>
-  <p class="title">Account Details</p>
-  <div class="content">
-    <p>Username: <span>{{ username }}</span></p>
-  </div>
-  <p class="title">Personal Information</p>
-  <div class="content">
-    <p>First Name: <span>{{ firstName }}</span></p>
-    <p>Last Name: <span>{{ lastName }}</span></p>
-    <p>Education: <span>Secondary</span></p>
-    <p>Date of Birth: <span>March 9, 1980</span></p>
-  </div>
-  <p class="title">Contact Details</p>
-  <div class="content">
-    <p>Country: <span>CY</span></p>
-    <p>City: <span>Nicosia</span></p>
-    <p>Address: <span>14 Andrea Teloni str</span></p>
-    <p>Zip Code: <span>3120</span></p>
-    <p>Phone Number: <span>{{ phoneNumber }}</span></p>
-    <p>Email: <span>{{ email }}</span></p>
-    <p>&nbsp;</p>
-  </div>
-  <button mat-raised-button><i class="material-icons">edit</i> Complete Profile</button>
+<div class="activeContainer" *ngIf="accountActive">
+    <p class="profile-header"><i class="material-icons">person</i> Profile Details</p>
+    <hr>
+    <p class="title">Account Details</p>
+    <div class="content">
+        <p>Username: <span>{{ username }}</span></p>
+    </div>
+    <p class="title">Personal Information</p>
+    <div class="content">
+        <p>First Name: <span>{{ firstName }}</span></p>
+        <p>Last Name: <span>{{ lastName }}</span></p>
+        <p>Education: <span>{{ education }}</span></p>
+        <p>Date of Birth: <span>{{ dob }}</span></p>
+    </div>
+    <p class="title">Contact Details</p>
+    <div class="content">
+        <p>Country: <span>{{ country }}</span></p>
+        <p>City: <span>{{ city }}</span></p>
+        <p>Address: <span>{{ address }}</span></p>
+        <p>Zip Code: <span>{{ zipcode }}</span></p>
+        <p>Phone Number: <span>{{ phoneNumber }}</span></p>
+        <p>Email: <span>{{ email }}</span></p>
+        <p>&nbsp;</p>
+    </div>
+    <div class="button-wrapper" matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
+         matTooltipPosition="above">
+        <button mat-raised-button [disabled]="accountActive"><i class="material-icons">edit</i> Complete Profile
+        </button>
+    </div>
+</div>
+<div class="pendingContainer" *ngIf="!accountActive">
+    <p class="profile-header"><i class="material-icons">person</i> Profile Details</p>
+    <hr>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <p class="title">Account Details</p>
+        <div class="content">
+            <p class="username">Username: <span>{{ username }}</span></p>
+        </div>
+        <p class="title">Personal Information</p>
+        <div class="content">
+            <p>First Name:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="text"
+                               id="firstName"
+                               name="firstName"
+                               ngModel
+                               required
+                               #firstName="ngModel"
+                               minlength="2"
+                               maxlength="100"
+                               pattern="^[a-zA-Z ]+$">
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="firstName.invalid && firstName.touched">
+                        <span *ngIf="firstName.errors['required']">First name is a required field!</span>
+                        <span *ngIf="firstName.errors['minlength']">First name is too short (minimum is 2 characters).</span>
+                        <span *ngIf="firstName.errors['pattern']">Please use Basic Latin characters only.</span>
+                    </span>
+                </span>
+            </p>
+            <p>Last Name:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="text"
+                               id="lastName"
+                               name="lastName"
+                               ngModel
+                               required
+                               #lastName="ngModel"
+                               minlength="2"
+                               maxlength="100"
+                               pattern="^[a-zA-Z ]+$">
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="lastName.invalid && lastName.touched">
+                        <span *ngIf="lastName.errors['required']">Last name is a required field!</span>
+                        <span *ngIf="lastName.errors['minlength']">Last name is too short (minimum is 2 characters).</span>
+                        <span *ngIf="lastName.errors['maxlength']">Please use Basic Latin characters only.</span>
+                    </span>
+                </span>
+            </p>
+            <p>Education:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <mat-select
+                                id="education"
+                                name="education"
+                                ngModel
+                                #education="ngModel"
+                                required>
+                            <mat-option *ngFor="let education of educations" [value]="education">
+                                {{ education }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="education.invalid && education.touched">
+                        <span *ngIf="education.errors['required']">Education is a required field!</span>
+                    </span>
+                </span>
+            </p>
+            <p>Date of Birth:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="date"
+                               id="dob"
+                               name="dob"
+                               ngModel
+                               #dob="ngModel"
+                               required>
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="dob.invalid && dob.touched">
+                        <span *ngIf="dob.errors['required']">Please fill Date of Birth.</span>
+                    </span>
+                </span>
+            </p>
+        </div>
+        <p class="title">Contact Details</p>
+        <div class="content">
+            <p>Country:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <mat-select
+                                type="text"
+                                id="country"
+                                name="country"
+                                ngModel
+                                #country="ngModel"
+                                required>
+                            <mat-option *ngFor="let country of countries" [value]="country">
+                                {{ country }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="country.invalid && country.touched">
+                        <span *ngIf="country.errors['required']">Country is a required field!</span>
+                        <span *ngIf="country.errors['minlength']">Country is too short (minimum is 3 characters).</span>
+                    </span>
+                </span>
+            </p>
+            <p>City:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="text"
+                               id="city"
+                               name="city"
+                               ngModel
+                               #city="ngModel"
+                               required
+                               minlength="3"
+                               maxlength="100">
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="city.invalid && city.touched">
+                        <span *ngIf="city.errors['required']">City is a required field!</span>
+                        <span *ngIf="city.errors['minlength']">City is too short (minimum is 3 characters).</span>
+                    </span>
+                </span>
+            </p>
+            <p>Address:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="text"
+                               id="address"
+                               name="address"
+                               ngModel
+                               required
+                               #address="ngModel"
+                               minlength="3"
+                               maxlength="100">
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="address.invalid && address.touched">
+                        <span *ngIf="address.errors['required']">Address is a required field!</span>
+                        <span *ngIf="address.errors['minlength']">Address is too short (minimum is 3 characters).</span>
+                    </span>
+                </span>
+            </p>
+            <p>Zip Code:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="text"
+                               id="zipcode"
+                               name="zipcode"
+                               ngModel
+                               #zip="ngModel"
+                               required
+                               minlength="3"
+                               maxlength="10">
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="zip.invalid && zip.touched">
+                        <span *ngIf="zip.errors['required']">Zip is a required field!</span>
+                        <span *ngIf="zip.errors['minlength']">Zip is too short (minimum is 3 characters).</span>
+                    </span>
+                </span>
+            </p>
+            <p>Phone Number:
+                <span>
+                    <mat-form-field class="input-full-width">
+                        <input matInput
+                               type="number"
+                               id="phoneNumber"
+                               name="phoneNumber"
+                               ngModel
+                               #phoneNumber="ngModel"
+                               required
+                               min="3"
+                               max="20">
+                    </mat-form-field>
+                    <span class="error-msg lato-regular" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                        <span *ngIf="phoneNumber.errors['required']">Phone Number is a required field!</span>
+                        <span *ngIf="phoneNumber.errors['minlength']">Phone Number must between 1 to 20 characters only.</span>
+                    </span>
+                </span>
+            </p>
+            <p class="email">Email: <span>{{ email }}</span></p>
+            <p class="last">&nbsp;</p>
+        </div>
+        <button mat-raised-button type="submit" [disabled]="f.invalid"><i class="material-icons">edit</i> Complete
+            Profile
+        </button>
+    </form>
 </div>

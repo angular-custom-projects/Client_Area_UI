@@ -14,9 +14,8 @@
 }
 
 button[mat-raised-button] {
-  @include primary-button();
+  @include primary-button($background-color: $light-blue-primary);
   @include rounded(0px);
-  background-color: $light-blue-primary;
 }
 
 button[mat-raised-button]:hover {
@@ -50,11 +49,6 @@ button:disabled:hover {
   margin-bottom: 15px;
 }
 
-.successful-reg {
-  color: $green-primary;
-  font-size: 20px;
-}
-
 .img-icon {
   height: 20px;
 }
@@ -70,7 +64,6 @@ mat-icon {
 }
 
 .paragraph {
-  /*padding-left: 24px;*/
   font-size: 16px;
   padding: 10px 40px 10px 40px;
   line-height: 20px;
@@ -78,7 +71,7 @@ mat-icon {
 }
 
 a[mat-stroked-button] {
-  @include primary-button($margin: 2px 0px, $color: $light-blue-primary);
+  @include primary-button($margin: 2px 0px, $color: $light-blue-primary, $background-color: transparent);
   @include rounded(0px);
   width: 100%;
   border: 2px solid $light-blue-primary;
@@ -89,13 +82,9 @@ a[mat-stroked-button] {
   }
 }
 
-.error-msg {
-  color: $red-primary;
-  text-align: left;
-}
-
 mat-list-item {
   height: 40px !important;
+  margin: 8px 0px;
 
   p {
     padding-top: 5px;
@@ -135,9 +124,9 @@ mat-list-item {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .container .column {
-    width: 100%;
+    width: 60%;
 
     &:last-child {
       display: none;
@@ -148,7 +137,7 @@ mat-list-item {
 @media (max-width: 599px) {
   .container .column {
     width: 100%;
-    margin-right: 15px;
+    margin: 0px 10px;
   }
 }
 

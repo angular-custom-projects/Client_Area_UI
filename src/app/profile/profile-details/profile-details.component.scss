@@ -1,11 +1,6 @@
 @import "../../scss-partials/variables";
 @import "../../scss-partials/mixins";
 
-.container {
-  padding: 0 20px;
-  width: 95%;
-}
-
 p {
   @include lato-regular();
   color: $text-first;
@@ -19,10 +14,20 @@ p {
   display: flex;
   align-items: center;
   color: #1a2650;
+  border: none;
+  margin: 0;
 
   .material-icons {
-    margin-right: 20px;
+    margin-right: 10px;
   }
+}
+
+hr {
+  background-color: #eee;
+  color: #eee;
+  width: 200%;
+  margin: 0px 0px 0px -100px;
+  border: 0.5px solid #eee;
 }
 
 .title {
@@ -30,13 +35,48 @@ p {
   color: $light-blue-primary;
 }
 
-.content {
+.activeContainer .content {
   p {
     padding: 6px 0px 16px 150px;
   }
 
   span {
     margin-left: 20px;
+  }
+}
+
+.pendingContainer .content {
+  p {
+    padding: 0px 0px 0px 150px;
+    margin-top: -15px;
+  }
+
+  .username,
+  .email,
+  .last {
+    padding: 10px 0px 16px 150px;
+  }
+
+  span {
+    padding-left: 20px;
+  }
+
+  .error-msg {
+    @include lato-regular();
+    color: $red-primary;
+    text-align: left;
+    display: block;
+    padding: 0px;
+
+    span {
+      display: block;
+      padding: 0px;
+      border: none;
+      font-size: 12px;
+      text-align: left;
+      color: red;
+      margin-top: 0px;
+    }
   }
 }
 
@@ -50,4 +90,10 @@ button {
     font-size: 18px;
     padding-bottom: 5px;
   }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

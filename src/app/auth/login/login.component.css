@@ -18,22 +18,18 @@
   width: 100%; }
 
 button[mat-raised-button] {
-  background-color: #f9a21c;
+  background-color: #0059a7;
   margin: 20px 0;
   color: #fff; }
 
 button[mat-raised-button]:hover {
   color: white;
-  background-color: #f59706; }
+  background-color: #004b8e; }
 
 button:disabled:hover {
   background-color: rgba(0, 0, 0, 0.12);
   color: rgba(0, 0, 0, 0.26);
   cursor: not-allowed; }
-
-.error-msg {
-  color: #f44336;
-  text-align: left; }
 
 .link {
   color: #03A3E4; }
@@ -42,5 +38,14 @@ button:disabled:hover {
   color: #0278a8;
   background-color: rgba(0, 0, 0, 0);
   text-decoration: none; }
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: #0059a7; }
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: #0059a7 !important; }
+
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  background-color: #0059a7 !important; }
 
 /*# sourceMappingURL=login.component.css.map */
