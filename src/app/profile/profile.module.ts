@@ -19,6 +19,9 @@ import {FinancialBackgroundComponent} from './financial-background/financial-bac
 import {AgreementsComponent} from './agreements/agreements.component';
 import {VerificationStepperComponent} from '../verification-stepper/verification-stepper.component';
 import {BankDetailsComponent} from './bank-details/bank-details.component';
+import { ProfileCorporateComponent } from './profile-corporate/profile-corporate.component';
+import { DirectorComponent } from './director/director.component';
+import { ShareHolderComponent } from './share-holder/share-holder.component';
 
 @NgModule({
     imports: [
@@ -42,7 +45,10 @@ import {BankDetailsComponent} from './bank-details/bank-details.component';
         TradingKnowledgeComponent,
         FinancialBackgroundComponent,
         AgreementsComponent,
-        VerificationStepperComponent
+        VerificationStepperComponent,
+        ProfileCorporateComponent,
+        DirectorComponent,
+        ShareHolderComponent
     ]
 })
 export class ProfileModule {

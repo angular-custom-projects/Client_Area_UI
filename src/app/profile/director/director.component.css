@@ -1,0 +1,121 @@
+.padding-right-20 {
+  padding-right: 20px; }
+
+.content-card {
+  padding-bottom: 20px; }
+
+.section-title {
+  color: #05152d;
+  font-size: 20px;
+  padding: 15px;
+  margin: 0; }
+
+.section-title span {
+  padding-top: 2px;
+  margin-left: 10px; }
+
+.instructions {
+  color: #5d6871;
+  font-size: 13px; }
+
+.instructions:first-child {
+  margin-top: 20px; }
+
+.tab-body {
+  padding-left: 20px;
+  padding-bottom: 20px; }
+
+.subtitle-height {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-bottom: 0.4px solid #eaeaea; }
+
+.line-between {
+  padding-bottom: 5px;
+  border-bottom: 0.4px solid #eaeaea; }
+
+.mat-form-field {
+  margin-top: 5px;
+  font-size: 13px; }
+
+.max-width-500 {
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto; }
+
+.label {
+  color: #5d6871;
+  font-size: 13px; }
+
+.info {
+  color: #0059a7;
+  font-size: 12px;
+  width: 130px;
+  margin-bottom: 20px;
+  text-decoration: none; }
+
+.info:hover {
+  color: #003e74;
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: underline; }
+
+.info fa {
+  font-size: 20px;
+  margin-right: 10px; }
+
+.upper-upload-container {
+  padding-right: 20px; }
+
+.upload-container {
+  border: 1px solid #0059a7; }
+
+.upload-container .content {
+  padding: 20px 20px 0 20px; }
+
+.upload-title {
+  margin-top: 0;
+  color: #05152d;
+  font-size: 14px;
+  font-weight: normal; }
+
+.upload-button {
+  background-color: #0059a7;
+  color: #fff;
+  width: 100%; }
+
+.upload-button mat-icon {
+  margin-right: 10px; }
+
+.upload-button:hover {
+  color: white;
+  background-color: #004b8e; }
+
+.full-width {
+  width: 100%; }
+
+button[mat-raised-button]#submit {
+  background-color: #f9a21c;
+  color: #fff;
+  width: 250px;
+  margin: 20px auto 0; }
+
+button#submit:hover {
+  color: white;
+  background-color: #f59706; }
+
+button#submit:disabled, button#submit:disabled:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+  cursor: not-allowed; }
+
+button#tool-tip-btn,
+button#tool-tip-btn:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+  cursor: pointer; }
+
+.required {
+  color: #f44336; }
+
+/*# sourceMappingURL=director.component.css.map */

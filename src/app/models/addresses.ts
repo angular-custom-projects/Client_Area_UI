@@ -4,4 +4,5 @@ export class Addresses {
     postal_code: number;
     state: string;
     address: string;
+    address2?: string;
 }

@@ -12,11 +12,10 @@ export class LazyAuthGuardService implements CanLoad {
     }
 
     canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
-        // if the user is authenticated allow him to go to the required feature otherwise redirect him to the login page
+        // if the user is authenticated load the required feature otherwise don't load it
         if (this.authService.isAuthenticated()) {
             return true;
-        } else {
-            this.router.navigate(['/login']);
         }
+            return false;
     }
 }

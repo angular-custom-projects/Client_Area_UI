@@ -23,7 +23,8 @@ export class CanActivateDeactivateService implements CanActivate, CanDeactivate<
         if (this.authService.isAuthenticated()) {
             return true;
         } else {
-            this.router.navigate(['/']);
+            this.router.navigate(['/login']);
+            return false;
         }
     }
 
