@@ -1,11 +1,11 @@
 import {Addresses} from './addresses';
 import {Phones} from './phones';
 import {Name} from './name';
-import {Email} from './email';
+import {Emails} from './emails';
 
 export class ClientDetails {
     name: Name;
-    emails: Email [];
+    emails: Emails [];
     country: string;
     phones: Phones [];
     username: string;

@@ -8,7 +8,7 @@
     <div class="container" fxLayout="row wrap" fxLayoutAlign="space-between">
         <mat-card id="side-card" fxLayout="column" fxFlex="29%">
             <app-profile-completion id="profile-completion"></app-profile-completion>
-            <mat-nav-list>
+            <mat-nav-list *ngIf="this.url == 'profile'">
                 <a mat-list-item *ngFor="let item of sidebarMenuItems"
                    [routerLink]="item.link"
                    [routerLinkActiveOptions]="{exact: true}"
