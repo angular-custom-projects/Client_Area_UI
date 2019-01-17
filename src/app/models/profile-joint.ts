@@ -1,10 +1,10 @@
-import { Name } from './name'
-import { DateOfBirth } from './date-of-birth'
-import { Emails } from './emails'
-import { Addresses } from './addresses'
-import { Phones } from './phones'
-import { JointInfo } from './joint-info'
-import { BankInfo } from './bank-info'
+import { Name } from './name';
+import { DateOfBirth } from './date-of-birth';
+import { Emails } from './emails';
+import { Addresses } from './addresses';
+import { Phones } from './phones';
+import { JointInfo } from './joint-info';
+import { BankInfo } from './bank-info';
 
 export class ProfileJoint {
     public username: string;

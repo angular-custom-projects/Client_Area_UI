@@ -68,7 +68,7 @@ export class ProfileJointService {
         //             console.log("PUT Request is successful ", data);
         //         },
         //         error => {
-        //             console.log("Rrror", error);
+        //             console.log("Error", error);
         //         }
         //     );
     }

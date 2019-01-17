@@ -1,3 +1,3 @@
 export class DateOfBirth {
-    $date: any
+    $date: any;
 }
