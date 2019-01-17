@@ -1,5 +1,5 @@
-@import "../../scss-partials/variables";
-@import "../../scss-partials/mixins";
+@import '../../scss-partials/variables';
+@import '../../scss-partials/mixins';
 
 .content-card {
   padding-bottom: 20px;
@@ -22,7 +22,8 @@
   font-size: 13px;
 }
 
-.line-between, .empty-space {
+.line-between,
+.empty-space {
   margin: 0 15px;
   border-bottom: 0.4px solid $divider-color;
 }
@@ -104,7 +105,8 @@ p {
   min-height: 550px;
 }
 
-/deep/ .mat-tab-label, /deep/ .mat-tab-label-active {
+/deep/ .mat-tab-label,
+/deep/ .mat-tab-label-active {
   width: 50%;
 }
 
@@ -117,5 +119,5 @@ p {
 }
 
 form .sub-title {
-    margin-left: 240px;
+  margin-left: 240px;
 }

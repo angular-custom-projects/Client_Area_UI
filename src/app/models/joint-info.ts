@@ -1,6 +1,6 @@
-import {Name} from "./name";
-import {Phone} from "./phone";
-import {DateOfBirth} from "./date-of-birth";
+import { Name } from './name';
+import { Phone } from './phone';
+import { DateOfBirth } from './date-of-birth';
 
 export class JointInfo {
     name: Name;
