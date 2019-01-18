@@ -1,0 +1,50 @@
+{
+  "directorsList": [
+    {
+      "first_name": "christoforos",
+      "last_name": "demetriou",
+      "date_of_birth": "September 28, 1989",
+      "gender": "male",
+      "country": "CY",
+      "addresses": {
+        "primary": true,
+        "city": "nicosia",
+        "state": "nicosia",
+        "address": "25 makariou str",
+        "postal_code": "4025"
+      },
+      "phone": {
+        "primary": true,
+        "phone_code": "+357",
+        "phone_number": 99798766
+      },
+      "emails": {
+        "primary": true,
+        "email": "christoforos.demetriou@fxprimus.com"
+      }
+    },
+    {
+      "first_name": "johny",
+      "last_name": "abueita",
+      "date_of_birth": "May 9, 1977",
+      "gender": "male",
+      "country": "CY",
+      "addresses": {
+        "primary": true,
+        "city": "limassol",
+        "state": "limassol",
+        "address": "14 andrea teloni str",
+        "postal_code": "3070"
+      },
+      "phone": {
+        "primary": true,
+        "phone_code": "+357",
+        "phone_number": 99789236
+      },
+      "emails": {
+        "primary": true,
+        "email": "johny_abueita@fxprimus.com"
+      }
+    }
+  ]
+}

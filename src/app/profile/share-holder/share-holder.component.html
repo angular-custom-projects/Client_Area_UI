@@ -1,0 +1,339 @@
+<div fxLayout="column">
+    <!--====== the following will be used to the correct confirmation message based on the status of the request (don't remove)-->
+
+    <div *ngIf="error">
+        <app-confirmation messageType="error"
+                          messageText="Error: Something went wrong. User Registration failed."
+                          (closeM)="closeErrorMessage($event)"></app-confirmation>
+    </div>
+    <div *ngIf="success">
+        <app-confirmation messageType="success"
+                          messageText="Thanks for your registration."
+                          (closeM)="closeSuccessMessage($event)"></app-confirmation>
+    </div>
+    <div class="title-card">
+        <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
+            <mat-icon>perm_identity</mat-icon>
+            <span>{{shareHolder.first_name | titlecase}} {{shareHolder.last_name | titlecase}}</span>
+        </p>
+    </div>
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="Profile Details">
+            <div class="tab-body">
+                <form (ngSubmit)="onSubmit()" [formGroup]="shareHolderDetailsForm" fxLayout="column">
+                    <div class="subtitle-height">
+                        <p class="lato-regular">Personal</p>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">First Name: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           appOnlyTextValidator
+                                           id="firstName"
+                                           formControlName="firstName">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('firstName').invalid && shareHolderDetailsForm.get('firstName').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('firstName').errors['required']">First name is required!</span>
+                                    <span *ngIf="shareHolderDetailsForm.get('firstName').errors['notText'] && shareHolderDetailsForm.get('firstName').errors['required'] !== true">
+                                    Please use Basic Latin characters only.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Last Name: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           appOnlyTextValidator
+                                           id="lastName"
+                                           formControlName="lastName">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('lastName').invalid && shareHolderDetailsForm.get('lastName').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('lastName').errors['required']">Last name is required!</span>
+                                    <span *ngIf="shareHolderDetailsForm.get('lastName').errors['notText'] && shareHolderDetailsForm.get('lastName').errors['required'] !== true">
+                                    Please use Basic Latin characters only.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Date of Birth: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           [matDatepicker]="picker"
+                                           [max]="maxDate"
+                                           type="text"
+                                           id="dateOfBirth"
+                                           formControlName="dateOfBirth">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('dateOfBirth').invalid && shareHolderDetailsForm.get('dateOfBirth').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('dateOfBirth').errors['required']">Date of Birth is required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Gender:</span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <mat-select id="gender"
+                                                formControlName="gender">
+                                        <mat-option *ngFor="let g of genders" [value]="g">
+                                            {{g | titlecase}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subtitle-height">
+                        <p class="lato-regular">Contact</p>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Country: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <mat-select id="country" formControlName="country"
+                                                (selectionChange)="onCountryChange($event.value)">
+                                        <mat-option>--</mat-option>
+                                        <mat-option *ngFor="let country of countries" [value]="country.country_code">
+                                            {{country['country_name']}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('country').invalid && shareHolderDetailsForm.get('country').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('country').errors['required']">Country is required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">City / Town: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           appOnlyTextValidator
+                                           id="city"
+                                           formControlName="city">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('city').invalid && shareHolderDetailsForm.get('city').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('city').errors['required']">City is required!</span>
+                                    <span *ngIf="shareHolderDetailsForm.get('city').errors['notText'] && shareHolderDetailsForm.get('city').errors['required'] !== true">
+                                    Please use Basic Latin characters only.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">State / Province: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           id="state"
+                                           formControlName="state">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('state').invalid && shareHolderDetailsForm.get('state').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('state').errors['required']">State is required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Address: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           id="address"
+                                           formControlName="address">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('address').invalid && shareHolderDetailsForm.get('address').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('address').errors['required']">Address is required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Address2:</span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="text"
+                                           id="address2"
+                                           formControlName="address2">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Zip / Postal Code: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="number"
+                                           id="zip"
+                                           formControlName="zip">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('zip').invalid && shareHolderDetailsForm.get('zip').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('zip').errors['required']">Zip / Postal Code is required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Phone Number: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <div fxLayout="row" fxFlex="90%" fxLayoutGap="2%">
+                                    <div fxFlex="13%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                   type="text"
+                                                   appPhoneCodeValidator
+                                                   id="phoneCode"
+                                                   value="{{shareHolder.phone.phone_code}}"
+                                                   formControlName="phoneCode">
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex="87%">
+                                        <mat-form-field floatLabel=never class="full-width">
+                                            <input matInput
+                                                   type="number"
+                                                   id="phoneNumber"
+                                                   formControlName="phoneNumber">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('phoneNumber').invalid && shareHolderDetailsForm.get('phoneNumber').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('phoneNumber').errors['required']">Phone Number is required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="max-width-500" fxLayout="row" fxLayoutAlign="space-between center">
+                            <span class="label" fxFlex="49%">Email: <span class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-form-field floatLabel=never>
+                                    <input matInput
+                                           type="email"
+                                           id="email"
+                                           formControlName="email">
+                                </mat-form-field>
+                                <div class="error-msg"
+                                     *ngIf="shareHolderDetailsForm.get('email').invalid && shareHolderDetailsForm.get('email').touched">
+                                    <span *ngIf="shareHolderDetailsForm.get('email').errors['required']">Email is required!</span>
+                                    <span *ngIf="shareHolderDetailsForm.get('email').errors['email']">Please enter a valid Email address.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" *ngIf="!active">
+                        <button mat-raised-button
+                                type="submit"
+                                id="submit"
+                                [disabled]="shareHolderDetailsForm.invalid">
+                            <mat-icon>edit</mat-icon>
+                            <span>Submit</span>
+                        </button>
+                    </div>
+                    <div class="text-center" *ngIf="active">
+                        <button mat-raised-button
+                                type="button"
+                                id="tool-tip-btn"
+                                matTooltipPosition="above"
+                                matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
+                                aria-label="If you want to change these details, please email support@FXPRIMUS.com.">
+                            <mat-icon>edit</mat-icon>
+                            <span>Submit</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </mat-tab>
+        <mat-tab label="Documents">
+            <div class="tab-body">
+                <p class="instructions padding-right-20">We need a valid copy of your Passport / ID / driving license to
+                    verify your identity (please make
+                    sure you provide the backside in case of ID and driving license). The documentation provided needs
+                    to contain, at lease, the following.</p>
+                <a routerLink="/" class="info" fxLayout="row" fxLayoutAlign="flex-start center">
+                    <fa name="info-circle"></fa>
+                    <span>More Information</span>
+                </a>
+                <div class="upper-upload-container" fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div class="upload-container" fxFlex="49%">
+                        <div class="content">
+                            <h4 class="upload-title">Front ID / Passport</h4>
+                            <p class="instructions">Please upload a GOOD QUALITY, COLOUR COPY of your Front Proof of
+                                Identification. This has to
+                                be a government issued ID with a photograph and your name on it such as a valid
+                                passport,
+                                national identification card, driving license or any other government issued ID</p>
+                            <a routerLink="/" class="info" fxLayout="row" fxLayoutAlign="flex-start center">
+                                <fa name="info-circle"></fa>
+                                <span>More Information</span>
+                            </a>
+                        </div>
+                        <button class="upload-button"
+                                mat-raised-button
+                                fxLayout="row"
+                                fxLayoutAlign="center">
+                            <mat-icon>cloud_upload</mat-icon>
+                            <span>Upload Front</span>
+                        </button>
+                    </div>
+                    <div class="upload-container" fxFlex="49%">
+                        <div class="content">
+                            <h4 class="upload-title">Back ID / Passport</h4>
+                            <p class="instructions">Please upload a GOOD QUALITY, COLOUR COPY of your Front Proof of
+                                Identification. This has to
+                                be a government issued ID with a photograph and your name on it such as a valid
+                                passport,
+                                national identification card, driving license or any other government issued ID</p>
+                            <a routerLink="/" class="info" fxLayout="row" fxLayoutAlign="flex-start center">
+                                <fa name="info-circle"></fa>
+                                <span>More Information</span>
+                            </a>
+                        </div>
+                        <button class="upload-button"
+                                mat-raised-button
+                                fxLayout="row"
+                                fxLayoutAlign="center">
+                            <mat-icon>cloud_upload</mat-icon>
+                            <span>Upload Back</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

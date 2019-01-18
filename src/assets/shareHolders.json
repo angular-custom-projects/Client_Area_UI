@@ -1,0 +1,50 @@
+{
+  "shareHoldersList": [
+    {
+      "first_name": "andreas",
+      "last_name": "loukaides",
+      "date_of_birth": "January 1, 1985",
+      "gender": "male",
+      "country": "CY",
+      "addresses": {
+        "primary": true,
+        "city": "limassol",
+        "state": "limassol",
+        "address": "7 petrou tsirou str",
+        "postal_code": "2920"
+      },
+      "phone": {
+        "primary": true,
+        "phone_code": "+357",
+        "phone_number": 96234589
+      },
+      "emails": {
+        "primary": true,
+        "email": "andreas_loukaides@fxprimus.com"
+      }
+    },
+    {
+      "first_name": "maria",
+      "last_name": "marios",
+      "date_of_birth": "December 17, 1979",
+      "gender": "female",
+      "country": "CY",
+      "addresses": {
+        "primary": true,
+        "city": "paphos",
+        "state": "paphos",
+        "address": "9 makariou str",
+        "postal_code": "3093"
+      },
+      "phone": {
+        "primary": true,
+        "phone_code": "+357",
+        "phone_number": 97892366
+      },
+      "emails": {
+        "primary": true,
+        "email": "maria_marios@fxprimus.com"
+      }
+    }
+  ]
+}

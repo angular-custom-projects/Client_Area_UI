@@ -11,7 +11,7 @@ import { FourDigitCodeComponent } from './four-digit-code/four-digit-code.compon
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate: [CanActivateLoginService]},
-    {path: 'register', component: RegisterComponent, canDeactivate: [CanActivateDeactivateService]},
+    {path: 'register', component: RegisterComponent, canDeactivate: [CanActivateDeactivateService], canActivate: [CanActivateLoginService]},
     {
         path: 'forgot-password',
         component: ResetPasswordS1Component,
