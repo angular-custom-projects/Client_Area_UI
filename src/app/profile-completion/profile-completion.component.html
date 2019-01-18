@@ -8,16 +8,10 @@
 <mat-progress-bar mode="determinate" [value]="profileCompletion"></mat-progress-bar>
 <div id="buttons-container" fxLayout="column" fxLayoutGap="2%">
     <a class="add-account"
-       mat-raised-button
-       routerLink="/profile"
-       fxLayout="row"
-       fxLayoutAlign="center">
+        mat-raised-button
+        routerLink="/profile"
+        fxLayout="row"
+        fxLayoutAlign="center">
         <fa name="user"></fa>
         <span>Complete Your Profile</span></a>
 </div>
-<mat-nav-list *ngIf="this.url == 'profile'">
-    <a mat-list-item *ngFor="let item of sidebarMenuItems" [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <i class="material-icons">{{ item.icon }}</i>
-        <p>{{ item.title }}</p>
-    </a>
-</mat-nav-list>
