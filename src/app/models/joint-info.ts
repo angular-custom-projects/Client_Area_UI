@@ -1,5 +1,5 @@
 import { Name } from './name';
-import { Phone } from './phone';
+import { Phones } from './phones';
 import { DateOfBirth } from './date-of-birth';
 
 export class JointInfo {
@@ -12,5 +12,5 @@ export class JointInfo {
     state: string;
     postal_code: number;
     address: string;
-    phone: Phone;
+    phones: Phones;
 }

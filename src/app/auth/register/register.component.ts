@@ -1,12 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Observable} from 'rxjs';
-import {NgForm} from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
-import {AuthService} from '../auth.service';
-import {CanComponentDeactivate} from '../../guards/can-activate-deactivate.service';
-import {User} from '../../models/user';
-import {Phone} from '../../models/phone';
-import {Country} from '../../models/country';
+import { AuthService } from '../auth.service';
+import { CanComponentDeactivate } from '../../guards/can-activate-deactivate.service';
+import { User } from '../../models/user';
+import { Country } from '../../models/country';
+import { Phones } from '../../models/phones';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
     // the following will be used to store the client data to be send to the backend
     user: User;
     // the following will be used to store the phone number of the client
-    phoneNo: Phone;
+    phoneNo: Phones;
 
     constructor(private authService: AuthService) {
     }
@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
     // register a new user
     onSignup() {
         this.user = new User();
-        this.phoneNo = new Phone();
+        this.phoneNo = new Phones();
         this.phoneNo.phone_code = this.dealingCode;
         this.phoneNo.phone_number = this.form.value.contactData.phoneNumber;
         this.user.first_name = this.form.value.firstName;
@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
         this.user.country = this.form.value.country;
         this.user.username = this.emailUsername;
         this.user.password = this.form.value.password;
-        this.user.phone = this.phoneNo;
+        this.user.phones = this.phoneNo;
         this.user.client_type = 'individual';
         console.log(this.user);
         this.authService.registerUser(this.user).subscribe(
@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                         this.success = false;
                         const username = this.user.username;
                         const password = this.user.password;
-                        this.authService.loginUser({username, password});
+                        this.authService.loginUser({ username, password });
                     }, 2000);
                 }
             },
@@ -98,7 +98,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                     const usernameInput = document.getElementById('username');
                     usernameInput.classList.add('ng-invalid');
                     usernameInput.classList.remove('ng-valid');
-                    this.form.form.patchValue({username: ''});
+                    this.form.form.patchValue({ username: '' });
                 }
                 if (error['error'].errors[0].errmsg.indexOf('email') !== -1) {
                     this.duplicatedEmail = true;
@@ -106,7 +106,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                     const emailInput = document.getElementById('email');
                     emailInput.classList.add('ng-invalid');
                     emailInput.classList.remove('ng-valid');
-                    this.form.form.patchValue({email: ''});
+                    this.form.form.patchValue({ email: '' });
                 }
             }
         );
