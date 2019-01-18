@@ -1,0 +1,325 @@
+<div fxLayout="column">
+    <mat-card class="title-card">
+        <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
+            <mat-icon>person</mat-icon>
+            <span>Account Holder / </span><span class="sub-title">{{fName | titlecase}} {{lName | titlecase}}</span>
+        </p>
+    </mat-card>
+    <mat-card class="content-card">
+        <mat-tab-group fxLayout="column">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <p class="sub-title lato-regular top-gray-border">Personal Details</p>
+                </ng-template>
+                <ng-template matTabContent>
+                    <form (ngSubmit)="onSubmit()" #f="ngForm" fxLayout="column">
+                        <div class="empty-space">
+                            <p class="sub-title lato-regular">Account Details</p>
+                        </div>
+                        <div *ngFor="let client of jointArray">
+                            <div *ngIf="joint_one; then holderOne else holderTwo"></div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="username" fxFlex="49%">Username:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="username"
+                                                    name="username"
+                                                    [ngModel]="pUsername"
+                                                    required
+                                                    disabled
+                                                    #username="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="username.invalid && username.touched">
+                                            <span *ngIf="username.errors['required']">Username is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="empty-space">
+                                <p class="sub-title lato-regular">Personal Information</p>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="firstName" fxFlex="49%">Full Name:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="firstName"
+                                                    name="firstName"
+                                                    [ngModel]="fName | titlecase"
+                                                    required
+                                                    [disabled]="active"
+                                                    #firstName="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="firstName.invalid && firstName.touched">
+                                            <span *ngIf="firstName.errors['required']">Full name is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="line-between">-->
+                                <!--<div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">-->
+                                    <!--<label class="label" for="lastName" fxFlex="49%">Last Name:</label>-->
+                                    <!--<div fxLayout="column" fxFlex="49%">-->
+                                        <!--<mat-form-field floatLabel=never>-->
+                                            <!--<input matInput-->
+                                                    <!--type="text"-->
+                                                    <!--id="lastName"-->
+                                                    <!--name="lastName"-->
+                                                    <!--[ngModel]="lName | titlecase"-->
+                                                    <!--required-->
+                                                    <!--[disabled]="active"-->
+                                                    <!--#lastName="ngModel">-->
+                                        <!--</mat-form-field>-->
+                                        <!--<div class="error-msg" *ngIf="lastName.invalid && lastName.touched">-->
+                                            <!--<span *ngIf="lastName.errors['required']">Last name is required!</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="dateOfBirth" fxFlex="49%">Date of Birth:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="dateOfBirth"
+                                                    name="dateOfBirth"
+                                                    [ngModel]="DOB | date"
+                                                    required
+                                                    [disabled]="active"
+                                                    #dateOfBirth="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="dateOfBirth.invalid && dateOfBirth.touched">
+                                            <span *ngIf="dateOfBirth.errors['required']">Date of Birth is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="gender" fxFlex="49%">Gender:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="gender"
+                                                    name="gender"
+                                                    [ngModel]="pGender | titlecase"
+                                                    required
+                                                    [disabled]="active"
+                                                    #gender="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="gender.invalid && gender.touched">
+                                            <span *ngIf="gender.errors['required']">Gender is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="empty-space">
+                                <p class="sub-title lato-regular">Contact Details</p>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="country" fxFlex="49%">Country:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <mat-select [(ngModel)]="currentCountry"
+                                                        id="country"
+                                                        name="country"
+                                                        required
+                                                        [disabled]="active"
+                                                        #country="ngModel">
+                                                <mat-option *ngFor="let country of countries" [value]="country">
+                                                    {{country}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="country.invalid && country.touched">
+                                            <span *ngIf="country.errors['required']">Country is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="city" fxFlex="49%">City / Town:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="city"
+                                                    name="city"
+                                                    [ngModel]="pCity | titlecase"
+                                                    required
+                                                    [disabled]="active"
+                                                    #city="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="city.invalid && city.touched">
+                                            <span *ngIf="city.errors['required']">City is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="state" fxFlex="49%">State / Province:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="state"
+                                                    name="state"
+                                                    [ngModel]="pState"
+                                                    required
+                                                    [disabled]="active"
+                                                    #state="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="state.invalid && state.touched">
+                                            <span *ngIf="state.errors['required']">State is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="address" fxFlex="49%">Address:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="address"
+                                                    name="address"
+                                                    [ngModel]="pAddress | titlecase"
+                                                    required
+                                                    [disabled]="active"
+                                                    #address="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="address.invalid && address.touched">
+                                            <span *ngIf="address.errors['required']">Address is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="address2" fxFlex="49%">Address 2:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="address2"
+                                                    name="address2"
+                                                    [ngModel]="pSecondAddress | titlecase"
+                                                    [disabled]="active"
+                                                    #address2="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="address2.invalid && address2.touched">
+                                            <span *ngIf="address2.errors['required']">Address 2 is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="zip" fxFlex="49%">Zip / Postal Code:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="zip"
+                                                    name="zip"
+                                                    [ngModel]="pPostalCode"
+                                                    required
+                                                    [disabled]="active"
+                                                    #zip="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="zip.invalid && zip.touched">
+                                            <span *ngIf="zip.errors['required']">Zip / Postal Code is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="phoneNumber" fxFlex="49%">Phone Number:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="text"
+                                                    id="phoneNumber"
+                                                    name="phoneNumber"
+                                                    [ngModel]="pPhoneNumber"
+                                                    required
+                                                    [disabled]="active"
+                                                    #phoneNumber="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="phoneNumber.invalid && phoneNumber.touched">
+                                            <span *ngIf="phoneNumber.errors['required']">Phone Number is required!</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line-between">
+                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                                    <label class="label" for="email" fxFlex="49%">Email:</label>
+                                    <div fxLayout="column" fxFlex="49%">
+                                        <mat-form-field floatLabel=never>
+                                            <input matInput
+                                                    type="email"
+                                                    id="email"
+                                                    name="email"
+                                                    [ngModel]="pEmail"
+                                                    required
+                                                    email
+                                                    disabled
+                                                    #email="ngModel">
+                                        </mat-form-field>
+                                        <div class="error-msg" *ngIf="email.invalid && email.touched">
+                                            <span *ngIf="email.errors['required']">Email is required!</span>
+                                            <span *ngIf="email.errors['email']">Please enter a valid Email address.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center" *ngIf="joint_one == true ? !jointOneActive : !jointTwoActive">
+                                <button mat-raised-button
+                                        type="submit"
+                                        [disabled]="f.invalid">
+                                    <mat-icon>edit</mat-icon>
+                                    <span>Submit</span>
+                                </button>
+                            </div>
+                            <div class="text-center"
+                                id="tool-tip-btn"
+                                *ngIf="joint_one == true ? jointOneActive : jointTwoActive"
+                                matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
+                                aria-label="If you want to change these details, please email support@FXPRIMUS.com."
+                                matTooltipPosition="above">
+                                <button mat-raised-button
+                                        type="button"
+                                        [disabled]="true">
+                                    <mat-icon>edit</mat-icon>
+                                    <span>Submit</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <p class="sub-title lato-regular top-gray-border">KYC Documents</p>
+                </ng-template>
+                <ng-template matTabContent>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card>
+</div>

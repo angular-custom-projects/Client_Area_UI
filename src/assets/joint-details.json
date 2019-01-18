@@ -1,0 +1,114 @@
+{
+    "data": {
+        "_id": {
+            "$oid": "5bfbf6345b5e7e17000070e0"
+        },
+        "client_id": 335,
+        "name": {
+            "full_name": "Aki Joint 1"
+        },
+        "client_type": "Joint",
+        "country": "Malaysia",
+        "date_of_birth": {
+            "$date": "1992-04-20T00:00:00.000Z"
+        },
+        "politically_exposed": false,
+        "us_citizen": false,
+        "language": "my",
+        "gender": "m",
+        "regulator": "VU",
+        "created_date": {
+            "$date": "2017-07-15T17:15:36.000Z"
+        },
+        "emails": [
+            {
+            "primary": true,
+            "email": "Ahmadfikri4318@gmail.com"
+            }
+        ],
+        "addresses": [
+            {
+            "primary": true,
+            "city": "SUNGAI BESAR",
+            "postal_code": "45300",
+            "state": "SELANGOR",
+            "address": "Joint 1 Address"
+            },
+            {
+            "primary": false,
+            "city": "SUNGAI BESAR",
+            "postal_code": "45300",
+            "state": "SELANGOR",
+            "address": "Joint 1 Address"
+            },
+            {
+            "primary": false,
+            "city": "SUNGAI BESAR",
+            "postal_code": "45300",
+            "state": "SELANGOR",
+            "address": "Joint 1 Address"
+            }
+        ],
+        "phones": [
+            {
+            "primary": true,
+            "phone": {
+                "phone_code": "",
+                "phone_number": "182942875"
+            }
+            },
+            {
+            "primary": false,
+            "phone": {
+                "phone_code": "",
+                "phone_number": "182942875"
+            }
+            },
+            {
+            "primary": false,
+            "phone": {
+                "phone_code": "",
+                "phone_number": "182942875"
+            }
+            }
+        ],
+        "joint_info": [
+            {
+            "name": {
+                "full_name": "Aki Joint 2"
+            },
+            "country": "Malaysia",
+            "date_of_birth": {
+                "$date": "1997-05-23T00:00:00.000Z"
+            },
+            "gender": "m",
+            "email": "fadhil5159@icloud.com",
+            "city": "SUNGAI BESAR 2 ",
+            "state": "test me 2",
+            "postal_code": "45300 2",
+            "address": "Joint 2 Address",
+            "phone": {
+                "phone_code": "",
+                "phone_number": "1736784324"
+            }
+            }
+        ],
+        "bank_info": [
+            {
+            "bank_payee_name": "Ahmad fikri bin muslan",
+            "bank_name": "CIMB Bank",
+            "bank_address": "Bangunan cimb kuala lumpur 50490",
+            "bank_acc_no": "7009854262",
+            "bank_swift_code": "CIBBMYKLXXX",
+            "bank_country": "Malaysia"
+            }
+        ],
+        "other_credentials": [
+            {
+            "primary": false,
+            "username": "Fikri_4318",
+            "password": "df0823aeeba4dc18367631041157936795a14ad50167107d80958331a00afa5c822cfaa94e55b695aabd85e78a39766aef02b88a34e05343831c0ccf9d4971e3:r01dwphsuowkjwrkd0tln2mcbnddlrc2"
+            }
+        ]
+    }
+}

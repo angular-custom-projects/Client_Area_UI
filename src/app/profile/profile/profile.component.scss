@@ -1,9 +1,39 @@
-@import "../../scss-partials/variables";
-@import "../../scss-partials/mixins";
+@import '../../scss-partials/variables';
+@import '../../scss-partials/mixins';
+
 .mat-card {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .stepper {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.mat-list-item {
+  min-width: 120%;
+  margin-left: -16px;
+}
+
+mat-nav-list {
+  margin-top: 40px;
+
+  a {
+    border: 1px solid #eee;
+    height: 60px;
+  }
+
+  i {
+    margin: 0 20px;
+  }
+}
+
+.active {
+  border-left: 5px solid #0059A7 !important;
+}
+
+.material-icons {
+  display: flex;
+  align-self: center;
+  margin-right: 20px;
+  font-size: 18px;
 }

@@ -1,5 +1,5 @@
 import {Addresses} from './addresses';
-import {Email} from './email';
+import {Emails} from './emails';
 import {Phones} from './phones';
 
 export class DirectorsInfo {
@@ -10,6 +10,6 @@ export class DirectorsInfo {
                 public country: string,
                 public addresses: Addresses,
                 public phone: Phones,
-                public emails: Email) {
+                public emails: Emails) {
     }
 }

@@ -19,9 +19,11 @@ import {FinancialBackgroundComponent} from './financial-background/financial-bac
 import {AgreementsComponent} from './agreements/agreements.component';
 import {VerificationStepperComponent} from '../verification-stepper/verification-stepper.component';
 import {BankDetailsComponent} from './bank-details/bank-details.component';
-import { ProfileCorporateComponent } from './profile-corporate/profile-corporate.component';
-import { DirectorComponent } from './director/director.component';
-import { ShareHolderComponent } from './share-holder/share-holder.component';
+import {ProfileCorporateComponent} from './profile-corporate/profile-corporate.component';
+import {DirectorComponent} from './director/director.component';
+import {ShareHolderComponent} from './share-holder/share-holder.component';
+import {ProfileJointDetailsComponent} from './profile-joint-details/profile-joint-details.component';
+import {ProfileJointComponent} from './profile-joint/profile-joint.component';
 
 @NgModule({
     imports: [
@@ -48,7 +50,10 @@ import { ShareHolderComponent } from './share-holder/share-holder.component';
         VerificationStepperComponent,
         ProfileCorporateComponent,
         DirectorComponent,
-        ShareHolderComponent
+        ShareHolderComponent,
+        VerificationStepperComponent,
+        ProfileJointDetailsComponent,
+        ProfileJointComponent
     ]
 })
 export class ProfileModule {
