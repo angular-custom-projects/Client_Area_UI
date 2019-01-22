@@ -20,11 +20,11 @@ export class CanActivateDeactivateService implements CanActivate, CanDeactivate<
     // if the user is authenticated allow him to go to the required page otherwise redirect him to the home page
     canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot,
                 routerStateSnapshot: RouterStateSnapshot) {
-        if (this.authService.isAuthenticated()) {
-            return true;
-        } else {
-            this.router.navigate(['/']);
+        if (!this.authService.isAuthenticated()) {
+            this.router.navigate(['/login']);
+            return false;
         }
+        return true;
     }
 
     // if the user make some changes to a form then leaves the page before submitting it run the can deactivate method

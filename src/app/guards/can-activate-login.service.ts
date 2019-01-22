@@ -13,10 +13,10 @@ export class CanActivateLoginService implements CanActivate {
     canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot,
                 routerStateSnapshot: RouterStateSnapshot) {
         // if the user is authenticated allow him to go to the required page otherwise redirect him to the dashboard
-        if (!this.authService.isAuthenticated()) {
-            return true;
-        } else {
+        if (this.authService.isAuthenticated()) {
             this.router.navigate(['/dashboard']);
+            return false;
         }
+        return true;
     }
 }

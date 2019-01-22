@@ -16,7 +16,8 @@ import {AuthModule} from './auth/auth.module';
 import {CoreModule} from './core/core.module';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {SharedModule} from './shared/shared.module';
-import {DatePipe} from '@angular/common';
+import {DatePipe, TitleCasePipe} from '@angular/common';
+import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {DatePipe} from '@angular/common';
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-        DatePipe
+        DatePipe,
+        TitleCasePipe
     ],
     bootstrap: [AppComponent]
 })

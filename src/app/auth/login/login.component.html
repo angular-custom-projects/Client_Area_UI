@@ -27,25 +27,10 @@
                        name="password"
                        ngModel
                        required
-                       appAtLeastEight
-                       appAtLeastOneLower
-                       appAtLeastOneUpper
-                       appAtLeastOneDigit
-                       appAtLeastOneSpecialCharacter
                        #password="ngModel">
             </mat-form-field>
             <div class="error-msg" *ngIf="password.invalid && password.touched">
                 <p *ngIf="password.errors['required']">Password is required!</p>
-                <p *ngIf="password.errors['notEight'] && (password.errors['required'] !== true)">Password should
-                    be at least 8 characters long!</p>
-                <p *ngIf="password.errors['notLower'] && (password.errors['required'] !== true)">Password should
-                    have at least one lower case!</p>
-                <p *ngIf="password.errors['notUpper'] && (password.errors['required'] !== true)">Password should
-                    have at least one upper case!</p>
-                <p *ngIf="password.errors['notDigit'] && (password.errors['required'] !== true)">Password should
-                    have at least one digit!</p>
-                <p *ngIf="password.errors['notSpecialCh'] && (password.errors['required'] !== true)">Password
-                    should have at least a special character!</p>
             </div>
             <mat-checkbox class="gray-paragraph">Remember me</mat-checkbox>
             <button mat-raised-button class="input-full-width"
