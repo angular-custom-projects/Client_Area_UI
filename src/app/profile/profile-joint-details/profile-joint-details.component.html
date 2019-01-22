@@ -52,7 +52,7 @@
                                                     name="firstName"
                                                     [ngModel]="fName | titlecase"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #firstName="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="firstName.invalid && firstName.touched">
@@ -92,7 +92,7 @@
                                                     name="dateOfBirth"
                                                     [ngModel]="DOB | date"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #dateOfBirth="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="dateOfBirth.invalid && dateOfBirth.touched">
@@ -112,7 +112,7 @@
                                                     name="gender"
                                                     [ngModel]="pGender | titlecase"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #gender="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="gender.invalid && gender.touched">
@@ -133,7 +133,7 @@
                                                         id="country"
                                                         name="country"
                                                         required
-                                                        [disabled]="active"
+                                                        [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                         #country="ngModel">
                                                 <mat-option *ngFor="let country of countries" [value]="country">
                                                     {{country}}
@@ -157,7 +157,7 @@
                                                     name="city"
                                                     [ngModel]="pCity | titlecase"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #city="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="city.invalid && city.touched">
@@ -177,7 +177,7 @@
                                                     name="state"
                                                     [ngModel]="pState"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #state="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="state.invalid && state.touched">
@@ -197,7 +197,7 @@
                                                     name="address"
                                                     [ngModel]="pAddress | titlecase"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #address="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="address.invalid && address.touched">
@@ -216,7 +216,7 @@
                                                     id="address2"
                                                     name="address2"
                                                     [ngModel]="pSecondAddress | titlecase"
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #address2="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="address2.invalid && address2.touched">
@@ -236,7 +236,7 @@
                                                     name="zip"
                                                     [ngModel]="pPostalCode"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #zip="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="zip.invalid && zip.touched">
@@ -257,7 +257,7 @@
                                                     name="phoneNumber"
                                                     [ngModel]="pPhoneNumber"
                                                     required
-                                                    [disabled]="active"
+                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
                                                     #phoneNumber="ngModel">
                                         </mat-form-field>
                                         <div class="error-msg" *ngIf="phoneNumber.invalid && phoneNumber.touched">

@@ -1,13 +1,13 @@
 // single user model
-import {Phone} from './phone';
-import {Country} from './country';
+import { Phones } from './phones';
+import { Country } from './country';
 
 export class User {
     first_name: string;
     last_name: string;
     email: string;
     country: Country;
-    phone: Phone;
+    phones: Phones;
     username: string;
     password: string;
     client_type: string;
