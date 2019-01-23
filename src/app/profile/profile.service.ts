@@ -50,4 +50,8 @@ export class ProfileService {
             }
         );
     }
+
+    updateBankInfo(bankData) {
+        return this.http.put<any>(this.envURL + 'clients/bank-info', bankData);
+    }
 }
