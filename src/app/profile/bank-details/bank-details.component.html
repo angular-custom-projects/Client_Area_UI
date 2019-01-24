@@ -1,16 +1,20 @@
 <div fxLayout="column">
     <!--====== the following will be used to the correct confirmation message based on the status of the request (don't remove)-->
-
-    <!--  <div *ngIf="error">
-          <app-confirmation messageType="error"
-                            messageText="Error: Something went wrong. User Registration failed."
-                            (closeM)="closeErrorMessage($event)"></app-confirmation>
-      </div>
-      <div *ngIf="success">
-          <app-confirmation messageType="success"
-                            messageText="Thanks for your registration."
-                            (closeM)="closeSuccessMessage($event)"></app-confirmation>
-      </div>-->
+    <div *ngIf="errorGetClientInfo">
+        <app-confirmation messageType="error"
+                          messageText="{{errorMessageGetClientInfo}}"
+                          (closeM)="closeErrorGetClientInfoMessage($event)"></app-confirmation>
+    </div>
+    <div *ngIf="error">
+        <app-confirmation messageType="error"
+                          messageText="{{errorMessage}}"
+                          (closeM)="closeErrorMessage($event)"></app-confirmation>
+    </div>
+    <div *ngIf="success">
+        <app-confirmation messageType="success"
+                          messageText="Your Bank Information has been updated successfully."
+                          (closeM)="closeSuccessMessage($event)"></app-confirmation>
+    </div>
     <div class="title-card">
         <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
             <mat-icon>account_balance</mat-icon>
@@ -29,7 +33,7 @@
                                    type="text"
                                    id="payeeName"
                                    name="payeeName"
-                                   ngModel
+                                   [(ngModel)]="bankInfo.bank_payee_name"
                                    required
                                    #payeeName="ngModel">
                         </mat-form-field>
@@ -48,7 +52,7 @@
                                    type="text"
                                    id="bankName"
                                    name="bankName"
-                                   ngModel
+                                   [(ngModel)]="bankInfo.bank_name"
                                    required
                                    #bankName="ngModel">
                         </mat-form-field>
@@ -67,7 +71,7 @@
                                    type="text"
                                    id="bankAddress"
                                    name="bankAddress"
-                                   ngModel
+                                   [(ngModel)]="bankInfo.bank_address"
                                    required
                                    #bankAddress="ngModel">
                         </mat-form-field>
@@ -83,10 +87,10 @@
                     <div fxLayout="column" fxFlex="49%">
                         <mat-form-field floatLabel=never>
                             <input matInput
-                                   type="number"
+                                   type="text"
                                    id="bankAccNo"
                                    name="bankAccNo"
-                                   ngModel
+                                   [(ngModel)]="bankInfo.bank_acc_no"
                                    required
                                    #bankAccNo="ngModel">
                         </mat-form-field>
@@ -105,7 +109,7 @@
                                    type="text"
                                    id="bankSCode"
                                    name="bankSCode"
-                                   ngModel
+                                   [(ngModel)]="bankInfo.bank_swift_code"
                                    required
                                    #bankSCode="ngModel">
                         </mat-form-field>
@@ -124,7 +128,7 @@
                                    type="text"
                                    id="iban"
                                    name="iban"
-                                   ngModel
+                                   [(ngModel)]="bankInfo.bank_iban"
                                    required
                                    #iban="ngModel">
                         </mat-form-field>
@@ -144,32 +148,13 @@
                                         name="country"
                                         required
                                         #country="ngModel">
-                                <mat-option *ngFor="let country of countries" [value]="country">
-                                    {{country}}
+                                <mat-option *ngFor="let country of countries" [value]="country.country_code">
+                                    {{country['country_name']}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
                         <div class="error-msg" *ngIf="country.invalid && country.touched">
                             <span *ngIf="country.errors['required']">Country is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="password">Password:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="password"
-                                   id="password"
-                                   name="password"
-                                   ngModel
-                                   required
-                                   #password="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="password.invalid && password.touched">
-                            <span *ngIf="password.errors['required']">Password is required!</span>
                         </div>
                     </div>
                 </div>
