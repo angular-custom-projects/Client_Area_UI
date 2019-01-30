@@ -16,7 +16,7 @@ import {Phones} from '../../models/phones';
 })
 export class RegisterComponent implements OnInit, CanComponentDeactivate {
     // list of available client types
-    clientTypes = ['individual', 'Corporate', 'Joint'];
+    clientTypes = ['individual', 'corporate', 'joint'];
     // set the default country of the client types drop down
     currentClientType = 'individual';
     // will be used to bind email with username
