@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 console.log(type);
             }
         );
-        if (this.clientType === 'Corporate') {
+        if (this.clientType === 'corporate') {
             this.isCorporate = true;
             this.sidebarMenuItems = [
                 {link: '/profile', title: 'Profile Details', icon: 'person'},
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                     this.shareHolders = shareHoldersList;
                 }
             );
-        } else if (this.clientType === 'Joint') {
+        } else if (this.clientType === 'joint') {
             this.sidebarMenuItems = [
                 {link: '/profile', title: 'Profile Details', icon: 'person'},
                 {link: '/profile/' + this.client_id_1, title: 'Account Holder 1 Details', icon: 'person'},
