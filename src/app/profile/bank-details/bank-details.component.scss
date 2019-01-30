@@ -1,6 +1,14 @@
 @import "../../scss-partials/variables";
 @import "../../scss-partials/mixins";
 
+.mat-spinner {
+  margin: 16px auto 0;
+}
+
+.mat-spinner::ng-deep circle {
+  stroke: #0059a7;
+}
+
 .content-card {
   padding-bottom: 20px;
 }

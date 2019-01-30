@@ -1,3 +1,60 @@
+# ***MAU-10-client-registration---first-step-add-client-type*** branch
+## Added
+### Register component
+* Added client type drop down list
+
+### Auth service
+* Added the client type functionality
+
+### Profile component
+* Added the functionality of the corporate & joint account 
+* Added the functionality of the client type
+
+### Show correct confirmation (**error** or **success**) message to the user :
+* Profile details component
+* Bank details component
+
+### Spinner
+* Shareholder component
+* Director component
+* Profile details component
+* Bank details component
+
+## Changed
+### Register component
+* Changed **user.phones** to **user.phone** (so that we can send data correctly to the backend)
+
+### Auth service
+* Changed all **localstorage.removeItem** to **localstorage.clear** in the logout function
+
+### Profile component
+* Changed the **sidebarMenuItems** array to display the correct links based on the current account type
+
+
+### Auth routing module
+* Change **double quotes** to **single quotes** in imports
+
+## Fixed
+### Header component
+* Fixed code errors which is used to display the **login** or **open account** buttons
+
+### Profile joint details component
+* Fixed all syntactical error
+
+## Removed
+### From all the app
+* Removed all console.log
+
+### Profile corporate component
+### Profile joint component
+
+### Profile module
+* Removed the profile corporate component
+* Removed the profile joint component
+
+### Profile routing module
+* Removed all unnecessary routes and use a single array of routes
+
 # ***connect-api-fix*** branch
 
 ## Added

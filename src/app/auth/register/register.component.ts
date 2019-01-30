@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Observable} from 'rxjs';
+import {NgForm} from '@angular/forms';
 
-import { AuthService } from '../auth.service';
-import { CanComponentDeactivate } from '../../guards/can-activate-deactivate.service';
-import { User } from '../../models/user';
-import { Country } from '../../models/country';
-import { Phones } from '../../models/phones';
+import {AuthService} from '../auth.service';
+import {CanComponentDeactivate} from '../../guards/can-activate-deactivate.service';
+import {User} from '../../models/user';
+import {Country} from '../../models/country';
+import {Phones} from '../../models/phones';
 
 
 @Component({
@@ -15,6 +15,10 @@ import { Phones } from '../../models/phones';
     styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, CanComponentDeactivate {
+    // list of available client types
+    clientTypes = ['individual', 'corporate', 'joint'];
+    // set the default country of the client types drop down
+    currentClientType = 'individual';
     // will be used to bind email with username
     emailUsername = '';
     // set countries for the dropdown
@@ -72,9 +76,8 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
         this.user.country = this.form.value.country;
         this.user.username = this.emailUsername;
         this.user.password = this.form.value.password;
-        this.user.phones = this.phoneNo;
-        this.user.client_type = 'individual';
-        console.log(this.user);
+        this.user.phone = this.phoneNo;
+        this.user.client_type = this.form.value.clientType;
         this.authService.registerUser(this.user).subscribe(
             (response: any) => {
                 if (response['data']) {
@@ -84,7 +87,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                         this.success = false;
                         const username = this.user.username;
                         const password = this.user.password;
-                        this.authService.loginUser({ username, password });
+                        this.authService.loginUser({username, password});
                     }, 2000);
                 }
             },
@@ -98,7 +101,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                     const usernameInput = document.getElementById('username');
                     usernameInput.classList.add('ng-invalid');
                     usernameInput.classList.remove('ng-valid');
-                    this.form.form.patchValue({ username: '' });
+                    this.form.form.patchValue({username: ''});
                 }
                 if (error['error'].errors[0].errmsg.indexOf('email') !== -1) {
                     this.duplicatedEmail = true;
@@ -106,7 +109,7 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                     const emailInput = document.getElementById('email');
                     emailInput.classList.add('ng-invalid');
                     emailInput.classList.remove('ng-valid');
-                    this.form.form.patchValue({ email: '' });
+                    this.form.form.patchValue({email: ''});
                 }
             }
         );

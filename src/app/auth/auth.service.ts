@@ -1,6 +1,6 @@
 import {environment} from '../../environments/environment';
 import {Injectable} from '@angular/core';
-import {HttpBackend, HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpBackend, HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs';
 import {ProfileService} from '../profile/profile.service';
@@ -13,9 +13,10 @@ export class AuthService {
     countriesListURL = environment.countriesURL;
     // API URL
     envURL = environment.apiURL;
-    // create a subject (which is observable a& observer at the same time) for first name and last name
+    // create a subject (which is observable a& observer at the same time) for first name, last name and client type
     firstName = new Subject();
     lastName = new Subject();
+    clientT = new Subject();
     // will be used to show the error message to the user if any when he tries to login
     loginError = new Subject();
     // will be used to store the error message if found when he tries to login
@@ -45,11 +46,13 @@ export class AuthService {
                     data => {
                         localStorage.setItem('clientFirstName', data['data'].name.first_name);
                         localStorage.setItem('clientLastName', data['data'].name.last_name);
+                        localStorage.setItem('clientType', data['data'].client_type);
                         // update the subject with the correct data
                         this.firstName.next(localStorage.getItem('clientFirstName'));
                         this.lastName.next(localStorage.getItem('clientLastName'));
-                        // redirect the user to the dashboard
-                        this.router.navigate(['/dashboard']);
+                        this.clientT.next(localStorage.getItem('clientType'));
+                        // redirect the user to the profile
+                        this.router.navigate(['/profile']);
                     }
                 );
             },
@@ -64,9 +67,7 @@ export class AuthService {
     // logout a client
     logout() {
         // remove data from the local storage
-        localStorage.removeItem('mAToken');
-        localStorage.removeItem('clientFirstName');
-        localStorage.removeItem('clientLastName');
+        localStorage.clear();
         // redirect the user to the login page
         this.router.navigate(['/login']);
     }
@@ -78,7 +79,7 @@ export class AuthService {
 
     // run the following function if the user has a token and submit has password and confirm password
     resetPassword(token, data: {}) {
-        return this.http.post(this.envURL + `clients/reset-password/` + token , data);
+        return this.http.post(this.envURL + `clients/reset-password/` + token, data);
     }
 
     // get the token

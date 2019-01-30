@@ -21,6 +21,8 @@ interface UpdateClientInfo {
     styleUrls: ['./profile-details.component.scss']
 })
 export class ProfileDetailsComponent implements OnInit {
+    // will be used to show the spinner
+    loading = false;
     // form using reactive approach
     perDetailsForm: FormGroup;
     // will be used to check the user's account status (active or not)
@@ -28,6 +30,7 @@ export class ProfileDetailsComponent implements OnInit {
     // will be used to show the correct confirmation to the user
     error = false;
     success = false;
+    errorMessage: string;
 
     genders = ['male', 'female'];
 
@@ -83,8 +86,10 @@ export class ProfileDetailsComponent implements OnInit {
             'email': new FormControl({value: this.clientEmail, disabled: true}
                 , [Validators.required, Validators.email]),
         });
+        this.loading = true;
         this.profileService.getClientInfo().subscribe(data => {
                 if (data.data) {
+                    this.loading = false;
                     // check if the client account is pending or not so that he can update his data or not
                     if (data.data.status === 'pending' || data.data.status === undefined) {
                         this.active = false;
@@ -175,7 +180,10 @@ export class ProfileDetailsComponent implements OnInit {
                     }
                 }
             },
-            error => console.log(error));
+            error => {
+            this.error = true;
+            this.errorMessage = error['error'].errors[0];
+            });
     }
 
     onSubmit() {
@@ -199,8 +207,13 @@ export class ProfileDetailsComponent implements OnInit {
             // emails: {primary: true, email: this.perDetailsForm.get('email').value}
         };
         this.profileService.updateClientInfo(this.updateClientInfo).subscribe(
-            response => console.log(response),
-            error => console.log(error));
+            response => {
+                this.success = true;
+            },
+            error => {
+                this.error = true;
+                this.errorMessage = error['error'].errors[0];
+            });
     }
 
     closeErrorMessage(type: boolean) {

@@ -15,6 +15,20 @@
             <h3 class="title lato-regular margin-bottom-15">Create Your FXPRIMUS Profile</h3>
             <form (ngSubmit)="onSignup()" #f="ngForm">
                 <mat-form-field class="input-full-width">
+                    <mat-select placeholder="Client Type"
+                                [(ngModel)]="currentClientType"
+                                name="clientType"
+                                required
+                                #clientType="ngModel">
+                        <mat-option *ngFor="let cT of clientTypes" [value]="cT">
+                            {{cT | titlecase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="error-msg lato-regular" *ngIf="country.invalid && country.touched">
+                    <span *ngIf="country.errors['required']">Country is required!</span>
+                </div>
+                <mat-form-field class="input-full-width">
                     <input matInput placeholder="First Name"
                            type="text"
                            id="firstName"
@@ -26,7 +40,8 @@
                 </mat-form-field>
                 <div class="error-msg" *ngIf="firstName.invalid && firstName.touched">
                     <p *ngIf="firstName.errors['required']">First name is required!</p>
-                    <p *ngIf="firstName.errors['notText'] && (firstName.errors['required'] !== true)">Please use Basic Latin characters only.</p>
+                    <p *ngIf="firstName.errors['notText'] && (firstName.errors['required'] !== true)">Please use Basic
+                        Latin characters only.</p>
                 </div>
                 <mat-form-field class="input-full-width">
                     <input matInput placeholder="Last Name"
@@ -40,7 +55,8 @@
                 </mat-form-field>
                 <div class="error-msg" *ngIf="lastName.invalid && lastName.touched">
                     <p *ngIf="lastName.errors['required']">Last name is required!</p>
-                    <p *ngIf="lastName.errors['notText'] && (lastName.errors['required'] !== true)">Please use Basic Latin characters only.</p>
+                    <p *ngIf="lastName.errors['notText'] && (lastName.errors['required'] !== true)">Please use Basic
+                        Latin characters only.</p>
                 </div>
                 <mat-form-field class="input-full-width">
                     <input matInput placeholder="Email"

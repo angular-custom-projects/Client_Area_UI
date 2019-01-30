@@ -14,7 +14,9 @@ import {AuthService} from '../../auth/auth.service';
     styleUrls: ['./share-holder.component.scss']
 })
 export class ShareHolderComponent implements OnInit, OnDestroy {
-// will be used to store the share holder id (which is the array index)
+    // will be used to show the spinner
+    loading = false;
+    // will be used to store the share holder id (which is the array index)
     id: number;
     // form using reactive approach
     shareHolderDetailsForm: FormGroup;
@@ -94,9 +96,11 @@ export class ShareHolderComponent implements OnInit, OnDestroy {
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.id = +params['id'];
+                this.loading = true;
                 this.profileService.getShareHolders();
                 this.shareHolderSubscription = this.profileService.shareHoldersChanged.subscribe(
                     (shareHoldersList: ShareHoldersInfo[]) => {
+                        this.loading = false;
                         this.shareHolders = shareHoldersList;
                         this.shareHolder = shareHoldersList[this.id];
                         this.shareHolderDetailsForm.patchValue({firstName: this.titleCasePipe.transform(this.shareHolder.first_name)});
