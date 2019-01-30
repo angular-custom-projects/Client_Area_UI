@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { CanComponentDeactivate } from "../../guards/can-activate-deactivate.service";
-import { Observable } from "rxjs/index";
-import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { AuthService } from "../auth.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CanComponentDeactivate } from '../../guards/can-activate-deactivate.service';
+import { Observable } from 'rxjs/index';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
-  selector: "app-reset-password",
-  templateUrl: "./reset-password.component.html",
-  styleUrls: ["./reset-password.component.scss"]
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
   // get the form of email / username using view child
-  @ViewChild("f") form: NgForm;
+  @ViewChild('f') form: NgForm;
 
   // get the reset password form using view child
-  @ViewChild("resPass") resPassForm: NgForm;
+  @ViewChild('resPass') resPassForm: NgForm;
 
   // the following variable will be used to check if the URL has a token or not so that the user will be able to reset his password
   hasToken = false;
@@ -28,14 +28,14 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
   errorEmail = false;
 
   // show the correct confirmation message after submitting the email
-  emailConfirmationMessage = "";
+  emailConfirmationMessage = '';
 
   // the following will be used to display the correct confirmation message if the password has been reset correctly
   successPass = false;
   errorPass = false;
 
   // show the correct confirmation message after submitting the new password
-  passConfirmationMessage = "";
+  passConfirmationMessage = '';
 
   constructor(
     private router: Router,
@@ -45,8 +45,8 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.resetPassToken = params["token"];
-      this.hasToken = params["token"] != null;
+      this.resetPassToken = params['token'];
+      this.hasToken = params['token'] != null;
     });
   }
 
@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
     this.authService.forgotPassword({ username }).subscribe(
       data => {
         this.successEmail = true;
-        this.emailConfirmationMessage = data["data"];
+        this.emailConfirmationMessage = data['data'];
       },
       error => {
         console.log(error);
@@ -78,11 +78,11 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
     this.authService.resetPassword(token, resetPasswordData).subscribe(
       response => {
         this.successPass = true;
-        this.passConfirmationMessage = response["data"];
+        this.passConfirmationMessage = response['data'];
       },
       error => {
         this.errorPass = true;
-        this.passConfirmationMessage = error["error"].errors;
+        this.passConfirmationMessage = error['error'].errors;
       }
     );
     this.resPassForm.onReset();
@@ -112,7 +112,7 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
       }
 
       if (this.form.dirty) {
-        return confirm("Do you want to discard the changes?");
+        return confirm('Do you want to discard the changes?');
       } else {
         return true;
       }
@@ -124,7 +124,7 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
       }
 
       if (this.resPassForm.dirty) {
-        return confirm("Do you want to discard the changes?");
+        return confirm('Do you want to discard the changes?');
       } else {
         return true;
       }

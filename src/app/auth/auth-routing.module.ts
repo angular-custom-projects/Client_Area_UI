@@ -1,39 +1,39 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from "./register/register.component";
-import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
-import { CanActivateLoginService } from "../guards/can-activate-login.service";
-import { CanActivateDeactivateService } from "../guards/can-activate-deactivate.service";
-import { FourDigitCodeComponent } from "./four-digit-code/four-digit-code.component";
+import { CanActivateLoginService } from '../guards/can-activate-login.service';
+import { CanActivateDeactivateService } from '../guards/can-activate-deactivate.service';
+import { FourDigitCodeComponent } from './four-digit-code/four-digit-code.component';
 
 const routes: Routes = [
   {
-    path: "login",
+    path: 'login',
     component: LoginComponent,
     canActivate: [CanActivateLoginService]
   },
   {
-    path: "register",
+    path: 'register',
     component: RegisterComponent,
     canDeactivate: [CanActivateDeactivateService],
     canActivate: [CanActivateLoginService]
   },
   {
-    path: "forgot-password",
+    path: 'forgot-password',
     component: ResetPasswordComponent,
     canActivate: [CanActivateLoginService],
     canDeactivate: [CanActivateDeactivateService]
   },
   {
-    path: "forgot-password/:token",
+    path: 'forgot-password/:token',
     component: ResetPasswordComponent,
     canActivate: [CanActivateLoginService],
     canDeactivate: [CanActivateDeactivateService]
   },
-  { path: "4-digit-code", component: FourDigitCodeComponent }
+  { path: '4-digit-code', component: FourDigitCodeComponent }
 ];
 
 @NgModule({
