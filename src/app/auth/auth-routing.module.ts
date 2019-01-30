@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {ResetPasswordS1Component} from "./reset-password-s1/reset-password-s1.component";
+import {ResetPasswordS1Component} from './reset-password-s1/reset-password-s1.component';
 
 import {CanActivateLoginService} from '../guards/can-activate-login.service';
 import {CanActivateDeactivateService} from '../guards/can-activate-deactivate.service';

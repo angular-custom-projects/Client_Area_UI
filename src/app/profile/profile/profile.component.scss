@@ -14,12 +14,13 @@
   margin-left: -16px;
 }
 
-mat-nav-list {
-  margin-top: 40px;
+mat-nav-list#profileMenu {
+  margin-top: 25px;
+}
 
+mat-nav-list {
   a {
     border: 1px solid #eee;
-    height: 60px;
   }
 
   i {
@@ -36,4 +37,38 @@ mat-nav-list {
   align-self: center;
   margin-right: 20px;
   font-size: 18px;
+}
+
+.active, .active:hover {
+  border-left: 5px solid $light-blue-primary;
+  background-color: $dark-blue-tenth;
+  width: -webkit-calc(100% - 5px) !important;
+  width: -moz-calc(100% - 5px) !important;
+  width: calc(100% - 5px) !important;
+}
+
+mat-nav-list a {
+  border-bottom: 1px solid $bottom-gray-border;
+}
+
+mat-nav-list i {
+  margin: 0 20px 0 5px;
+}
+
+#profile-completion {
+  padding: 15px 0;
+}
+
+.add-director {
+  background-color: $light-blue-primary;
+  color: $white-color;
+  margin-top: 10px;
+}
+
+.add-director fa {
+  margin-right: 10px;
+}
+
+.add-director:hover {
+  @include hover-color-dark($background-color: $light-blue-primary);
 }

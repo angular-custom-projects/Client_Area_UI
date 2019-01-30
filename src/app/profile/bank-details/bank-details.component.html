@@ -1,10 +1,5 @@
 <div fxLayout="column">
     <!--====== the following will be used to the correct confirmation message based on the status of the request (don't remove)-->
-    <div *ngIf="errorGetClientInfo">
-        <app-confirmation messageType="error"
-                          messageText="{{errorMessageGetClientInfo}}"
-                          (closeM)="closeErrorGetClientInfoMessage($event)"></app-confirmation>
-    </div>
     <div *ngIf="error">
         <app-confirmation messageType="error"
                           messageText="{{errorMessage}}"
@@ -15,157 +10,160 @@
                           messageText="Your Bank Information has been updated successfully."
                           (closeM)="closeSuccessMessage($event)"></app-confirmation>
     </div>
-    <div class="title-card">
-        <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
-            <mat-icon>account_balance</mat-icon>
-            <span>Your Bank Details</span>
-        </p>
-    </div>
-    <div class="content-card">
-        <div class="empty-space"></div>
-        <form class="text-center" (ngSubmit)="onSubmit()" #f="ngForm" fxLayout="column">
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" for="payeeName" fxFlex="49%">Bank Payee Name:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   id="payeeName"
-                                   name="payeeName"
-                                   [(ngModel)]="bankInfo.bank_payee_name"
-                                   required
-                                   #payeeName="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="payeeName.invalid && payeeName.touched">
-                            <span *ngIf="payeeName.errors['required']">Bank Payee Name is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="bankName">Bank Name:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   id="bankName"
-                                   name="bankName"
-                                   [(ngModel)]="bankInfo.bank_name"
-                                   required
-                                   #bankName="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="bankName.invalid && bankName.touched">
-                            <span *ngIf="bankName.errors['required']">Bank Name is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="bankAddress">Bank Address:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   id="bankAddress"
-                                   name="bankAddress"
-                                   [(ngModel)]="bankInfo.bank_address"
-                                   required
-                                   #bankAddress="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="bankAddress.invalid && bankAddress.touched">
-                            <span *ngIf="bankAddress.errors['required']">Bank Address is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="bankAccNo">Bank Acc No:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   id="bankAccNo"
-                                   name="bankAccNo"
-                                   [(ngModel)]="bankInfo.bank_acc_no"
-                                   required
-                                   #bankAccNo="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="bankAccNo.invalid && bankAccNo.touched">
-                            <span *ngIf="bankAccNo.errors['required']">Bank Acc No is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="bankSCode">Bank Swift Code:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   id="bankSCode"
-                                   name="bankSCode"
-                                   [(ngModel)]="bankInfo.bank_swift_code"
-                                   required
-                                   #bankSCode="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="bankSCode.invalid && bankSCode.touched">
-                            <span *ngIf="bankSCode.errors['required']">Bank Swift Code is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="iban">Bank IBAN:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <input matInput
-                                   type="text"
-                                   id="iban"
-                                   name="iban"
-                                   [(ngModel)]="bankInfo.bank_iban"
-                                   required
-                                   #iban="ngModel">
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="iban.invalid && iban.touched">
-                            <span *ngIf="iban.errors['required']">Bank IBAN is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="line-between">
-                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                    <label class="label" fxFlex="49%" for="country">Bank Country:</label>
-                    <div fxLayout="column" fxFlex="49%">
-                        <mat-form-field floatLabel=never>
-                            <mat-select id="country"
-                                        [(ngModel)]="currentCountry"
-                                        name="country"
-                                        required
-                                        #country="ngModel">
-                                <mat-option *ngFor="let country of countries" [value]="country.country_code">
-                                    {{country['country_name']}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <div class="error-msg" *ngIf="country.invalid && country.touched">
-                            <span *ngIf="country.errors['required']">Country is required!</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="empty-space"></div>
-            <button mat-raised-button
-                    type="submit"
-                    [disabled]="f.invalid">
-                <mat-icon>edit</mat-icon>
-                <span>Submit</span>
-            </button>
-        </form>
-    </div>
+    <mat-spinner *ngIf="loading" diameter="200"></mat-spinner>
+   <div *ngIf="!loading">
+       <div class="title-card">
+           <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
+               <mat-icon>account_balance</mat-icon>
+               <span>Your Bank Details</span>
+           </p>
+       </div>
+       <div class="content-card">
+           <div class="empty-space"></div>
+           <form class="text-center" (ngSubmit)="onSubmit()" #f="ngForm" fxLayout="column">
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" for="payeeName" fxFlex="49%">Bank Payee Name:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <input matInput
+                                      type="text"
+                                      id="payeeName"
+                                      name="payeeName"
+                                      [(ngModel)]="bankInfo.bank_payee_name"
+                                      required
+                                      #payeeName="ngModel">
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="payeeName.invalid && payeeName.touched">
+                               <span *ngIf="payeeName.errors['required']">Bank Payee Name is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" fxFlex="49%" for="bankName">Bank Name:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <input matInput
+                                      type="text"
+                                      id="bankName"
+                                      name="bankName"
+                                      [(ngModel)]="bankInfo.bank_name"
+                                      required
+                                      #bankName="ngModel">
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="bankName.invalid && bankName.touched">
+                               <span *ngIf="bankName.errors['required']">Bank Name is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" fxFlex="49%" for="bankAddress">Bank Address:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <input matInput
+                                      type="text"
+                                      id="bankAddress"
+                                      name="bankAddress"
+                                      [(ngModel)]="bankInfo.bank_address"
+                                      required
+                                      #bankAddress="ngModel">
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="bankAddress.invalid && bankAddress.touched">
+                               <span *ngIf="bankAddress.errors['required']">Bank Address is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" fxFlex="49%" for="bankAccNo">Bank Acc No:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <input matInput
+                                      type="text"
+                                      id="bankAccNo"
+                                      name="bankAccNo"
+                                      [(ngModel)]="bankInfo.bank_acc_no"
+                                      required
+                                      #bankAccNo="ngModel">
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="bankAccNo.invalid && bankAccNo.touched">
+                               <span *ngIf="bankAccNo.errors['required']">Bank Acc No is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" fxFlex="49%" for="bankSCode">Bank Swift Code:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <input matInput
+                                      type="text"
+                                      id="bankSCode"
+                                      name="bankSCode"
+                                      [(ngModel)]="bankInfo.bank_swift_code"
+                                      required
+                                      #bankSCode="ngModel">
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="bankSCode.invalid && bankSCode.touched">
+                               <span *ngIf="bankSCode.errors['required']">Bank Swift Code is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" fxFlex="49%" for="iban">Bank IBAN:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <input matInput
+                                      type="text"
+                                      id="iban"
+                                      name="iban"
+                                      [(ngModel)]="bankInfo.bank_iban"
+                                      required
+                                      #iban="ngModel">
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="iban.invalid && iban.touched">
+                               <span *ngIf="iban.errors['required']">Bank IBAN is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="line-between">
+                   <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
+                       <label class="label" fxFlex="49%" for="country">Bank Country:</label>
+                       <div fxLayout="column" fxFlex="49%">
+                           <mat-form-field floatLabel=never>
+                               <mat-select id="country"
+                                           [(ngModel)]="currentCountry"
+                                           name="country"
+                                           required
+                                           #country="ngModel">
+                                   <mat-option *ngFor="let country of countries" [value]="country.country_code">
+                                       {{country['country_name']}}
+                                   </mat-option>
+                               </mat-select>
+                           </mat-form-field>
+                           <div class="error-msg" *ngIf="country.invalid && country.touched">
+                               <span *ngIf="country.errors['required']">Country is required!</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="empty-space"></div>
+               <button mat-raised-button
+                       type="submit"
+                       [disabled]="f.invalid">
+                   <mat-icon>edit</mat-icon>
+                   <span>Submit</span>
+               </button>
+           </form>
+       </div>
+   </div>
 </div>

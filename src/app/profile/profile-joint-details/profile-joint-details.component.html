@@ -1,11 +1,11 @@
 <div fxLayout="column">
-    <mat-card class="title-card">
+    <div class="title-card">
         <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
             <mat-icon>person</mat-icon>
             <span>Account Holder / </span><span class="sub-title">{{fName | titlecase}} {{lName | titlecase}}</span>
         </p>
-    </mat-card>
-    <mat-card class="content-card">
+    </div>
+    <div class="content-card">
         <mat-tab-group fxLayout="column">
             <mat-tab>
                 <ng-template mat-tab-label>
@@ -321,5 +321,5 @@
                 </ng-template>
             </mat-tab>
         </mat-tab-group>
-    </mat-card>
+    </div>
 </div>

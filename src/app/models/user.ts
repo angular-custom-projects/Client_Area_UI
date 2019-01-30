@@ -7,7 +7,7 @@ export class User {
     last_name: string;
     email: string;
     country: Country;
-    phones: Phones;
+    phone: Phones;
     username: string;
     password: string;
     client_type: string;

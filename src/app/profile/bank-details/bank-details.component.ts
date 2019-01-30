@@ -20,6 +20,8 @@ interface BankI {
     styleUrls: ['./bank-details.component.scss']
 })
 export class BankDetailsComponent implements OnInit {
+    // will be used to show the spinner
+    loading = false;
     // get the registration form using view child
     @ViewChild('f') form: NgForm;
     bankInfo: BankI = {
@@ -36,11 +38,9 @@ export class BankDetailsComponent implements OnInit {
     // set the default country of the dropdown
     currentCountry = 'CY';
     // used to show a confirmation message to the client
-    errorGetClientInfo = false;
     error = false;
     success = false;
     // show the confirmation message for the user
-    errorMessageGetClientInfo = '';
     errorMessage = '';
 
     constructor(private profileService: ProfileService, private authService: AuthService) {
@@ -50,13 +50,15 @@ export class BankDetailsComponent implements OnInit {
         this.authService.getCountries().subscribe(data => {
             this.countries = data['countryCodes'];
         });
+        this.loading = true;
         this.profileService.getClientInfo().subscribe(data => {
+            this.loading = false;
             if (data.data.bank_info) {
                 this.bankInfo = data.data.bank_info;
             }
         }, error => {
-            this.errorGetClientInfo = true;
-            this.errorMessageGetClientInfo = error['error'].errors[0];
+            this.error = true;
+            this.errorMessage = error['error'].errors[0];
         });
     }
 
@@ -78,10 +80,6 @@ export class BankDetailsComponent implements OnInit {
                 this.error = true;
                 this.errorMessage = error['error'].errors[0];
             });
-    }
-
-    closeErrorGetClientInfoMessage(type: boolean) {
-        this.errorGetClientInfo = type;
     }
 
     closeErrorMessage(type: boolean) {

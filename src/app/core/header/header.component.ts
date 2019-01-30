@@ -3,9 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
+import {filter} from 'rxjs/internal/operators';
+import {map} from 'rxjs/internal/operators';
+import {mergeMap} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-header',
@@ -42,24 +42,23 @@ export class HeaderComponent implements OnInit {
         );
 
         // to show or hide Login button and Open Account Button
-        this._router.events
-            .filter((event) => event instanceof NavigationEnd)
-            .map(() => this.activatedRoute)
-            .map((_route) => {
+        this._router.events.pipe(filter((event) => event instanceof NavigationEnd))
+            .pipe(map(() => this.activatedRoute))
+            .pipe(map((_route) => {
                 while (_route.firstChild) _route = _route.firstChild;
                 return _route;
-            })
-            .filter((_route) => _route.outlet === 'primary')
-            .mergeMap((_route) => _route.data)
+            }))
+            .pipe(filter((_route) => _route.outlet === 'primary'))
+            .pipe(mergeMap((_route) => _route.data))
             .subscribe((event) => {
-                if (this._router.url == '/login') {
+                if (this._router.url === '/login') {
                     this.showOpenAccount = true;
                     this.showLogin = false;
-                } 
-                if (this._router.url == '/register') {
+                }
+                if (this._router.url === '/register') {
                     this.showLogin = true;
                     this.showOpenAccount = false;
-                }                        
+                }
             });
     }
 

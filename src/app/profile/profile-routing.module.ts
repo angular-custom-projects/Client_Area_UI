@@ -10,73 +10,30 @@ import {TradingKnowledgeComponent} from './trading-knowledge/trading-knowledge.c
 import {FinancialBackgroundComponent} from './financial-background/financial-background.component';
 import {AgreementsComponent} from './agreements/agreements.component';
 import {BankDetailsComponent} from './bank-details/bank-details.component';
-import {ProfileCorporateComponent} from './profile-corporate/profile-corporate.component';
 import {DirectorComponent} from './director/director.component';
 import {ShareHolderComponent} from './share-holder/share-holder.component';
-import {ProfileJointComponent} from './profile-joint/profile-joint.component';
 import {ProfileJointDetailsComponent} from './profile-joint-details/profile-joint-details.component';
 
-const account_type: string = 'i';
-let routes: Routes = [];
 let profile_id = 1;
-switch (account_type) {
-    case 'j': {
-        routes = [
-            {
-                path: '', component: ProfileJointComponent, children: [
-                    {path: 'verification', component: VerificationComponent},
-                    {path: 'documents', component: DocumentsComponent},
-                    {path: 'change-password', component: ChangePasswordComponent},
-                    {path: 'trading-knowledge', component: TradingKnowledgeComponent},
-                    {path: 'financial-background', component: FinancialBackgroundComponent},
-                    {path: 'agreements', component: AgreementsComponent},
-                    {path: 'bank-info', component: BankDetailsComponent},
-                    {path: ':profile_id', component: ProfileJointDetailsComponent, pathMatch: 'full'},
-                    {path: '', redirectTo: '1', pathMatch: 'full'},
-                ],
-            },
-        ];
-        break;
-    }
 
-    case 'c': {
-        routes = [
-            {
-                path: '', component: ProfileCorporateComponent, children: [
-                    {path: '', component: ProfileDetailsComponent, pathMatch: 'full'},
-                    {path: 'verification', component: VerificationComponent},
-                    {path: 'documents', component: DocumentsComponent},
-                    {path: 'change-password', component: ChangePasswordComponent},
-                    {path: 'trading-knowledge', component: TradingKnowledgeComponent},
-                    {path: 'financial-background', component: FinancialBackgroundComponent},
-                    {path: 'agreements', component: AgreementsComponent},
-                    {path: 'bank-info', component: BankDetailsComponent},
-                    {path: 'director/:id', component: DirectorComponent},
-                    {path: 'shareholder/:id', component: ShareHolderComponent}
-                ]
-            }
-        ];
-        break;
+const routes: Routes = [
+    {
+        path: '', component: ProfileComponent, children: [
+            {path: '', component: ProfileDetailsComponent, pathMatch: 'full'},
+            {path: 'verification', component: VerificationComponent},
+            {path: 'documents', component: DocumentsComponent},
+            {path: 'change-password', component: ChangePasswordComponent},
+            {path: 'trading-knowledge', component: TradingKnowledgeComponent},
+            {path: 'financial-background', component: FinancialBackgroundComponent},
+            {path: 'agreements', component: AgreementsComponent},
+            {path: 'bank-info', component: BankDetailsComponent},
+            {path: 'director/:id', component: DirectorComponent},
+            {path: 'shareholder/:id', component: ShareHolderComponent},
+            {path: ':profile_id', component: ProfileJointDetailsComponent, pathMatch: 'full'},
+            {path: '', redirectTo: '1', pathMatch: 'full'},
+        ]
     }
-
-    default: {
-        routes = [
-            {
-                path: '', component: ProfileComponent, children: [
-                    {path: '', component: ProfileDetailsComponent, pathMatch: 'full'},
-                    {path: 'verification', component: VerificationComponent},
-                    {path: 'documents', component: DocumentsComponent},
-                    {path: 'change-password', component: ChangePasswordComponent},
-                    {path: 'trading-knowledge', component: TradingKnowledgeComponent},
-                    {path: 'financial-background', component: FinancialBackgroundComponent},
-                    {path: 'agreements', component: AgreementsComponent},
-                    {path: 'bank-info', component: BankDetailsComponent}
-                ]
-            }
-        ];
-        break;
-    }
-}
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

@@ -14,7 +14,9 @@ import {AuthService} from '../../auth/auth.service';
     styleUrls: ['./director.component.scss']
 })
 export class DirectorComponent implements OnInit, OnDestroy {
-// will be used to store the director id (which is the array index)
+    // will be used to show the spinner
+    loading = false;
+    // will be used to store the director id (which is the array index)
     id: number;
     // form using reactive approach
     directorDetailsForm: FormGroup;
@@ -90,9 +92,11 @@ export class DirectorComponent implements OnInit, OnDestroy {
         this.activatedRoute.params.subscribe(
             (params: Params) => {
                 this.id = +params['id'];
+                this.loading = true;
                 this.profileService.getDirectors();
                 this.directorSubscription = this.profileService.directorsChanged.subscribe(
                     (directorsList: DirectorsInfo[]) => {
+                        this.loading = false;
                         this.directors = directorsList;
                         this.director = directorsList[this.id];
                         this.directorDetailsForm.patchValue({firstName: this.titleCasePipe.transform(this.director.first_name)});
