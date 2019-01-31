@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../../auth/auth.service';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
 
 import {filter} from 'rxjs/internal/operators';
 import {map} from 'rxjs/internal/operators';
@@ -45,7 +45,9 @@ export class HeaderComponent implements OnInit {
         this._router.events.pipe(filter((event) => event instanceof NavigationEnd))
             .pipe(map(() => this.activatedRoute))
             .pipe(map((_route) => {
-                while (_route.firstChild) _route = _route.firstChild;
+                while (_route.firstChild) {
+                    _route = _route.firstChild;
+                }
                 return _route;
             }))
             .pipe(filter((_route) => _route.outlet === 'primary'))
