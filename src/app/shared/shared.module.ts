@@ -27,6 +27,9 @@ import {AtLeastOneUpperDirective} from './custom-validators/at-least-one-upper.d
 import {AtLeastEightDirective} from './custom-validators/at-least-eight.directive';
 import {AtLeastOneSpecialCharacterDirective} from './custom-validators/at-least-one-special-character.directive';
 import {WebsiteUrlDirective} from './custom-validators/website-url.directive';
+import {OnlyNumbersLettersDirective} from './custom-validators/only-numbers-letters.directive';
+import {IbanDirective} from './custom-validators/iban.directive';
+import {OnlyNumbersDirective} from './custom-validators/only-numbers.directive';
 
 @NgModule({
     imports: [
@@ -55,7 +58,10 @@ import {WebsiteUrlDirective} from './custom-validators/website-url.directive';
         AtLeastOneUpperDirective,
         AtLeastOneDigitDirective,
         AtLeastOneSpecialCharacterDirective,
-        WebsiteUrlDirective
+        WebsiteUrlDirective,
+        IbanDirective,
+        OnlyNumbersDirective,
+        OnlyNumbersLettersDirective
     ],
     declarations: [
         ProfileCompletionComponent,
@@ -70,7 +76,10 @@ import {WebsiteUrlDirective} from './custom-validators/website-url.directive';
         AtLeastOneUpperDirective,
         AtLeastOneDigitDirective,
         AtLeastOneSpecialCharacterDirective,
-        WebsiteUrlDirective
+        WebsiteUrlDirective,
+        IbanDirective,
+        OnlyNumbersDirective,
+        OnlyNumbersLettersDirective
     ],
     providers: [
         {

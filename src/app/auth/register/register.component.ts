@@ -16,9 +16,9 @@ import {Phones} from '../../models/phones';
 })
 export class RegisterComponent implements OnInit, CanComponentDeactivate {
     // list of available client types
-    clientTypes = ['individual', 'corporate', 'joint'];
-    // set the default country of the client types drop down
-    currentClientType = 'individual';
+    clientTypes = ['Individual', 'Corporate', 'Joint'];
+    // set the default client type of the drop down
+    currentClientType = 'Individual';
     // will be used to bind email with username
     emailUsername = '';
     // set countries for the dropdown
@@ -95,21 +95,15 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
                 this.error = true;
                 this.duplicatedUsername = false;
                 this.duplicatedEmail = false;
-                if (error['error'].errors[0].errmsg.indexOf('username') !== -1) {
-                    this.duplicatedUsername = true;
-                    this.errorMessage = 'Existing username, please choose another one';
-                    const usernameInput = document.getElementById('username');
-                    usernameInput.classList.add('ng-invalid');
-                    usernameInput.classList.remove('ng-valid');
-                    this.form.form.patchValue({username: ''});
-                }
-                if (error['error'].errors[0].errmsg.indexOf('email') !== -1) {
+                if (error['error'].errors[0].indexOf('email') !== -1) {
                     this.duplicatedEmail = true;
                     this.errorMessage = 'Existing Email, please enter another one';
                     const emailInput = document.getElementById('email');
                     emailInput.classList.add('ng-invalid');
                     emailInput.classList.remove('ng-valid');
                     this.form.form.patchValue({email: ''});
+                } else {
+                    this.errorMessage = error['error'].errors[0];
                 }
             }
         );

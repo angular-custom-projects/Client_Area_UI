@@ -17,7 +17,6 @@ import {CoreModule} from './core/core.module';
 import {AuthInterceptor} from './interceptors/auth.interceptor';
 import {SharedModule} from './shared/shared.module';
 import {DatePipe, TitleCasePipe} from '@angular/common';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 
 @NgModule({
     declarations: [
