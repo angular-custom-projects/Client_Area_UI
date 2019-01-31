@@ -2,24 +2,23 @@ import {Directive} from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, Validator} from '@angular/forms';
 
 @Directive({
-    selector: '[appOnlyTextValidator]',
+    selector: '[appOnlyNumbersLetters]',
     providers: [{
         provide: NG_VALIDATORS,
-        useExisting: OnlyTextValidatorDirective,
+        useExisting: OnlyNumbersLettersDirective,
         multi: true
     }]
 })
-export class OnlyTextValidatorDirective implements Validator {
+export class OnlyNumbersLettersDirective implements Validator {
 
     constructor() {
     }
 
     validate(control: AbstractControl): { [key: string]: any } | null {
-        if (!(/^([a-zA-Z]+(_[a-zA-Z]+)*)(\s([a-zA-Z]+(_[a-zA-Z]+)*))*$/.test(control.value))) {
-            return {'notText': true};
+        if (!(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/.test(control.value))) {
+            return {'notOnlyNumbersLetters': true};
         }
 
         return null;
     }
-
 }

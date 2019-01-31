@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-    apiURL: 'http://18.195.135.30:8088/',
+    apiURL: 'http://172.18.0.3:3000/',
     countriesURL: 'assets/countries.json',
     directorsURL: 'assets/directors.json',
     shareHoldersURL: 'assets/shareHolders.json'

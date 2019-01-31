@@ -3,12 +3,13 @@ import {NgForm} from '@angular/forms';
 import {ProfileService} from '../profile.service';
 import {AuthService} from '../../auth/auth.service';
 import {Country} from '../../models/country';
+import {toNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
 interface BankI {
     'bank_payee_name': string;
     'bank_name': string;
     'bank_address': string;
-    'bank_acc_no': string;
+    'bank_acc_no': number;
     'bank_swift_code': string;
     'bank_iban': string;
     'bank_country': string;
@@ -26,7 +27,7 @@ export class BankDetailsComponent implements OnInit {
         'bank_payee_name': '',
         'bank_name': '',
         'bank_address': '',
-        'bank_acc_no': '',
+        'bank_acc_no': 0,
         'bank_swift_code': '',
         'bank_iban': '',
         'bank_country': ''

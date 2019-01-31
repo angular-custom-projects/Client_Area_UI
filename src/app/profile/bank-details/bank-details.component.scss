@@ -77,3 +77,8 @@ p {
   margin-top: -7px;
   font-size: 13px;
 }
+
+.error-msg p {
+  border-bottom: none;
+  padding: 0;
+}

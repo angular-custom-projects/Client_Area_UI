@@ -35,10 +35,15 @@
                                    name="payeeName"
                                    [(ngModel)]="bankInfo.bank_payee_name"
                                    required
+                                   minlength="2"
+                                   maxlength="80"
+                                   appOnlyTextValidator
                                    #payeeName="ngModel">
                         </mat-form-field>
                         <div class="error-msg" *ngIf="payeeName.invalid && payeeName.touched">
-                            <span *ngIf="payeeName.errors['required']">Bank Payee Name is required!</span>
+                            <p *ngIf="payeeName.errors['required']">Bank Payee Name is required!</p>
+                            <p *ngIf="payeeName.errors['minlength']">Bank Payee Name should be at least 2 characters!</p>
+                            <p *ngIf="payeeName.errors['notText'] && (payeeName.errors['required'] !== true)">Please use Basic Latin characters only.</p>
                         </div>
                     </div>
                 </div>
@@ -54,10 +59,15 @@
                                    name="bankName"
                                    [(ngModel)]="bankInfo.bank_name"
                                    required
+                                   minlength="2"
+                                   maxlength="100"
+                                   appOnlyTextValidator
                                    #bankName="ngModel">
                         </mat-form-field>
                         <div class="error-msg" *ngIf="bankName.invalid && bankName.touched">
-                            <span *ngIf="bankName.errors['required']">Bank Name is required!</span>
+                            <p *ngIf="bankName.errors['required']">Bank Name is required!</p>
+                            <p *ngIf="bankName.errors['minlength']">Bank Name should be at least 2 characters!</p>
+                            <p *ngIf="bankName.errors['notText'] && (bankName.errors['required'] !== true)">Please use Basic Latin characters only.</p>
                         </div>
                     </div>
                 </div>
@@ -92,10 +102,15 @@
                                    name="bankAccNo"
                                    [(ngModel)]="bankInfo.bank_acc_no"
                                    required
+                                   minlength="7"
+                                   maxlength="17"
+                                   appOnlyNumbers
                                    #bankAccNo="ngModel">
                         </mat-form-field>
                         <div class="error-msg" *ngIf="bankAccNo.invalid && bankAccNo.touched">
-                            <span *ngIf="bankAccNo.errors['required']">Bank Acc No is required!</span>
+                            <p *ngIf="bankAccNo.errors['required']">Bank Acc No is required!</p>
+                            <p *ngIf="bankAccNo.errors['minlength']">Bank Acc No should be at least 7 numbers!</p>
+                            <p *ngIf="bankAccNo.errors['notOnlyNumber']">Bank Acc No accepts only numbers.</p>
                         </div>
                     </div>
                 </div>
@@ -111,10 +126,15 @@
                                    name="bankSCode"
                                    [(ngModel)]="bankInfo.bank_swift_code"
                                    required
+                                   minlength="8"
+                                   maxlength="11"
+                                   appOnlyNumbersLetters
                                    #bankSCode="ngModel">
                         </mat-form-field>
                         <div class="error-msg" *ngIf="bankSCode.invalid && bankSCode.touched">
-                            <span *ngIf="bankSCode.errors['required']">Bank Swift Code is required!</span>
+                            <p *ngIf="bankSCode.errors['required']">Bank Swift Code is required!</p>
+                            <p *ngIf="bankSCode.errors['minlength']">Bank Swift Code should be at least 8 numbers and letters!</p>
+                            <p *ngIf="bankSCode.errors['notOnlyNumbersLetters'] && (bankSCode.errors['required'] !== true)">Bank Swift Code accepts only numbers, letters and no spaces!</p>
                         </div>
                     </div>
                 </div>
@@ -130,10 +150,13 @@
                                    name="iban"
                                    [(ngModel)]="bankInfo.bank_iban"
                                    required
+                                   maxlength="34"
+                                   appIban
                                    #iban="ngModel">
                         </mat-form-field>
                         <div class="error-msg" *ngIf="iban.invalid && iban.touched">
-                            <span *ngIf="iban.errors['required']">Bank IBAN is required!</span>
+                            <p *ngIf="iban.errors['required']">Bank IBAN is required!</p>
+                            <p *ngIf="iban.errors['notIBAN'] && (iban.errors['required'] !== true)">Please enter a valid Bank IBAN!</p>
                         </div>
                     </div>
                 </div>
