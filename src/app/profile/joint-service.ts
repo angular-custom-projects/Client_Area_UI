@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -37,7 +38,7 @@ export class ProfileJointService {
     }
 
     getJSON() {
-        return this.http.get('http://localhost:4200/assets/joint-details.json')
+        return this.http.get(environment.jointURL);
     }
 
     putJson(fullname: string, dob: any, gender: string, country: string, city: string, address: string, address2: string, postalCode: string, state: string, phoneNo: string, jointOne: boolean) {
