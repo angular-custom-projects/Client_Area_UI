@@ -8,7 +8,7 @@ export const environment = {
     countriesURL: 'assets/countries.json',
     directorsURL: 'assets/directors.json',
     shareHoldersURL: 'assets/shareHolders.json',
-    jointURL: 'assets/joint-details.json'
+    jointURL: 'assets/joint.json'
 };
 
 /*

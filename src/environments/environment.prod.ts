@@ -3,5 +3,6 @@ export const environment = {
     apiURL: 'http://18.195.135.30:8088/',
     countriesURL: 'assets/countries.json',
     directorsURL: 'assets/directors.json',
-    shareHoldersURL: 'assets/shareHolders.json'
+    shareHoldersURL: 'assets/shareHolders.json',
+    jointURL: 'assets/joint.json'
 };

@@ -46,6 +46,8 @@ export class ResetPasswordComponent implements OnInit, CanComponentDeactivate {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.resetPassToken = params['token'];
+      // emit the current token so that we can use it in the header component to show the correct buttons
+      this.authService.passToken.next(this.resetPassToken);
       this.hasToken = params['token'] != null;
     });
   }

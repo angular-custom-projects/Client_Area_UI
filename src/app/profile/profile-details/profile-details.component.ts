@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {ProfileService} from '../profile.service';
 import {ClientDetails} from '../../models/client-details';
@@ -7,6 +7,7 @@ import {Country} from '../../models/country';
 import {AuthService} from '../../auth/auth.service';
 import {Addresses} from '../../models/addresses';
 import {Phones} from '../../models/phones';
+import {Subscription} from 'rxjs';
 
 interface UpdateClientInfo {
     date_of_birth: string;
@@ -20,7 +21,10 @@ interface UpdateClientInfo {
     templateUrl: './profile-details.component.html',
     styleUrls: ['./profile-details.component.scss']
 })
-export class ProfileDetailsComponent implements OnInit {
+export class ProfileDetailsComponent implements OnInit, OnDestroy {
+    // get the current client type
+    clientType = localStorage.getItem('clientType');
+    clientTypeSubscription: Subscription;
     // will be used to show the spinner
     loading = false;
     // form using reactive approach
@@ -62,6 +66,13 @@ export class ProfileDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
+        // update the client type
+        this.clientTypeSubscription = this.authService.clientT.subscribe(
+            (type: string) => {
+                this.clientType = type;
+                console.log(type);
+            }
+        );
         // get a list of all countries and populate the drop down
         this.authService.getCountries().subscribe(data => {
             this.countries = data['countryCodes'];
@@ -70,22 +81,43 @@ export class ProfileDetailsComponent implements OnInit {
         this.currentDate.setFullYear(this.currentDate.getFullYear() - 18);
         this.maxDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate());
         // use reactive approach for the form in this component
-        this.perDetailsForm = new FormGroup({
-            'username': new FormControl({value: this.clientUsername, disabled: true}, Validators.required),
-            'firstName': new FormControl({value: this.clientFirstName, disabled: true}, Validators.required),
-            'lastName': new FormControl({value: this.clientLastName, disabled: true}, Validators.required),
-            'dateOfBirth': new FormControl({value: this.clientDOB, disabled: this.active}, Validators.required),
-            'gender': new FormControl({value: this.clientGender, disabled: this.active}),
-            'countryList': new FormControl({value: this.clientCountry, disabled: true}, Validators.required),
-            'city': new FormControl({value: this.clientCity, disabled: this.active}, Validators.required),
-            'address': new FormControl({value: this.clientAddress, disabled: this.active}, Validators.required),
-            'zip': new FormControl({value: this.clientPostalCode, disabled: this.active}, Validators.required),
-            'state': new FormControl({value: this.clientState, disabled: this.active}, Validators.required),
-            'phoneCode': new FormControl({value: this.clientPhoneCode, disabled: true}, Validators.required),
-            'phoneNumber': new FormControl({value: this.clientPhoneNumber, disabled: this.active}, Validators.required),
-            'email': new FormControl({value: this.clientEmail, disabled: true}
-                , [Validators.required, Validators.email]),
-        });
+        if (this.clientType === 'Joint') {
+            this.perDetailsForm = new FormGroup({
+                'username': new FormControl({value: this.clientUsername, disabled: true}, Validators.required),
+                'firstName': new FormControl({value: this.clientFirstName, disabled: true}, Validators.required),
+                'lastName': new FormControl({value: this.clientLastName, disabled: true}, Validators.required),
+                'dateOfBirth': new FormControl({value: this.clientDOB, disabled: this.active}, Validators.required),
+                'gender': new FormControl({value: this.clientGender, disabled: this.active}),
+                'countryList': new FormControl({value: this.clientCountry, disabled: true}, Validators.required),
+                'city': new FormControl({value: this.clientCity, disabled: this.active}, Validators.required),
+                'address': new FormControl({value: this.clientAddress, disabled: this.active}, Validators.required),
+                'zip': new FormControl({value: this.clientPostalCode, disabled: this.active}, Validators.required),
+                'state': new FormControl({value: this.clientState, disabled: this.active}, Validators.required),
+                'phoneCode': new FormControl({value: this.clientPhoneCode, disabled: true}, Validators.required),
+                'phoneNumber': new FormControl({value: this.clientPhoneNumber, disabled: this.active}, Validators.required),
+                'email': new FormControl({value: this.clientEmail, disabled: true}
+                    , [Validators.required, Validators.email]),
+                'politicallyExposed': new FormControl({value: 'no', disabled: this.active}, Validators.required),
+                'usCitizenship': new FormControl({value: 'no', disabled: this.active}, Validators.required)
+            });
+        } else {
+            this.perDetailsForm = new FormGroup({
+                'username': new FormControl({value: this.clientUsername, disabled: true}, Validators.required),
+                'firstName': new FormControl({value: this.clientFirstName, disabled: true}, Validators.required),
+                'lastName': new FormControl({value: this.clientLastName, disabled: true}, Validators.required),
+                'dateOfBirth': new FormControl({value: this.clientDOB, disabled: this.active}, Validators.required),
+                'gender': new FormControl({value: this.clientGender, disabled: this.active}),
+                'countryList': new FormControl({value: this.clientCountry, disabled: true}, Validators.required),
+                'city': new FormControl({value: this.clientCity, disabled: this.active}, Validators.required),
+                'address': new FormControl({value: this.clientAddress, disabled: this.active}, Validators.required),
+                'zip': new FormControl({value: this.clientPostalCode, disabled: this.active}, Validators.required),
+                'state': new FormControl({value: this.clientState, disabled: this.active}, Validators.required),
+                'phoneCode': new FormControl({value: this.clientPhoneCode, disabled: true}, Validators.required),
+                'phoneNumber': new FormControl({value: this.clientPhoneNumber, disabled: this.active}, Validators.required),
+                'email': new FormControl({value: this.clientEmail, disabled: true}
+                    , [Validators.required, Validators.email])
+            });
+        }
         this.loading = true;
         this.profileService.getClientInfo().subscribe(data => {
                 if (data.data) {
@@ -181,9 +213,13 @@ export class ProfileDetailsComponent implements OnInit {
                 }
             },
             error => {
-            this.error = true;
-            this.errorMessage = error['error'].errors[0];
+                this.error = true;
+                this.errorMessage = error['error'].errors[0];
             });
+    }
+
+    ngOnDestroy() {
+        this.clientTypeSubscription.unsubscribe();
     }
 
     onSubmit() {

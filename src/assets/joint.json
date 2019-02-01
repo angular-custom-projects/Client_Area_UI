@@ -1,0 +1,26 @@
+{
+  "jointList":[
+    {
+      "name": {
+        "full_name": "brad pitt",
+        "first_name": "brad",
+        "last_name": "pitt"
+      },
+      "address": "hollywood, CA",
+      "city": "los angeles",
+      "country": "CY",
+      "postal_code": "6834",
+      "state": "los angeles",
+      "date_of_birth": "December 18, 1963",
+      "email": "brad.pitt@fxprimus.com",
+      "gender": "male",
+      "phone": {
+        "primary": true,
+        "phone_code": "+357",
+        "phone_number": 95693777
+      },
+      "politically_exposed": "no",
+      "us_citizenship": "yes"
+    }
+  ]
+}

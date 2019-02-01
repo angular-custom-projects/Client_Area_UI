@@ -14,8 +14,6 @@ import {DirectorComponent} from './director/director.component';
 import {ShareHolderComponent} from './share-holder/share-holder.component';
 import {ProfileJointDetailsComponent} from './profile-joint-details/profile-joint-details.component';
 
-let profile_id = 1;
-
 const routes: Routes = [
     {
         path: '', component: ProfileComponent, children: [
@@ -29,8 +27,7 @@ const routes: Routes = [
             {path: 'bank-info', component: BankDetailsComponent},
             {path: 'director/:id', component: DirectorComponent},
             {path: 'shareholder/:id', component: ShareHolderComponent},
-            {path: ':profile_id', component: ProfileJointDetailsComponent, pathMatch: 'full'},
-            {path: '', redirectTo: '1', pathMatch: 'full'},
+            {path: 'joint/:id', component: ProfileJointDetailsComponent},
         ]
     }
 ];

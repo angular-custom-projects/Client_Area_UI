@@ -1,324 +1,351 @@
 <div fxLayout="column">
-    <div class="title-card">
-        <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
-            <mat-icon>person</mat-icon>
-            <span>Account Holder / </span><span class="sub-title">{{fName | titlecase}} {{lName | titlecase}}</span>
-        </p>
+    <!--====== the following will be used to the correct confirmation message based on the status of the request (don't remove)-->
+    <div *ngIf="error">
+        <app-confirmation messageType="error"
+                          messageText="Error: {{errorMessage}}"
+                          (closeM)="closeErrorMessage($event)"></app-confirmation>
     </div>
-    <div class="content-card">
-        <mat-tab-group fxLayout="column">
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <p class="sub-title lato-regular top-gray-border">Personal Details</p>
-                </ng-template>
-                <ng-template matTabContent>
-                    <form (ngSubmit)="onSubmit()" #f="ngForm" fxLayout="column">
-                        <div class="empty-space">
-                            <p class="sub-title lato-regular">Account Details</p>
+    <div *ngIf="success">
+        <app-confirmation messageType="success"
+                          messageText="The information has been updated successfully."
+                          (closeM)="closeSuccessMessage($event)"></app-confirmation>
+    </div>
+    <mat-spinner *ngIf="loading" diameter="200"></mat-spinner>
+    <div *ngIf="!loading">
+        <div class="title-card">
+            <p class="section-title lato-regular" fxLayout="row" fxLayoutAlign="flex-start center">
+                <mat-icon>perm_identity</mat-icon>
+                <span>{{joint.name.first_name | titlecase}} {{joint.name.last_name | titlecase}}</span>
+            </p>
+        </div>
+        <mat-tab-group mat-stretch-tabs>
+            <mat-tab label="Profile Details">
+                <div class="tab-body">
+                    <form (ngSubmit)="onSubmit()" [formGroup]="jointDetailsForm" fxLayout="column">
+                        <div class="subtitle-height">
+                            <p class="lato-regular">Personal</p>
                         </div>
-                        <div *ngFor="let client of jointArray">
-                            <div *ngIf="joint_one; then holderOne else holderTwo"></div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="username" fxFlex="49%">Username:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="username"
-                                                    name="username"
-                                                    [ngModel]="pUsername"
-                                                    required
-                                                    disabled
-                                                    #username="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="username.invalid && username.touched">
-                                            <span *ngIf="username.errors['required']">Username is required!</span>
-                                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">First Name: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="text"
+                                               appOnlyTextValidator
+                                               id="firstName"
+                                               formControlName="firstName">
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('firstName').invalid && jointDetailsForm.get('firstName').touched">
+                                        <span *ngIf="jointDetailsForm.get('firstName').errors['required']">First name is required!</span>
+                                        <span *ngIf="jointDetailsForm.get('firstName').errors['notText'] && jointDetailsForm.get('firstName').errors['required'] !== true">
+                                    Please use Basic Latin characters only.</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="empty-space">
-                                <p class="sub-title lato-regular">Personal Information</p>
-                            </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="firstName" fxFlex="49%">Full Name:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="firstName"
-                                                    name="firstName"
-                                                    [ngModel]="fName | titlecase"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #firstName="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="firstName.invalid && firstName.touched">
-                                            <span *ngIf="firstName.errors['required']">Full name is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Last Name: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="text"
+                                               appOnlyTextValidator
+                                               id="lastName"
+                                               formControlName="lastName">
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('lastName').invalid && jointDetailsForm.get('lastName').touched">
+                                        <span *ngIf="jointDetailsForm.get('lastName').errors['required']">Last name is required!</span>
+                                        <span *ngIf="jointDetailsForm.get('lastName').errors['notText'] && jointDetailsForm.get('lastName').errors['required'] !== true">
+                                    Please use Basic Latin characters only.</span>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div class="line-between">-->
-                                <!--<div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">-->
-                                    <!--<label class="label" for="lastName" fxFlex="49%">Last Name:</label>-->
-                                    <!--<div fxLayout="column" fxFlex="49%">-->
-                                        <!--<mat-form-field floatLabel=never>-->
-                                            <!--<input matInput-->
-                                                    <!--type="text"-->
-                                                    <!--id="lastName"-->
-                                                    <!--name="lastName"-->
-                                                    <!--[ngModel]="lName | titlecase"-->
-                                                    <!--required-->
-                                                    <!--[disabled]="active"-->
-                                                    <!--#lastName="ngModel">-->
-                                        <!--</mat-form-field>-->
-                                        <!--<div class="error-msg" *ngIf="lastName.invalid && lastName.touched">-->
-                                            <!--<span *ngIf="lastName.errors['required']">Last name is required!</span>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="dateOfBirth" fxFlex="49%">Date of Birth:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="dateOfBirth"
-                                                    name="dateOfBirth"
-                                                    [ngModel]="DOB | date"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #dateOfBirth="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="dateOfBirth.invalid && dateOfBirth.touched">
-                                            <span *ngIf="dateOfBirth.errors['required']">Date of Birth is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Date of Birth: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               [matDatepicker]="picker"
+                                               [max]="maxDate"
+                                               type="text"
+                                               id="dateOfBirth"
+                                               formControlName="dateOfBirth">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('dateOfBirth').invalid && jointDetailsForm.get('dateOfBirth').touched">
+                                        <span *ngIf="jointDetailsForm.get('dateOfBirth').errors['required']">Date of Birth is required!</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="gender" fxFlex="49%">Gender:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="gender"
-                                                    name="gender"
-                                                    [ngModel]="pGender | titlecase"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #gender="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="gender.invalid && gender.touched">
-                                            <span *ngIf="gender.errors['required']">Gender is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Gender:</span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <mat-select id="gender"
+                                                    formControlName="gender">
+                                            <mat-option *ngFor="let g of genders" [value]="g">
+                                                {{g | titlecase}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="subtitle-height">
+                            <p class="lato-regular">Contact</p>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Country: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <mat-select id="country" formControlName="country"
+                                                    (selectionChange)="onCountryChange($event.value)">
+                                            <mat-option>--</mat-option>
+                                            <mat-option *ngFor="let country of countries"
+                                                        [value]="country.country_code">
+                                                {{country['country_name']}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('country').invalid && jointDetailsForm.get('country').touched">
+                                        <span *ngIf="jointDetailsForm.get('country').errors['required']">Country is required!</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="empty-space">
-                                <p class="sub-title lato-regular">Contact Details</p>
-                            </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="country" fxFlex="49%">Country:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <mat-select [(ngModel)]="currentCountry"
-                                                        id="country"
-                                                        name="country"
-                                                        required
-                                                        [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                        #country="ngModel">
-                                                <mat-option *ngFor="let country of countries" [value]="country">
-                                                    {{country}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="country.invalid && country.touched">
-                                            <span *ngIf="country.errors['required']">Country is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">City / Town: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="text"
+                                               appOnlyTextValidator
+                                               id="city"
+                                               formControlName="city">
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('city').invalid && jointDetailsForm.get('city').touched">
+                                        <span *ngIf="jointDetailsForm.get('city').errors['required']">City is required!</span>
+                                        <span *ngIf="jointDetailsForm.get('city').errors['notText'] && jointDetailsForm.get('city').errors['required'] !== true">
+                                    Please use Basic Latin characters only.</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="city" fxFlex="49%">City / Town:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="city"
-                                                    name="city"
-                                                    [ngModel]="pCity | titlecase"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #city="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="city.invalid && city.touched">
-                                            <span *ngIf="city.errors['required']">City is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">State / Province:</span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="text"
+                                               id="state"
+                                               formControlName="state">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Address: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="text"
+                                               id="address"
+                                               formControlName="address">
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('address').invalid && jointDetailsForm.get('address').touched">
+                                        <span *ngIf="jointDetailsForm.get('address').errors['required']">Address is required!</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="state" fxFlex="49%">State / Province:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="state"
-                                                    name="state"
-                                                    [ngModel]="pState"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #state="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="state.invalid && state.touched">
-                                            <span *ngIf="state.errors['required']">State is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Zip / Postal Code: <span
+                                        class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="number"
+                                               id="zip"
+                                               formControlName="zip">
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('zip').invalid && jointDetailsForm.get('zip').touched">
+                                        <span *ngIf="jointDetailsForm.get('zip').errors['required']">Zip / Postal Code is required!</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="address" fxFlex="49%">Address:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="address"
-                                                    name="address"
-                                                    [ngModel]="pAddress | titlecase"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #address="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="address.invalid && address.touched">
-                                            <span *ngIf="address.errors['required']">Address is required!</span>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Phone Number: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <div fxLayout="row" fxFlex="90%" fxLayoutGap="2%">
+                                        <div fxFlex="13%">
+                                            <mat-form-field floatLabel=never>
+                                                <input matInput
+                                                       type="text"
+                                                       appPhoneCodeValidator
+                                                       id="phoneCode"
+                                                       value="{{joint.phone.phone_code}}"
+                                                       formControlName="phoneCode">
+                                            </mat-form-field>
                                         </div>
+                                        <div fxFlex="87%">
+                                            <mat-form-field floatLabel=never class="full-width">
+                                                <input matInput
+                                                       type="number"
+                                                       id="phoneNumber"
+                                                       formControlName="phoneNumber">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('phoneNumber').invalid && jointDetailsForm.get('phoneNumber').touched">
+                                        <span *ngIf="jointDetailsForm.get('phoneNumber').errors['required']">Phone Number is required!</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="address2" fxFlex="49%">Address 2:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="address2"
-                                                    name="address2"
-                                                    [ngModel]="pSecondAddress | titlecase"
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #address2="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="address2.invalid && address2.touched">
-                                            <span *ngIf="address2.errors['required']">Address 2 is required!</span>
-                                        </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Email: <span class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-form-field floatLabel=never>
+                                        <input matInput
+                                               type="email"
+                                               id="email"
+                                               formControlName="email">
+                                    </mat-form-field>
+                                    <div class="error-msg"
+                                         *ngIf="jointDetailsForm.get('email').invalid && jointDetailsForm.get('email').touched">
+                                        <span *ngIf="jointDetailsForm.get('email').errors['required']">Email is required!</span>
+                                        <span *ngIf="jointDetailsForm.get('email').errors['email']">Please enter a valid Email address.</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="zip" fxFlex="49%">Zip / Postal Code:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="zip"
-                                                    name="zip"
-                                                    [ngModel]="pPostalCode"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #zip="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="zip.invalid && zip.touched">
-                                            <span *ngIf="zip.errors['required']">Zip / Postal Code is required!</span>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600 radio-btn" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Are you, or have you ever been, a Politically Exposed Person? <span
+                                        class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-radio-group formControlName="politicallyExposed" fxLayout="row" fxLayoutGap="2%">
+                                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                                        <mat-radio-button value="no">No</mat-radio-button>
+                                    </mat-radio-group>
                                 </div>
                             </div>
-
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="phoneNumber" fxFlex="49%">Phone Number:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="text"
-                                                    id="phoneNumber"
-                                                    name="phoneNumber"
-                                                    [ngModel]="pPhoneNumber"
-                                                    required
-                                                    [disabled]="joint_one == true ? jointOneActive : jointTwoActive"
-                                                    #phoneNumber="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="phoneNumber.invalid && phoneNumber.touched">
-                                            <span *ngIf="phoneNumber.errors['required']">Phone Number is required!</span>
-                                        </div>
-                                    </div>
+                        </div>
+                        <div class="line-between">
+                            <div class="max-width-600 radio-btn" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Are you a U.S. resident or have you got U.S. citizenship? <span
+                                        class="required">*</span></span>
+                                <div fxLayout="column" fxFlex="49%">
+                                    <mat-radio-group formControlName="usCitizenship" fxLayout="row" fxLayoutGap="2%">
+                                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                                        <mat-radio-button value="no">No</mat-radio-button>
+                                    </mat-radio-group>
                                 </div>
                             </div>
-                            <div class="line-between">
-                                <div class="input-container" fxLayout="row" fxLayoutAlign="space-between center">
-                                    <label class="label" for="email" fxFlex="49%">Email:</label>
-                                    <div fxLayout="column" fxFlex="49%">
-                                        <mat-form-field floatLabel=never>
-                                            <input matInput
-                                                    type="email"
-                                                    id="email"
-                                                    name="email"
-                                                    [ngModel]="pEmail"
-                                                    required
-                                                    email
-                                                    disabled
-                                                    #email="ngModel">
-                                        </mat-form-field>
-                                        <div class="error-msg" *ngIf="email.invalid && email.touched">
-                                            <span *ngIf="email.errors['required']">Email is required!</span>
-                                            <span *ngIf="email.errors['email']">Please enter a valid Email address.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center" *ngIf="joint_one == true ? !jointOneActive : !jointTwoActive">
-                                <button mat-raised-button
-                                        type="submit"
-                                        [disabled]="f.invalid">
-                                    <mat-icon>edit</mat-icon>
-                                    <span>Submit</span>
-                                </button>
-                            </div>
-                            <div class="text-center"
-                                id="tool-tip-btn"
-                                *ngIf="joint_one == true ? jointOneActive : jointTwoActive"
-                                matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
-                                aria-label="If you want to change these details, please email support@FXPRIMUS.com."
-                                matTooltipPosition="above">
-                                <button mat-raised-button
-                                        type="button"
-                                        [disabled]="true">
-                                    <mat-icon>edit</mat-icon>
-                                    <span>Submit</span>
-                                </button>
-                            </div>
+                        </div>
+                        <div class="text-center" *ngIf="!active">
+                            <button mat-raised-button
+                                    type="submit"
+                                    id="submit"
+                                    [disabled]="jointDetailsForm.invalid">
+                                <mat-icon>edit</mat-icon>
+                                <span>Submit</span>
+                            </button>
+                        </div>
+                        <div class="text-center" *ngIf="active">
+                            <button mat-raised-button
+                                    type="button"
+                                    id="tool-tip-btn"
+                                    matTooltipPosition="above"
+                                    matTooltip="If you want to change these details, please email support@FXPRIMUS.com."
+                                    aria-label="If you want to change these details, please email support@FXPRIMUS.com.">
+                                <mat-icon>edit</mat-icon>
+                                <span>Submit</span>
+                            </button>
                         </div>
                     </form>
-                </ng-template>
+                </div>
             </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <p class="sub-title lato-regular top-gray-border">KYC Documents</p>
-                </ng-template>
-                <ng-template matTabContent>
-                </ng-template>
+            <mat-tab label="Documents">
+                <div class="tab-body">
+                    <p class="instructions padding-right-20">We need a valid copy of your Passport / ID / driving
+                        license to
+                        verify your identity (please make
+                        sure you provide the backside in case of ID and driving license). The documentation provided
+                        needs
+                        to contain, at lease, the following.</p>
+                    <a routerLink="/" class="info" fxLayout="row" fxLayoutAlign="flex-start center">
+                        <fa name="info-circle"></fa>
+                        <span>More Information</span>
+                    </a>
+                    <div class="upper-upload-container" fxLayout="row wrap" fxLayoutAlign="space-between">
+                        <div class="upload-container" fxFlex="49%">
+                            <div class="content">
+                                <h4 class="upload-title">Front ID / Passport</h4>
+                                <p class="instructions">Please upload a GOOD QUALITY, COLOUR COPY of your Front Proof of
+                                    Identification. This has to
+                                    be a government issued ID with a photograph and your name on it such as a valid
+                                    passport,
+                                    national identification card, driving license or any other government issued ID</p>
+                                <a routerLink="/" class="info" fxLayout="row" fxLayoutAlign="flex-start center">
+                                    <fa name="info-circle"></fa>
+                                    <span>More Information</span>
+                                </a>
+                            </div>
+                            <button class="upload-button"
+                                    mat-raised-button
+                                    fxLayout="row"
+                                    fxLayoutAlign="center">
+                                <mat-icon>cloud_upload</mat-icon>
+                                <span>Upload Front</span>
+                            </button>
+                        </div>
+                        <div class="upload-container" fxFlex="49%">
+                            <div class="content">
+                                <h4 class="upload-title">Back ID / Passport</h4>
+                                <p class="instructions">Please upload a GOOD QUALITY, COLOUR COPY of your Front Proof of
+                                    Identification. This has to
+                                    be a government issued ID with a photograph and your name on it such as a valid
+                                    passport,
+                                    national identification card, driving license or any other government issued ID</p>
+                                <a routerLink="/" class="info" fxLayout="row" fxLayoutAlign="flex-start center">
+                                    <fa name="info-circle"></fa>
+                                    <span>More Information</span>
+                                </a>
+                            </div>
+                            <button class="upload-button"
+                                    mat-raised-button
+                                    fxLayout="row"
+                                    fxLayoutAlign="center">
+                                <mat-icon>cloud_upload</mat-icon>
+                                <span>Upload Back</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </mat-tab>
         </mat-tab-group>
     </div>

@@ -9,6 +9,10 @@ import {Subject} from 'rxjs';
 export class ProfileService {
     envURL = environment.apiURL;
 
+    // will be used to emith the joint accounts
+    jointAccountsChanged = new Subject();
+    // joint accounts URL
+    jointAccountsListURL = environment.jointURL;
     // will be used to emit the directors
     directorsChanged = new Subject();
     // directors URL
@@ -45,6 +49,16 @@ export class ProfileService {
             data => {
                 // emit any changes to the share holders array
                 this.shareHoldersChanged.next(data['shareHoldersList']);
+            }
+        );
+    }
+
+    getJointAccount() {
+        // get a list of all joint accounts
+        this.http.get(this.jointAccountsListURL).subscribe(
+            data => {
+                // emit any changes to the joint accounts
+                this.jointAccountsChanged.next(data['jointList']);
             }
         );
     }

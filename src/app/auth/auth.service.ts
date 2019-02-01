@@ -9,6 +9,8 @@ import {ProfileService} from '../profile/profile.service';
     providedIn: 'root'
 })
 export class AuthService {
+    // will be used to check if URL has a token to reset the password so that we can use it in the header to dispaly the correct buttons
+    passToken = new Subject();
     // countries URL
     countriesListURL = environment.countriesURL;
     // API URL
@@ -59,7 +61,6 @@ export class AuthService {
             error => {
                 this.loginError.next(true);
                 this.loginErrorMessage.next(error['error'].errors[0]);
-                console.log(error);
             }
         );
     }

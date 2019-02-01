@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../../auth/auth.service';
-import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
+import {Router, NavigationEnd, ActivatedRoute, Params} from '@angular/router';
 
 import {filter} from 'rxjs/internal/operators';
 import {map} from 'rxjs/internal/operators';
@@ -53,11 +53,23 @@ export class HeaderComponent implements OnInit {
             .pipe(filter((_route) => _route.outlet === 'primary'))
             .pipe(mergeMap((_route) => _route.data))
             .subscribe((event) => {
+                // check if there is a reset password token in the URL so that we can display the correct buttons
+                this.authService.passToken.subscribe(
+                    (token: string) => {
+                        if (token !== undefined) {
+                            this.showLogin = true;
+                            this.showOpenAccount = true;
+                        }
+                    },
+                    error => console.log(error)
+                );
                 if (this._router.url === '/login') {
                     this.showOpenAccount = true;
                     this.showLogin = false;
-                }
-                if (this._router.url === '/register') {
+                }  else if (this._router.url === '/forgot-password') {
+                    this.showLogin = true;
+                    this.showOpenAccount = true;
+                } else if (this._router.url === '/register') {
                     this.showLogin = true;
                     this.showOpenAccount = false;
                 }

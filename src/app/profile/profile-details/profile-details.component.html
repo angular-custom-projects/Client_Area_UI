@@ -272,7 +272,32 @@
                         </div>
                     </div>
                 </div>
-
+                <div *ngIf="clientType === 'Joint'">
+                    <div class="line-between">
+                        <div class="input-container radio-btn" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Are you, or have you ever been, a Politically Exposed Person? <span
+                                        class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-radio-group formControlName="politicallyExposed" fxLayout="row" fxLayoutGap="2%">
+                                    <mat-radio-button value="yes">Yes</mat-radio-button>
+                                    <mat-radio-button value="no">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line-between">
+                        <div class="input-container radio-btn" fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="label" fxFlex="49%">Are you a U.S. resident or have you got U.S. citizenship? <span
+                                        class="required">*</span></span>
+                            <div fxLayout="column" fxFlex="49%">
+                                <mat-radio-group formControlName="usCitizenship" fxLayout="row" fxLayoutGap="2%">
+                                    <mat-radio-button value="yes">Yes</mat-radio-button>
+                                    <mat-radio-button value="no">No</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="text-center" *ngIf="!active">
                     <button mat-raised-button
                             type="submit"

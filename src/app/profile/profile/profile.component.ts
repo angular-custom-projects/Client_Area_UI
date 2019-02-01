@@ -24,9 +24,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     shareHoldersSubscription: Subscription;
     // show the directors and shareholders panel
     isCorporate = false;
-    // available joint accounts
-    client_id_1 = 1;
-    client_id_2 = 2;
 
     constructor(private authService: AuthService,
                 private profileService: ProfileService) {
@@ -48,6 +45,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 {link: '/profile/documents', title: 'Documents', icon: 'description'},
                 {link: '/profile/change-password', title: 'Change Password', icon: 'lock'},
                 {link: '/profile/bank-info', title: 'Your Bank Info', icon: 'account_balance'},
+                {link: '/profile/trading-knowledge', title: 'Trading Knowledge', icon: 'trending_up'},
+                {link: '/profile/financial-background', title: 'Financial Background', icon: 'library_books'},
                 {link: '/profile/agreements', title: 'Agreements', icon: 'assignment'},
             ];
 
@@ -67,13 +66,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
             );
         } else if (this.clientType === 'Joint') {
             this.sidebarMenuItems = [
-                {link: '/profile', title: 'Profile Details', icon: 'person'},
-                {link: '/profile/' + this.client_id_1, title: 'Account Holder 1 Details', icon: 'person'},
-                {link: '/profile/' + this.client_id_2, title: 'Account Holder 2 Details', icon: 'person'},
+                {link: '/profile', title: 'Account Holder 1 Details', icon: 'person'},
+                {link: '/profile/joint/0', title: 'Account Holder 2 Details', icon: 'person'},
                 {link: '/profile/verification', title: 'Verification', icon: 'verified_user'},
-                // {link: '/profile/documents', title: 'Documents', icon: 'description'},
                 {link: '/profile/change-password', title: 'Change Password', icon: 'lock'},
                 {link: '/profile/bank-info', title: 'Your Bank Info', icon: 'account_balance'},
+                {link: '/profile/trading-knowledge', title: 'Trading Knowledge', icon: 'trending_up'},
+                {link: '/profile/financial-background', title: 'Financial Background', icon: 'library_books'},
                 {link: '/profile/agreements', title: 'Agreements', icon: 'assignment'},
             ];
         } else {
@@ -83,6 +82,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 {link: '/profile/documents', title: 'Documents', icon: 'description'},
                 {link: '/profile/change-password', title: 'Change Password', icon: 'lock'},
                 {link: '/profile/bank-info', title: 'Your Bank Info', icon: 'account_balance'},
+                {link: '/profile/trading-knowledge', title: 'Trading Knowledge', icon: 'trending_up'},
+                {link: '/profile/financial-background', title: 'Financial Background', icon: 'library_books'},
                 {link: '/profile/agreements', title: 'Agreements', icon: 'assignment'},
             ];
         }
